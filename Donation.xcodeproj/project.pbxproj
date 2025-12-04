@@ -6,13 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		D52614512EDC2F6800B2A667 /* DiscoverDonation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D52614502EDC2F6800B2A667 /* DiscoverDonation.storyboard */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		D52614382EDC2EC200B2A667 /* Donation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Donation.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D52614502EDC2F6800B2A667 /* DiscoverDonation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DiscoverDonation.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -50,7 +45,6 @@
 		D526142F2EDC2EC200B2A667 = {
 			isa = PBXGroup;
 			children = (
-				D52614502EDC2F6800B2A667 /* DiscoverDonation.storyboard */,
 				D526143A2EDC2EC200B2A667 /* Donation */,
 				D52614392EDC2EC200B2A667 /* Products */,
 			);
@@ -128,7 +122,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D52614512EDC2F6800B2A667 /* DiscoverDonation.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
