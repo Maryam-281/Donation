@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="31m-Ix-gcL">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
@@ -152,10 +152,10 @@
             </objects>
             <point key="canvasLocation" x="-1098.4732824427481" y="3.5211267605633805"/>
         </scene>
-        <!--View Controller-->
+        <!--Donation Filter-->
         <scene sceneID="iXh-Zp-IR6">
             <objects>
-                <viewController id="31m-Ix-gcL" sceneMemberID="viewController">
+                <viewController id="31m-Ix-gcL" customClass="DonationFilter" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MbS-QS-Fxk">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -218,6 +218,9 @@
                                         <state key="normal" image="circle" catalog="system">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
                                         </state>
+                                        <connections>
+                                            <action selector="radioButtonTapped:" destination="31m-Ix-gcL" eventType="touchUpInside" id="hAI-Ea-7eY"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7UZ-Ct-f2I">
                                         <rect key="frame" x="292" y="86" width="46" height="36"/>
@@ -228,6 +231,9 @@
                                         <state key="normal" image="circle" catalog="system">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
                                         </state>
+                                        <connections>
+                                            <action selector="radioButtonTapped:" destination="31m-Ix-gcL" eventType="touchUpInside" id="Jwj-ee-dWi"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.53481465579999998" green="0.66647309060000004" blue="0.77274960280000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -276,6 +282,9 @@
                                             <color key="baseForegroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="baseBackgroundColor" red="0.95294123890000004" green="0.95294123890000004" blue="0.95294111969999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="resetBtnClicked:" destination="31m-Ix-gcL" eventType="touchUpInside" id="P9J-k8-Jb7"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G4l-0p-b75">
                                         <rect key="frame" x="174.66666666666663" y="0.0" width="158.33333333333337" height="60"/>
@@ -283,6 +292,9 @@
                                         <buttonConfiguration key="configuration" style="filled" title="Apply Filters">
                                             <color key="baseBackgroundColor" red="0.53481465579999998" green="0.66647309060000004" blue="0.77274960280000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="filterBtnClicked:" destination="31m-Ix-gcL" eventType="touchUpInside" id="gcO-Cl-3uj"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -299,6 +311,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MV6-d1-JGS"/>
+                    <connections>
+                        <outlet property="Firt10RadioButton" destination="6NR-eK-suk" id="ALg-tx-k0M"/>
+                        <outlet property="Last10RadioButton" destination="6NR-eK-suk" id="Vta-N8-TzS"/>
+                        <outlet property="OtherRadioButton" destination="7UZ-Ct-f2I" id="E8Q-Yd-bLe"/>
+                        <outlet property="chartViewContainer" destination="I57-ch-oBQ" id="jBg-CR-7xh"/>
+                        <outlet property="chartViewer" destination="I57-ch-oBQ" id="GFB-jy-YiX"/>
+                        <outlet property="endDate" destination="gU3-Sg-sFW" id="Fbf-td-Wj1"/>
+                        <outlet property="filterButton" destination="G4l-0p-b75" id="mgt-pI-4SO"/>
+                        <outlet property="otherRadioButton" destination="7UZ-Ct-f2I" id="AA4-wg-ojg"/>
+                        <outlet property="resetButton" destination="fFz-w3-3xI" id="A3z-4u-bLA"/>
+                        <outlet property="startDate" destination="vDJ-rs-YMl" id="J2l-yw-WYQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5y-fn-Ifz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -837,10 +861,10 @@
             </objects>
             <point key="canvasLocation" x="2273" y="701"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Admin Analysis Dashboard Table View Controller-->
         <scene sceneID="htr-dp-Dh8">
             <objects>
-                <tableViewController id="cGu-El-xDP" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Home" id="cGu-El-xDP" customClass="adminAnalysisDashboardTableViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="L5I-2Q-kX4">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -873,6 +897,9 @@
                                                 <segment title="Feedback Analysis"/>
                                             </segments>
                                             <color key="selectedSegmentTintColor" red="0.86698251959999995" green="0.89404493569999999" blue="0.93911057710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="segmentChanged:" destination="cGu-El-xDP" eventType="valueChanged" id="7F0-HW-Is3"/>
+                                            </connections>
                                         </segmentedControl>
                                     </subviews>
                                     <constraints>
@@ -997,6 +1024,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Wxz-de-aRe"/>
+                    <connections>
+                        <outlet property="mainSegmentedController" destination="jOv-km-hDu" id="GOx-wl-dz9"/>
+                        <outlet property="mySegmentedController" destination="jOv-km-hDu" id="eFU-L9-i26"/>
+                        <outlet property="segmentedController" destination="jOv-km-hDu" id="t7F-IB-ybo"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kC0-ws-dtX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1005,7 +1037,7 @@
         <!--View Controller-->
         <scene sceneID="C5b-Qg-jVQ">
             <objects>
-                <viewController id="xds-iY-v8D" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DonationsAnalysis" id="xds-iY-v8D" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7bq-pH-IXB">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1131,7 +1163,7 @@
         <!--Table View Controller-->
         <scene sceneID="af9-KE-pAp">
             <objects>
-                <tableViewController id="nfa-hv-c3g" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FeedbackAnalysis" id="nfa-hv-c3g" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ucv-W7-h4u">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1320,9 +1352,6 @@
             <point key="canvasLocation" x="603.81679389312978" y="-820.4225352112677"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="D4s-46-2M3"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="Done.Icon" width="129" height="129"/>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>

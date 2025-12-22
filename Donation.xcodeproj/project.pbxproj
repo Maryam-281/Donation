@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		227AC8322EF9BB7400B48968 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 227AC8312EF9BB7400B48968 /* SwiftUICharts */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D52614382EDC2EC200B2A667 /* Donation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Donation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				227AC8322EF9BB7400B48968 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = Donation;
 			packageProductDependencies = (
+				227AC8312EF9BB7400B48968 /* SwiftUICharts */,
 			);
 			productName = Donation;
 			productReference = D52614382EDC2EC200B2A667 /* Donation.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = D526142F2EDC2EC200B2A667;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				227AC8302EF9BB7400B48968 /* XCRemoteSwiftPackageReference "chartview" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D52614392EDC2EC200B2A667 /* Products */;
 			projectDirPath = "";
@@ -333,6 +342,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		227AC8302EF9BB7400B48968 /* XCRemoteSwiftPackageReference "chartview" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apppear/chartview.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		227AC8312EF9BB7400B48968 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 227AC8302EF9BB7400B48968 /* XCRemoteSwiftPackageReference "chartview" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D52614302EDC2EC200B2A667 /* Project object */;
 }
