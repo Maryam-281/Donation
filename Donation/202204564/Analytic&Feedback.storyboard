@@ -231,6 +231,12 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.53481465579999998" green="0.66647309060000004" blue="0.77274960280000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I57-ch-oBQ">
                                 <rect key="frame" x="16" y="401" width="361" height="275"/>
@@ -345,6 +351,12 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cOe-4H-TRW">
                                 <rect key="frame" x="26" y="277" width="341" height="45"/>
@@ -412,6 +424,12 @@
                                     <constraint firstAttribute="height" constant="45" id="4fM-gm-0GX"/>
                                     <constraint firstAttribute="width" constant="341" id="hY3-4v-YSX"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8p-hP-KBx">
                                 <rect key="frame" x="16" y="74" width="361" height="44"/>
@@ -630,6 +648,12 @@
                                     <constraint firstAttribute="height" constant="45" id="Ezc-iW-ed0"/>
                                     <constraint firstAttribute="width" constant="341" id="lpC-dt-geg"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5f7-Sj-zPt">
                                 <rect key="frame" x="26" y="376" width="341" height="45"/>
@@ -697,6 +721,12 @@
                                     <constraint firstAttribute="width" constant="341" id="Ash-VF-BG8"/>
                                     <constraint firstAttribute="height" constant="45" id="jve-Pa-t7Q"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCI-VO-HdG">
                                 <rect key="frame" x="16" y="74" width="361" height="44"/>
@@ -721,6 +751,12 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2Ir-cz-292"/>
@@ -1011,6 +1047,12 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.53481465579999998" green="0.66647309060000004" blue="0.77274960280000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OYf-DJ-sgE">
                                 <rect key="frame" x="16" y="401" width="361" height="275"/>
@@ -1192,6 +1234,12 @@
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.53481465579999998" green="0.66647309060000004" blue="0.77274960280000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="12"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -1273,7 +1321,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="s9s-jh-dkt"/>
+        <segue reference="D4s-46-2M3"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Done.Icon" width="129" height="129"/>
