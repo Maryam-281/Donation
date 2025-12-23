@@ -54,6 +54,7 @@ class DonationFilter: UIViewController {
     
     // function to return the sender selection
     @IBAction func radioButtonTapped(_ sender: UIButton) {
+
         first10RadioButton.isSelected = false
         otherRadioButton.isSelected = false
         sender.isSelected = true

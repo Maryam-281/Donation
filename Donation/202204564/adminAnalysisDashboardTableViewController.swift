@@ -12,13 +12,13 @@ import UIKit
 
 
 
-class adminAnalysisDashboardTableViewController : UITableViewController {
-
+class  adminAnalysisDashboardTableViewController: UITableViewController {
+    @IBOutlet weak var mainSegmentedController: UISegmentedControl!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //mySegmentedController.selectedSegmentIndex = 0
+        mainSegmentedController.selectedSegmentIndex = 0
     }
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
