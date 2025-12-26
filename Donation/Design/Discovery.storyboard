@@ -317,7 +317,6 @@ Expiration date: 24/04/2025                      Donor: Maryam Alshehabi</string
         <!--Tab Bar Controller-->
         <scene sceneID="Q2L-Ju-dDv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sTm-gg-sU3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="XpR-8r-abV" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="hC8-Lh-3qb"/>
@@ -334,6 +333,7 @@ Expiration date: 24/04/2025                      Donor: Maryam Alshehabi</string
                         <segue destination="PGc-CR-9lQ" kind="relationship" relationship="viewControllers" id="DUB-TO-fyo"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sTm-gg-sU3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1088" y="-863"/>
         </scene>
@@ -1016,7 +1016,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                 <rect key="frame" x="31" y="400" width="331" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUg-ja-jWC">
-                                        <rect key="frame" x="0.0" y="0.0" width="151" height="65"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="65" id="bg0-7X-M5i"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="wg4-9f-lUg"/>
@@ -1029,7 +1029,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVO-1I-F4B">
-                                        <rect key="frame" x="171" y="0.0" width="160" height="65"/>
+                                        <rect key="frame" x="180" y="0.0" width="151" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="wn7-3l-oyV"/>
                                         </constraints>
@@ -1131,7 +1131,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover Donations" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCe-Eu-HP0">
-                                <rect key="frame" x="69" y="76" width="254.33333333333337" height="33.666666666666657"/>
+                                <rect key="frame" x="69.333333333333329" y="76" width="254.33333333333337" height="33.666666666666657"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1219,28 +1219,104 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fpF-Pg-l8h">
-                                <rect key="frame" x="43" y="173" width="307" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DonationCell" id="4Cv-ed-ggO">
-                                        <rect key="frame" x="0.0" y="50" width="307" height="47.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Cv-ed-ggO" id="eSj-Aw-mHS">
-                                            <rect key="frame" x="0.0" y="0.0" width="307" height="47.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KuV-5f-MGV">
+                                <rect key="frame" x="43" y="207" width="307" height="528"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xYE-PK-zVw">
+                                        <rect key="frame" x="0.0" y="0.0" width="307" height="528"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Hor-Ul-98x">
+                                                <rect key="frame" x="0.0" y="16" width="307" height="496"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="abp-nu-uaq">
+                                                        <rect key="frame" x="0.0" y="0.0" width="307" height="496"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="j9D-Uz-RZY">
+                                                                <rect key="frame" x="12" y="12" width="283" height="472"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chicken" translatesAutoresizingMaskIntoConstraints="NO" id="A2e-k2-tZU">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="283" height="181"/>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chicken with Broccoli and Rice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfx-cC-lTg">
+                                                                        <rect key="frame" x="0.0" y="189" width="283" height="20.333333333333343"/>
+                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2mE-EW-Wse">
+                                                                        <rect key="frame" x="0.0" y="217.33333333333331" width="283" height="254.66666666666669"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expires in 2 days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVd-gN-PQa">
+                                                                                <rect key="frame" x="0.0" y="119.66666666666669" width="101.66666666666667" height="15.666666666666657"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                                <color key="textColor" systemColor="systemGrayColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="3D6-Pc-DYO">
+                                                                                <rect key="frame" x="109.66666666666667" y="63.333333333333314" width="135.66666666666663" height="128"/>
+                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                            </view>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xug-Bj-RB6">
+                                                                                <rect key="frame" x="253.33333333333329" y="119.66666666666669" width="29.666666666666657" height="15.666666666666657"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                                <color key="textColor" systemColor="systemGrayColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amA-tg-4jY">
+                                                                <rect key="frame" x="98" y="233" width="110" height="29.666666666666686"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="View Details &gt;" titleAlignment="trailing">
+                                                                    <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
+                                                                </buttonConfiguration>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="j9D-Uz-RZY" secondAttribute="bottom" constant="12" id="A19-Bd-RsG"/>
+                                                            <constraint firstItem="j9D-Uz-RZY" firstAttribute="leading" secondItem="abp-nu-uaq" secondAttribute="leading" constant="12" id="DrB-bL-HKi"/>
+                                                            <constraint firstItem="j9D-Uz-RZY" firstAttribute="top" secondItem="abp-nu-uaq" secondAttribute="top" constant="12" id="c8o-BR-IqJ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="j9D-Uz-RZY" secondAttribute="trailing" constant="12" id="gYR-e6-eeQ"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Hor-Ul-98x" secondAttribute="trailing" id="0Va-EI-dh1"/>
+                                            <constraint firstAttribute="bottom" secondItem="Hor-Ul-98x" secondAttribute="bottom" constant="16" id="L8h-I1-nu2"/>
+                                            <constraint firstItem="Hor-Ul-98x" firstAttribute="leading" secondItem="xYE-PK-zVw" secondAttribute="leading" id="Y2K-YY-7rG"/>
+                                            <constraint firstItem="Hor-Ul-98x" firstAttribute="top" secondItem="xYE-PK-zVw" secondAttribute="top" constant="16" id="lhS-NG-8HK"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="xYE-PK-zVw" firstAttribute="top" secondItem="4Jy-mH-rhP" secondAttribute="top" id="TQQ-V6-96w"/>
+                                    <constraint firstItem="4Jy-mH-rhP" firstAttribute="trailing" secondItem="xYE-PK-zVw" secondAttribute="trailing" id="Xdn-bN-qqE"/>
+                                    <constraint firstItem="4Jy-mH-rhP" firstAttribute="bottom" secondItem="xYE-PK-zVw" secondAttribute="bottom" id="ctq-Cc-7NI"/>
+                                    <constraint firstItem="xYE-PK-zVw" firstAttribute="width" secondItem="KuV-5f-MGV" secondAttribute="width" id="jjU-bk-I9z"/>
+                                    <constraint firstItem="xYE-PK-zVw" firstAttribute="leading" secondItem="4Jy-mH-rhP" secondAttribute="leading" id="qEi-Xq-8gS"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="YDW-3X-gt7"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="4Jy-mH-rhP"/>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="d1H-e0-fDO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="KuV-5f-MGV" firstAttribute="leading" secondItem="d1H-e0-fDO" secondAttribute="leading" constant="43" id="9BE-VM-79u"/>
                             <constraint firstItem="8dd-R3-gZP" firstAttribute="top" secondItem="Cjf-AS-u3B" secondAttribute="top" constant="76" id="C7F-Iz-4Qt"/>
+                            <constraint firstItem="d1H-e0-fDO" firstAttribute="trailing" secondItem="KuV-5f-MGV" secondAttribute="trailing" constant="43" id="EAX-2R-10K"/>
                             <constraint firstItem="XDF-kH-M8R" firstAttribute="leading" secondItem="d1H-e0-fDO" secondAttribute="leading" constant="43" id="T6c-sW-bWP"/>
                             <constraint firstItem="XDF-kH-M8R" firstAttribute="top" secondItem="8dd-R3-gZP" secondAttribute="bottom" constant="19.329999999999998" id="ZSB-Ge-Pdb"/>
+                            <constraint firstItem="KuV-5f-MGV" firstAttribute="top" secondItem="XDF-kH-M8R" secondAttribute="bottom" constant="33" id="dgs-VH-YY8"/>
+                            <constraint firstItem="KuV-5f-MGV" firstAttribute="bottom" secondItem="d1H-e0-fDO" secondAttribute="bottom" id="qlG-jm-GlC"/>
                             <constraint firstItem="8dd-R3-gZP" firstAttribute="centerX" secondItem="Cjf-AS-u3B" secondAttribute="centerX" id="wme-ql-FbJ"/>
                             <constraint firstItem="d1H-e0-fDO" firstAttribute="trailing" secondItem="XDF-kH-M8R" secondAttribute="trailing" constant="43" id="yPA-a8-EZQ"/>
                         </constraints>
@@ -1250,7 +1326,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                     <connections>
                         <outlet property="filterButton" destination="pLv-e2-gZj" id="aKB-Xr-40a"/>
                         <outlet property="searchTextField" destination="k6f-5N-lYb" id="WzC-Ob-O8h"/>
-                        <outlet property="tableView" destination="fpF-Pg-l8h" id="0UT-Wj-Tsp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRK-Lo-qrE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1293,16 +1368,16 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
