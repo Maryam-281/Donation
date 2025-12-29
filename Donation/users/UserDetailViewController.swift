@@ -190,7 +190,7 @@ class UserDetailViewController: UIViewController {
             addInfoItem(icon: "phone.fill", title: "Phone", value: phone)
         }
         
-        if let birthDate = user.birthDate {
+        if let birthDate = user.birthDateAsDate {
             let formatter = DateFormatter()
             formatter.dateStyle = .long
             addInfoItem(icon: "calendar", title: "Birth Date", value: formatter.string(from: birthDate))
@@ -199,7 +199,7 @@ class UserDetailViewController: UIViewController {
         let createdFormatter = DateFormatter()
         createdFormatter.dateStyle = .medium
         createdFormatter.timeStyle = .short
-        addInfoItem(icon: "clock.fill", title: "Member Since", value: createdFormatter.string(from: user.createdAt))
+        addInfoItem(icon: "clock.fill", title: "Member Since", value: createdFormatter.string(from: user.createdAtAsDate))
     }
     
     private func addInfoItem(icon: String, title: String, value: String) {

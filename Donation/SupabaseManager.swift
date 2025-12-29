@@ -36,7 +36,7 @@ class SupabaseManager {
         let response: [User] = try await client
             .from(SupabaseConfig.Tables.users)
             .select()
-            .order("createdAt", ascending: false)
+            .order("created_at", ascending: false)
             .execute()
             .value
         
@@ -64,7 +64,7 @@ class SupabaseManager {
         let response: [User] = try await client
             .from(SupabaseConfig.Tables.users)
             .select()
-            .or("firstName.ilike.%\(query)%,lastName.ilike.%\(query)%,email.ilike.%\(query)%")
+            .or("first_name.ilike.%\(query)%,last_name.ilike.%\(query)%,email.ilike.%\(query)%")
             .execute()
             .value
         
@@ -111,7 +111,7 @@ class SupabaseManager {
     func toggleUserStatus(id: String, isActive: Bool) async throws -> User {
         let response: User = try await client
             .from(SupabaseConfig.Tables.users)
-            .update(["isActive": isActive])
+            .update(["is_active": isActive])
             .eq("id", value: id)
             .select()
             .single()
@@ -128,7 +128,7 @@ class SupabaseManager {
         let response: [Report] = try await client
             .from(SupabaseConfig.Tables.reports)
             .select()
-            .order("createdAt", ascending: false)
+            .order("created_at", ascending: false)
             .execute()
             .value
         
@@ -141,7 +141,7 @@ class SupabaseManager {
             .from(SupabaseConfig.Tables.reports)
             .select()
             .eq("status", value: status.rawValue)
-            .order("createdAt", ascending: false)
+            .order("created_at", ascending: false)
             .execute()
             .value
         

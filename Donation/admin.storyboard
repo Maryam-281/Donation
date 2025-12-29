@@ -134,10 +134,10 @@
             </objects>
             <point key="canvasLocation" x="43.511450381679388" y="3.5211267605633805"/>
         </scene>
-        <!--Don-->
+        <!--Manage Users View Controller-->
         <scene sceneID="IuG-lK-oZ8">
             <objects>
-                <viewController id="8ae-py-qXP" customClass="don" sceneMemberID="viewController">
+                <viewController id="8ae-py-qXP" customClass="ManageUsersViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5RF-Es-zcT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
