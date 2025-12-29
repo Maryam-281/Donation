@@ -160,7 +160,7 @@ Expiration date: 24/04/2025                      Donor: Maryam Alshehabi</string
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JoK-uk-61c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1089" y="651"/>
+            <point key="canvasLocation" x="2014.5038167938931" y="650.70422535211276"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="bRd-DF-fuK">
@@ -416,7 +416,7 @@ Expiration date: 24/06/2025                     Donor: Yara Ahned</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ksW-vd-bmm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1847" y="651"/>
+            <point key="canvasLocation" x="2773.2824427480914" y="650.70422535211276"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="scY-k5-Lyc">
@@ -497,7 +497,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VaC-KI-oLd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2630" y="651"/>
+            <point key="canvasLocation" x="3556.4885496183206" y="650.70422535211276"/>
         </scene>
         <!--Item-->
         <scene sceneID="3Ze-Ro-Jfj">
@@ -705,7 +705,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vfi-Z3-zuE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4030" y="651"/>
+            <point key="canvasLocation" x="4956.4885496183206" y="650.70422535211276"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="QnP-LY-NWh">
@@ -1007,7 +1007,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                 <rect key="frame" x="31" y="399" width="330" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUg-ja-jWC">
-                                        <rect key="frame" x="0.0" y="0.0" width="155" height="65"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="65" id="bg0-7X-M5i"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="wg4-9f-lUg"/>
@@ -1023,7 +1023,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVO-1I-F4B">
-                                        <rect key="frame" x="170" y="0.0" width="160" height="65"/>
+                                        <rect key="frame" x="175" y="0.0" width="155" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="wn7-3l-oyV"/>
                                         </constraints>
@@ -1033,7 +1033,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                             <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="applyFiltersTapped:" destination="xSA-0I-8da" eventType="touchUpInside" id="mko-ky-hvO"/>
+                                            <action selector="applyButtonTapped:" destination="xSA-0I-8da" eventType="touchUpInside" id="vxe-bo-2dQ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1078,7 +1078,72 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GJF-Vp-tzz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-935" y="-89"/>
+            <point key="canvasLocation" x="-981" y="-89"/>
+        </scene>
+        <!--Filtered Results View Controller-->
+        <scene sceneID="Sq8-b2-xlX">
+            <objects>
+                <viewController storyboardIdentifier="FilteredResultsViewController" id="LJI-RV-GE3" customClass="FilteredResultsViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ySy-iA-jTF">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filtered Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHP-6Y-hia">
+                                <rect key="frame" x="95" y="76" width="203" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6rg-jy-0Hf">
+                                <rect key="frame" x="0.0" y="162" width="393" height="622"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nol-h3-qCG">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="622"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nzp-7g-fxN">
+                                                <rect key="frame" x="16" y="16" width="361" height="590"/>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="nzp-7g-fxN" firstAttribute="leading" secondItem="Nol-h3-qCG" secondAttribute="leading" constant="16" id="RPA-xK-8oU"/>
+                                            <constraint firstAttribute="trailing" secondItem="nzp-7g-fxN" secondAttribute="trailing" constant="16" id="VLA-2E-TKB"/>
+                                            <constraint firstItem="nzp-7g-fxN" firstAttribute="top" secondItem="Nol-h3-qCG" secondAttribute="top" constant="16" id="Vcz-7S-ewz"/>
+                                            <constraint firstAttribute="bottom" secondItem="nzp-7g-fxN" secondAttribute="bottom" constant="16" id="kcv-nA-0KB"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Nol-h3-qCG" firstAttribute="top" secondItem="6rg-jy-0Hf" secondAttribute="top" id="NHV-WE-otc"/>
+                                    <constraint firstItem="Nol-h3-qCG" firstAttribute="bottom" secondItem="ogI-7E-EWs" secondAttribute="bottom" id="SM4-do-V0L"/>
+                                    <constraint firstAttribute="bottom" secondItem="Nol-h3-qCG" secondAttribute="bottom" id="cQZ-QM-1GW"/>
+                                    <constraint firstAttribute="trailing" secondItem="Nol-h3-qCG" secondAttribute="trailing" id="ez7-U7-uHe"/>
+                                    <constraint firstItem="Nol-h3-qCG" firstAttribute="width" secondItem="6rg-jy-0Hf" secondAttribute="width" id="rX3-pc-7lY"/>
+                                    <constraint firstItem="Nol-h3-qCG" firstAttribute="leading" secondItem="6rg-jy-0Hf" secondAttribute="leading" id="w5Q-q3-eA4"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Nbj-kl-wFB"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="ogI-7E-EWs"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GYy-fz-vxi"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GYy-fz-vxi" firstAttribute="bottom" secondItem="6rg-jy-0Hf" secondAttribute="bottom" id="4dW-9c-OkT"/>
+                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="top" secondItem="xHP-6Y-hia" secondAttribute="bottom" constant="52" id="MHB-H4-vmh"/>
+                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="leading" secondItem="GYy-fz-vxi" secondAttribute="leading" id="cjO-pR-o0Y"/>
+                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="centerX" secondItem="xHP-6Y-hia" secondAttribute="centerX" id="d5I-zF-qfO"/>
+                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="top" secondItem="GYy-fz-vxi" secondAttribute="top" id="h8B-x6-4qQ"/>
+                            <constraint firstItem="GYy-fz-vxi" firstAttribute="trailing" secondItem="6rg-jy-0Hf" secondAttribute="trailing" id="y4R-VB-eox"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gmc-sj-sxg"/>
+                    <connections>
+                        <outlet property="cardsStackView" destination="nzp-7g-fxN" id="Hmf-0Y-FBu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5LZ-ZM-6OV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-185.49618320610685" y="650.70422535211276"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="m2a-ba-LAc">
@@ -1465,6 +1530,24 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRK-Lo-qrE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="105" y="-94"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="67J-z6-Ipu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p4b-JN-0BJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cao-Al-qhx">
+                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LJI-RV-GE3" kind="relationship" relationship="rootViewController" id="gTm-77-ANy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L05-dO-xRm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1040.4580152671756" y="586.61971830985919"/>
         </scene>
     </scenes>
     <color key="tintColor" name="AccentColor"/>

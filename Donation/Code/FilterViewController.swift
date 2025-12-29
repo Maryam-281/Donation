@@ -148,15 +148,27 @@ class FilterViewController: UIViewController {
     }
 
     // Apply Filters
-    @IBAction func applyFiltersTapped(_ sender: UIButton) {
-        delegate?.didApplyFilters(
-            location: selectedLocation,
-            status: selectedStatus,
-            category: selectedCategory
-        )
+    @IBAction func applyButtonTapped(_ sender: UIButton) {
 
-        dismiss(animated: true)
+        let storyboard = UIStoryboard(name: "Discovery", bundle: nil)
+
+        guard let resultsVC = storyboard.instantiateViewController(
+            withIdentifier: "FilteredResultsViewController"
+        ) as? FilteredResultsViewController else {
+            fatalError("FilteredResultsViewController not found in Discovery.storyboard")
+        }
+
+        // Pass selected filters
+        resultsVC.selectedLocation = selectedLocation
+        resultsVC.selectedStatus = selectedStatus
+        resultsVC.selectedCategory = selectedCategory
+
+        resultsVC.modalPresentationStyle = .fullScreen
+        present(resultsVC, animated: true)
     }
+
+
+
     
     @IBAction func closeTapped(_ sender: UIButton) {
             dismiss(animated: true)
