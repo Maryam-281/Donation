@@ -9,23 +9,10 @@ import UIKit
 
 class SchedulePickupViewController: UIViewController {
 
+    // MARK: - Data
     var donation: Donations?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        datePicker.tintColor = .customBlue
-        view.backgroundColor = .systemBackground
-        view.addSubview(datePicker)
-
-        NSLayoutConstraint.activate([
-            datePicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            datePicker.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 140)
-        ])
-    }
-
-
-    
+    // MARK: - UI
     let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .dateAndTime
@@ -34,5 +21,43 @@ class SchedulePickupViewController: UIViewController {
         return picker
     }()
 
+    // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.backgroundColor = .systemBackground
+        datePicker.tintColor = .customBlue
+
+        view.addSubview(datePicker)
+
+        NSLayoutConstraint.activate([
+            datePicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            datePicker.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: 140
+            )
+        ])
+    }
+
+    // MARK: - Actions
+    @IBAction func confirmTapped(_ sender: UIButton) {
+        guard var donation = donation else { return }
+
+        donation.pickupStatus = .scheduled
+        donation.pickupDate = datePicker.date   // ✅ FIXED HERE
+
+        performSegue(withIdentifier: "toDonationStatus", sender: donation)
+    }
+
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDonationStatus",
+           let destination = segue.destination as? StatusTrackingViewController,
+           let donation = sender as? Donations {
+
+            destination.donation = donation
+        }
+    }
 }
+
 

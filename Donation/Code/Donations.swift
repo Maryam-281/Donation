@@ -20,5 +20,6 @@ struct Donations {
     let title: String
 
     var pickupStatus: PickupStatus = .available
+    var pickupDate: Date? = nil
 }
 

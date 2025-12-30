@@ -146,7 +146,7 @@ Expiration date: 24/04/2025                      Donor: Maryam Alshehabi</string
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="acceptTapped:" destination="6t2-1H-NEN" eventType="touchUpInside" id="SW3-58-7IQ"/>
-                                    <segue destination="PGc-CR-9lQ" kind="show" id="b1t-cH-geo"/>
+                                    <segue destination="PGc-CR-9lQ" kind="presentation" modalPresentationStyle="fullScreen" id="b1t-cH-geo"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Manama, 2 km away" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VDK-zw-oLM">
@@ -167,10 +167,10 @@ Expiration date: 24/04/2025                      Donor: Maryam Alshehabi</string
             </objects>
             <point key="canvasLocation" x="1694" y="616"/>
         </scene>
-        <!--View Controller-->
+        <!--Status Tracking View Controller-->
         <scene sceneID="bRd-DF-fuK">
             <objects>
-                <viewController id="N8P-dj-zQe" sceneMemberID="viewController">
+                <viewController id="N8P-dj-zQe" customClass="StatusTrackingViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bVI-GR-g9o">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -274,16 +274,23 @@ Expiration date: 24/04/2025                      Donor: Maryam Alshehabi</string
                                 <buttonConfiguration key="configuration" style="filled" title="Confirm Pickup" cornerStyle="large">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="confirmPickupTapped:" destination="N8P-dj-zQe" eventType="touchUpInside" id="7IB-xk-u5G"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="M6z-52-CvY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="truck.box.fill" catalog="system" id="CAU-nh-b3b"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="xIu-rV-cCs" id="EXK-fJ-Agt"/>
+                        <outlet property="statusLabel" destination="gu3-W5-V1H" id="0Lt-JD-0kN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPr-gU-YMw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="972" y="1298"/>
+            <point key="canvasLocation" x="2572" y="615"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Oly-9p-KYf">
@@ -340,7 +347,7 @@ Expiration date: 24/04/2025                      Donor: Maryam Alshehabi</string
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sTm-gg-sU3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1088" y="-863"/>
+            <point key="canvasLocation" x="505" y="-879"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Zky-JV-IzJ">
@@ -421,7 +428,7 @@ Expiration date: 24/06/2025                     Donor: Yara Ahned</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ksW-vd-bmm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2773.2824427480914" y="650.70422535211276"/>
+            <point key="canvasLocation" x="4744" y="1489"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="scY-k5-Lyc">
@@ -502,14 +509,14 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VaC-KI-oLd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3556.4885496183206" y="650.70422535211276"/>
+            <point key="canvasLocation" x="5527" y="1489"/>
         </scene>
         <!--Item-->
         <scene sceneID="3Ze-Ro-Jfj">
             <objects>
                 <viewController id="PGc-CR-9lQ" customClass="SchedulePickupViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MHi-7q-yaR">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4d-c4-WwX">
@@ -520,6 +527,10 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                 <buttonConfiguration key="configuration" style="filled" title="Confirm" cornerStyle="large">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="confirmTapped:" destination="PGc-CR-9lQ" eventType="touchUpInside" id="gFX-pt-KlI"/>
+                                    <segue destination="N8P-dj-zQe" kind="presentation" identifier="toDonationStatus" modalPresentationStyle="fullScreen" id="BYW-1b-x3N"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9L-zO-Ley">
                                 <rect key="frame" x="5" y="56.333333333333343" width="321" height="78"/>
@@ -591,13 +602,10 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="91p-SL-aww"/>
                     <navigationItem key="navigationItem" id="XGJ-fG-5eI"/>
-                    <connections>
-                        <segue destination="5yR-z7-H0M" kind="show" id="z38-Ik-NQo"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BQF-fq-nl9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2573" y="-102"/>
+            <point key="canvasLocation" x="2405" y="-113"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="86h-iQ-eOF">
@@ -699,7 +707,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vfi-Z3-zuE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4956.4885496183206" y="650.70422535211276"/>
+            <point key="canvasLocation" x="3237" y="-102"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="QnP-LY-NWh">
@@ -1537,7 +1545,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                 <rect key="frame" x="31" y="399" width="330" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUg-ja-jWC">
-                                        <rect key="frame" x="0.0" y="0.0" width="155" height="65"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="65" id="bg0-7X-M5i"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="wg4-9f-lUg"/>
@@ -1553,7 +1561,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVO-1I-F4B">
-                                        <rect key="frame" x="170" y="0.0" width="160" height="65"/>
+                                        <rect key="frame" x="175" y="0.0" width="155" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="wn7-3l-oyV"/>
                                         </constraints>
@@ -1677,22 +1685,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5LZ-ZM-6OV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="120" y="599"/>
-        </scene>
-        <!--Status Tracking View Controller-->
-        <scene sceneID="SW5-wR-mze">
-            <objects>
-                <viewController storyboardIdentifier="toStatusTracking" id="5yR-z7-H0M" customClass="StatusTrackingViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gS1-qf-5cT">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="YQh-Zq-h6d"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="3MV-pR-DC6"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sQb-Oh-g3j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3408" y="-127"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="m2a-ba-LAc">
