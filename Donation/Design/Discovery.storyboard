@@ -38,7 +38,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jt9-Hl-adf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="880" y="-102"/>
+            <point key="canvasLocation" x="831" y="-161"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="fSF-t4-ijX">
@@ -86,7 +86,7 @@
             <objects>
                 <viewController id="6t2-1H-NEN" customClass="DonationDetailsViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="i0d-uj-gSj">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Donation Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfw-IW-7rS">
@@ -321,6 +321,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="xIu-rV-cCs" id="EXK-fJ-Agt"/>
                         <outlet property="statusLabel" destination="gu3-W5-V1H" id="0Lt-JD-0kN"/>
+                        <outlet property="titleLabel" destination="ZU7-RR-p0i" id="FT6-A4-c4D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPr-gU-YMw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -382,7 +383,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sTm-gg-sU3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="505" y="-879"/>
+            <point key="canvasLocation" x="247" y="-1106"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Zky-JV-IzJ">
@@ -564,7 +565,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="confirmTapped:" destination="PGc-CR-9lQ" eventType="touchUpInside" id="gFX-pt-KlI"/>
-                                    <segue destination="GRC-Rd-cnr" kind="presentation" identifier="toPickupScheduled" modalPresentationStyle="fullScreen" id="BpR-KM-7Se"/>
+                                    <segue destination="GRC-Rd-cnr" kind="presentation" modalPresentationStyle="fullScreen" id="X61-MR-6ld"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9L-zO-Ley">
@@ -731,7 +732,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="continueTapped:" destination="GRC-Rd-cnr" eventType="touchUpInside" id="HtJ-o1-iNt"/>
-                                    <segue destination="N8P-dj-zQe" kind="presentation" identifier="toDonationStatus" modalPresentationStyle="fullScreen" id="zzP-kg-hCg"/>
+                                    <segue destination="N8P-dj-zQe" kind="presentation" identifier="toDonationStatus" modalPresentationStyle="fullScreen" id="20g-Zf-VgQ"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AzM-cX-9NC">
@@ -1143,7 +1144,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                                                             <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
                                                                         </buttonConfiguration>
                                                                         <connections>
-                                                                            <segue destination="6t2-1H-NEN" kind="show" identifier="toSchedulePickup" id="qs9-e7-Hbb"/>
+                                                                            <segue destination="6t2-1H-NEN" kind="presentation" identifier="toSchedulePickup" modalPresentationStyle="fullScreen" id="qs9-e7-Hbb"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -1530,7 +1531,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWE-d1-HcR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="-102"/>
+            <point key="canvasLocation" x="120" y="-161"/>
         </scene>
         <!--Item-->
         <scene sceneID="4n2-HV-agr">
@@ -1589,7 +1590,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                 <rect key="frame" x="31" y="399" width="330" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUg-ja-jWC">
-                                        <rect key="frame" x="0.0" y="0.0" width="155" height="65"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="65" id="bg0-7X-M5i"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="wg4-9f-lUg"/>
@@ -1605,7 +1606,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVO-1I-F4B">
-                                        <rect key="frame" x="170" y="0.0" width="160" height="65"/>
+                                        <rect key="frame" x="175" y="0.0" width="155" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="wn7-3l-oyV"/>
                                         </constraints>
@@ -1813,10 +1814,10 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
             </objects>
             <point key="canvasLocation" x="1647" y="-102"/>
         </scene>
-        <!--Home Page View Controller-->
+        <!--View Controller-->
         <scene sceneID="sPu-vM-Vmd">
             <objects>
-                <viewController id="mCp-EL-Yfu" customClass="HomePageViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mCp-EL-Yfu" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cjf-AS-u3B">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2135,7 +2136,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="b1t-cH-geo"/>
+        <segue reference="WXQ-I1-qIu"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="AccentColor"/>
     <resources>

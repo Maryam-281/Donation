@@ -72,9 +72,11 @@ class HomePageViewController: UIViewController {
     }
 
     @objc func viewDetailsTapped(_ sender: UIButton) {
+        print("BUTTON TAPPED:", sender.tag)
         selectedDonation = filteredDonations[sender.tag]
         performSegue(withIdentifier: "toDonationDetails", sender: self)
     }
+
 
     // MARK: - NAVIGATION
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
