@@ -145,7 +145,8 @@ Expiration date: 24/04/2025                      Donor: Maryam Alshehabi</string
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="acceptTapped:" destination="6t2-1H-NEN" eventType="touchUpInside" id="0Ta-me-QSp"/>
+                                    <action selector="acceptTapped:" destination="6t2-1H-NEN" eventType="touchUpInside" id="SW3-58-7IQ"/>
+                                    <segue destination="PGc-CR-9lQ" kind="show" id="b1t-cH-geo"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Manama, 2 km away" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VDK-zw-oLM">
@@ -164,7 +165,7 @@ Expiration date: 24/04/2025                      Donor: Maryam Alshehabi</string
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JoK-uk-61c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1960" y="651"/>
+            <point key="canvasLocation" x="1694" y="616"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="bRd-DF-fuK">
@@ -508,7 +509,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
             <objects>
                 <viewController id="PGc-CR-9lQ" customClass="SchedulePickupViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MHi-7q-yaR">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4d-c4-WwX">
@@ -589,13 +590,14 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="91p-SL-aww"/>
+                    <navigationItem key="navigationItem" id="XGJ-fG-5eI"/>
                     <connections>
                         <segue destination="5yR-z7-H0M" kind="show" id="z38-Ik-NQo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BQF-fq-nl9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2554.9618320610684" y="-127.46478873239437"/>
+            <point key="canvasLocation" x="2573" y="-102"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="86h-iQ-eOF">
@@ -1535,7 +1537,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                 <rect key="frame" x="31" y="399" width="330" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUg-ja-jWC">
-                                        <rect key="frame" x="0.0" y="0.0" width="160" height="65"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="155" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="65" id="bg0-7X-M5i"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="wg4-9f-lUg"/>
@@ -1551,7 +1553,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVO-1I-F4B">
-                                        <rect key="frame" x="175" y="0.0" width="155" height="65"/>
+                                        <rect key="frame" x="170" y="0.0" width="160" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="wn7-3l-oyV"/>
                                         </constraints>
@@ -2096,6 +2098,9 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
             <point key="canvasLocation" x="-660" y="568"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="b1t-cH-geo"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" name="AccentColor"/>
     <resources>
         <image name="Chicken" width="278" height="181"/>
@@ -2136,16 +2141,16 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -7,19 +7,18 @@
 
 import Foundation
 enum PickupStatus {
-    case pending
+    case available
     case accepted
-    case collected
-    case completed
+    case scheduled
+    case pickedUp
 }
 
 struct Donations {
     let location: String
-    let status: String        // food status (Fresh, Expired)
+    let status: String
     let category: String
     let title: String
 
-    // NEW (safe additions)
-    var pickupStatus: PickupStatus = .pending
-    var pickupTime: Date? = nil
+    var pickupStatus: PickupStatus = .available
 }
+

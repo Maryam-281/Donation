@@ -7,14 +7,6 @@
 
 import UIKit
 
-// MARK: - MODEL
-struct Donation {
-    let location: String
-    let status: String
-    let category: String
-    let title: String
-}
-
 // MARK: - VIEW CONTROLLER
 class HomePageViewController: UIViewController {
 
@@ -22,12 +14,12 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var cardsStackView: UIStackView!
 
-
     // MARK: - DATA
-    var allDonations: [Donation] = []
-    var filteredDonations: [Donation] = []
+    var allDonations: [Donations] = []
+    var filteredDonations: [Donations] = []
 
-    // MARK: - CURRENT FILTERS
+    // MARK: - CURRENT SELECTION / FILTERS
+    var selectedDonation: Donations?
     var selectedLocation: String?
     var selectedStatus: String?
     var selectedCategory: String?
@@ -36,12 +28,11 @@ class HomePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // TEMP DATA (for testing filters)
         allDonations = [
-            Donation(location: "Manama", status: "Fresh", category: "Drinks", title: "Water Bottles"),
-            Donation(location: "Muharraq", status: "Expired", category: "Dairy Products", title: "Milk"),
-            Donation(location: "Manama", status: "Fresh", category: "Prepared Meals", title: "Lunch Boxes"),
-            Donation(location: "Northern Governorate", status: "Expires Soon", category: "Baked Goods", title: "Bread")
+            Donations(location: "Manama", status: "Fresh", category: "Drinks", title: "Water Bottles"),
+            Donations(location: "Muharraq", status: "Expired", category: "Dairy Products", title: "Milk"),
+            Donations(location: "Manama", status: "Fresh", category: "Prepared Meals", title: "Lunch Boxes"),
+            Donations(location: "Northern Governorate", status: "Expires Soon", category: "Baked Goods", title: "Bread")
         ]
 
         filteredDonations = allDonations
@@ -49,7 +40,6 @@ class HomePageViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
         shadowView.layer.cornerRadius = 20
         shadowView.layer.applySketchShadow()
     }
@@ -59,12 +49,24 @@ class HomePageViewController: UIViewController {
         performSegue(withIdentifier: "showFilter", sender: nil)
     }
 
+    // ✅ THIS IS THE IMPORTANT ONE (VIEW DETAILS)
+    @IBAction func viewDetailsTapped(_ sender: UIButton) {
+        selectedDonation = filteredDonations[sender.tag]
+        performSegue(withIdentifier: "toDonationDetails", sender: self)
+    }
 
     // MARK: - NAVIGATION
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showFilter" {
 
-            // Handles normal & embedded cases safely
+        // ✅ PASS DONATION TO DETAILS
+        if segue.identifier == "toDonationDetails",
+           let destination = segue.destination as? DonationDetailsViewController,
+           let donation = selectedDonation {
+            destination.donation = donation
+        }
+
+        // KEEP FILTER LOGIC
+        if segue.identifier == "showFilter" {
             if let filterVC = segue.destination as? FilterViewController {
                 filterVC.delegate = self
             } else if let nav = segue.destination as? UINavigationController,
@@ -100,16 +102,7 @@ extension HomePageViewController: FilterViewControllerDelegate {
 
             return locationMatch && statusMatch && categoryMatch
         }
-
-        print("===== APPLY FILTERS =====")
-        print("Category:", category ?? "Any")
-        print("Results:", filteredDonations.count)
-
-        for item in filteredDonations {
-            print("•", item.title)
-        }
     }
-
 }
 
 // MARK: - SHADOW EXTENSION
@@ -129,15 +122,12 @@ extension CALayer {
         shadowRadius = blur / 2.0
         masksToBounds = false
 
-        if spread == 0 {
-            shadowPath = nil
-        } else {
+        if spread != 0 {
             let dx = -spread
             let rect = bounds.insetBy(dx: dx, dy: dx)
             shadowPath = UIBezierPath(rect: rect).cgPath
         }
-        
     }
-    
 }
+
 

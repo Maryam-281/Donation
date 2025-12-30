@@ -9,19 +9,21 @@ import UIKit
 
 class SchedulePickupViewController: UIViewController {
 
-    var donation: Donations!
+    var donation: Donations?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            datePicker.tintColor = .customBlue
-            view.backgroundColor = .systemBackground
-            view.addSubview(datePicker)
+
+        datePicker.tintColor = .customBlue
+        view.backgroundColor = .systemBackground
+        view.addSubview(datePicker)
 
         NSLayoutConstraint.activate([
             datePicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            datePicker.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 120)
+            datePicker.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 140)
         ])
-        }
+    }
+
 
     
     let datePicker: UIDatePicker = {
