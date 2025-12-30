@@ -28,10 +28,10 @@ class HomePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // ✅ SINGLE SOURCE OF TRUTH
+        shadowView.isUserInteractionEnabled = false
+
         allDonations = DonationStore.shared.donations
         filteredDonations = allDonations
-
         reloadCards()
     }
 
@@ -51,10 +51,14 @@ class HomePageViewController: UIViewController {
 
         for (index, donation) in filteredDonations.enumerated() {
 
-            let cardButton = UIButton(type: .system)
+            let cardButton = UIButton(type: .custom)
             cardButton.setTitle(donation.title, for: .normal)
             cardButton.contentHorizontalAlignment = .left
             cardButton.tag = index
+
+            // 🔴 REQUIRED: give the button real size
+            cardButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+            cardButton.titleLabel?.numberOfLines = 2
 
             cardButton.addTarget(
                 self,
@@ -72,10 +76,9 @@ class HomePageViewController: UIViewController {
     }
 
     @objc func viewDetailsTapped(_ sender: UIButton) {
-        print("BUTTON TAPPED:", sender.tag)
-        selectedDonation = filteredDonations[sender.tag]
-        performSegue(withIdentifier: "toDonationDetails", sender: self)
+        print("✅ TAP WORKS:", sender.tag)
     }
+
 
 
     // MARK: - NAVIGATION

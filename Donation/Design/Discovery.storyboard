@@ -1006,16 +1006,16 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WG2-HH-mhC">
-                                <rect key="frame" x="23" y="56" width="347" height="141.66666666666666"/>
+                                <rect key="frame" x="23" y="56" width="346.33333333333331" height="141.66666666666666"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover Donations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61t-Hc-bLW">
-                                        <rect key="frame" x="46" y="19.999999999999996" width="255" height="33.666666666666657"/>
+                                        <rect key="frame" x="46.000000000000014" y="19.999999999999996" width="254.33333333333337" height="33.666666666666657"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95U-W0-Kl9">
-                                        <rect key="frame" x="20" y="68.666666666666671" width="307" height="45"/>
+                                        <rect key="frame" x="20" y="68.666666666666671" width="306.33333333333331" height="45"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LXc-TB-LWB">
                                                 <rect key="frame" x="243" y="-2" width="64" height="48"/>
@@ -1100,7 +1100,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                                                         <rect key="frame" x="0.0" y="0.0" width="293" height="160"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="160" id="97N-hn-ekZ"/>
-                                                                            <constraint firstAttribute="width" constant="260" id="XYI-4a-Xuk"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chicken with Broccoli and Rice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kqq-Sv-Z95">
@@ -1143,9 +1142,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                                                         <buttonConfiguration key="configuration" style="plain" title="View Details &gt;">
                                                                             <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
                                                                         </buttonConfiguration>
-                                                                        <connections>
-                                                                            <segue destination="6t2-1H-NEN" kind="presentation" identifier="toSchedulePickup" modalPresentationStyle="fullScreen" id="qs9-e7-Hbb"/>
-                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
@@ -1153,7 +1149,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="NYS-jn-6Jd" firstAttribute="top" secondItem="KbG-lt-7es" secondAttribute="top" constant="12" id="1yV-lB-ppL"/>
-                                                            <constraint firstAttribute="width" constant="300" id="CMD-nR-3gp"/>
                                                             <constraint firstItem="NYS-jn-6Jd" firstAttribute="leading" secondItem="KbG-lt-7es" secondAttribute="leading" constant="12" id="CpC-qu-EnD"/>
                                                             <constraint firstAttribute="trailing" secondItem="NYS-jn-6Jd" secondAttribute="trailing" constant="12" id="Qr5-Fb-938"/>
                                                             <constraint firstAttribute="bottom" secondItem="NYS-jn-6Jd" secondAttribute="bottom" constant="12" id="s8e-G0-OkY"/>
@@ -1168,7 +1163,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="painau" translatesAutoresizingMaskIntoConstraints="NO" id="4o3-Ss-hLi">
                                                                         <rect key="frame" x="0.0" y="0.0" width="293" height="160"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" constant="260" id="Uiz-Of-gOV"/>
                                                                             <constraint firstAttribute="height" constant="160" id="ekK-CP-zBo"/>
                                                                         </constraints>
                                                                     </imageView>
@@ -1222,7 +1216,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                                             <constraint firstItem="qqR-BD-gbb" firstAttribute="leading" secondItem="4UD-Bt-WOE" secondAttribute="leading" constant="12" id="K6y-4z-p9e"/>
                                                             <constraint firstAttribute="bottom" secondItem="qqR-BD-gbb" secondAttribute="bottom" constant="12" id="sMC-WV-RMn"/>
                                                             <constraint firstItem="qqR-BD-gbb" firstAttribute="top" secondItem="4UD-Bt-WOE" secondAttribute="top" constant="12" id="tUt-PZ-lac"/>
-                                                            <constraint firstAttribute="width" constant="300" id="tWo-Mm-4Bt"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ifp-6B-9qe" customClass="CardView" customModule="Donation" customModuleProvider="target">
@@ -1234,7 +1227,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Salad" translatesAutoresizingMaskIntoConstraints="NO" id="2Oj-ik-4rK">
                                                                         <rect key="frame" x="0.0" y="0.0" width="293" height="160"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" constant="260" id="8Sx-qr-ESh"/>
                                                                             <constraint firstAttribute="height" constant="160" id="KvN-Z0-7xT"/>
                                                                         </constraints>
                                                                     </imageView>
@@ -1284,7 +1276,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="300" id="25f-aN-lqZ"/>
                                                             <constraint firstItem="MVv-ca-qYO" firstAttribute="top" secondItem="Ifp-6B-9qe" secondAttribute="top" constant="12" id="51B-Ux-WFc"/>
                                                             <constraint firstAttribute="bottom" secondItem="MVv-ca-qYO" secondAttribute="bottom" constant="12" id="IzW-bA-bHn"/>
                                                             <constraint firstItem="MVv-ca-qYO" firstAttribute="leading" secondItem="Ifp-6B-9qe" secondAttribute="leading" constant="12" id="na5-1q-Efh"/>
@@ -1301,7 +1292,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                                                         <rect key="frame" x="0.0" y="0.0" width="293" height="160"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="160" id="Mrl-3a-b8O"/>
-                                                                            <constraint firstAttribute="width" constant="260" id="yJm-hV-mMk"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chicken Soup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="std-PY-Tzi">
@@ -1353,7 +1343,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                                             <constraint firstAttribute="bottom" secondItem="xWb-2D-bSm" secondAttribute="bottom" constant="12" id="0LI-3V-eW8"/>
                                                             <constraint firstItem="xWb-2D-bSm" firstAttribute="leading" secondItem="1HR-5E-mmm" secondAttribute="leading" constant="12" id="9Rs-1L-edh"/>
                                                             <constraint firstAttribute="trailing" secondItem="xWb-2D-bSm" secondAttribute="trailing" constant="12" id="Avb-2M-XtP"/>
-                                                            <constraint firstAttribute="width" constant="300" id="oPa-PR-wIA"/>
                                                             <constraint firstItem="xWb-2D-bSm" firstAttribute="top" secondItem="1HR-5E-mmm" secondAttribute="top" constant="12" id="xFl-Wk-P9f"/>
                                                         </constraints>
                                                     </view>
@@ -1366,7 +1355,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fruit salad" translatesAutoresizingMaskIntoConstraints="NO" id="03U-zP-Sqc">
                                                                         <rect key="frame" x="0.0" y="0.0" width="293" height="160"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" constant="260" id="NvK-JC-a81"/>
                                                                             <constraint firstAttribute="height" constant="160" id="OF9-MX-aTS"/>
                                                                         </constraints>
                                                                     </imageView>
@@ -1419,7 +1407,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                                             <constraint firstAttribute="trailing" secondItem="wFh-Nd-yI6" secondAttribute="trailing" constant="12" id="bRA-ts-TKf"/>
                                                             <constraint firstAttribute="bottom" secondItem="wFh-Nd-yI6" secondAttribute="bottom" constant="12" id="cDC-se-D74"/>
                                                             <constraint firstItem="wFh-Nd-yI6" firstAttribute="leading" secondItem="bLt-IF-3L6" secondAttribute="leading" constant="12" id="dPz-aN-cff"/>
-                                                            <constraint firstAttribute="width" constant="300" id="jbq-3H-dgs"/>
                                                             <constraint firstItem="wFh-Nd-yI6" firstAttribute="top" secondItem="bLt-IF-3L6" secondAttribute="top" constant="12" id="uc4-Nb-srd"/>
                                                         </constraints>
                                                     </view>
@@ -1432,7 +1419,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bread" translatesAutoresizingMaskIntoConstraints="NO" id="6uj-dT-9TS">
                                                                         <rect key="frame" x="0.0" y="0.0" width="293" height="160"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" constant="260" id="hHG-PI-UlN"/>
                                                                             <constraint firstAttribute="height" constant="160" id="nis-pa-Goh"/>
                                                                         </constraints>
                                                                     </imageView>
@@ -1485,7 +1471,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                                             <constraint firstAttribute="bottom" secondItem="QCY-2M-qPi" secondAttribute="bottom" constant="12" id="7b2-EI-pIC"/>
                                                             <constraint firstItem="QCY-2M-qPi" firstAttribute="leading" secondItem="wU0-vc-HTR" secondAttribute="leading" constant="12" id="Trd-F5-Jje"/>
                                                             <constraint firstAttribute="trailing" secondItem="QCY-2M-qPi" secondAttribute="trailing" constant="12" id="ctd-or-X8P"/>
-                                                            <constraint firstAttribute="width" constant="300" id="qg6-xv-toF"/>
                                                             <constraint firstItem="QCY-2M-qPi" firstAttribute="top" secondItem="wU0-vc-HTR" secondAttribute="top" constant="12" id="vtB-Vu-jiS"/>
                                                         </constraints>
                                                     </view>
@@ -1521,17 +1506,14 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                             <constraint firstItem="gsE-ra-ZDi" firstAttribute="leading" secondItem="aeW-q6-2Sw" secondAttribute="leading" id="DVg-nF-xYb"/>
                             <constraint firstItem="gsE-ra-ZDi" firstAttribute="top" secondItem="gR5-YB-y8N" secondAttribute="top" constant="177" id="RQ2-6w-ZV1"/>
                             <constraint firstItem="aeW-q6-2Sw" firstAttribute="trailing" secondItem="gsE-ra-ZDi" secondAttribute="trailing" id="SpZ-QA-Eeu"/>
-                            <constraint firstItem="aeW-q6-2Sw" firstAttribute="bottom" secondItem="WG2-HH-mhC" secondAttribute="bottom" constant="537.33000000000004" id="Vvz-kr-KAm"/>
                             <constraint firstItem="WG2-HH-mhC" firstAttribute="top" secondItem="gR5-YB-y8N" secondAttribute="top" constant="56" id="X39-Fq-OzG"/>
-                            <constraint firstItem="aeW-q6-2Sw" firstAttribute="trailing" secondItem="WG2-HH-mhC" secondAttribute="trailing" constant="23" id="ulA-YO-eet"/>
-                            <constraint firstAttribute="bottom" secondItem="WG2-HH-mhC" secondAttribute="bottom" constant="654.33000000000004" id="zCV-XZ-ADE"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="f9d-OI-IAx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWE-d1-HcR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="120" y="-161"/>
+            <point key="canvasLocation" x="120" y="-185"/>
         </scene>
         <!--Item-->
         <scene sceneID="4n2-HV-agr">
@@ -1590,7 +1572,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                 <rect key="frame" x="31" y="399" width="330" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUg-ja-jWC">
-                                        <rect key="frame" x="0.0" y="0.0" width="160" height="65"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="155" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="65" id="bg0-7X-M5i"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="wg4-9f-lUg"/>
@@ -1606,7 +1588,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVO-1I-F4B">
-                                        <rect key="frame" x="175" y="0.0" width="155" height="65"/>
+                                        <rect key="frame" x="170" y="0.0" width="160" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="wn7-3l-oyV"/>
                                         </constraints>
@@ -2178,16 +2160,16 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
