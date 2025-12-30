@@ -11,12 +11,9 @@ class StatusTrackingViewController: UIViewController {
 
     var donation: Donations?
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBAction func confirmPickupTapped(_ sender: UIButton) {
-        donation?.pickupStatus = .pickedUp
-        updateUI()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +22,8 @@ class StatusTrackingViewController: UIViewController {
 
     func updateUI() {
         guard let donation = donation else { return }
+
+        titleLabel.text = donation.title
 
         switch donation.pickupStatus {
         case .accepted:
@@ -49,5 +48,11 @@ class StatusTrackingViewController: UIViewController {
             dateLabel.text = ""
         }
     }
+
+    @IBAction func confirmPickupTapped(_ sender: UIButton) {
+        donation?.pickupStatus = .pickedUp
+        updateUI()
+    }
 }
+
 

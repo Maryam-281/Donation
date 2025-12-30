@@ -39,22 +39,18 @@ class SchedulePickupViewController: UIViewController {
         ])
     }
 
-    // MARK: - Actions
+    // MARK: - Action
     @IBAction func confirmTapped(_ sender: UIButton) {
-        guard var donation = donation else { return }
-
-        donation.pickupStatus = .scheduled
-        donation.pickupDate = datePicker.date   // ✅ FIXED HERE
-
-        performSegue(withIdentifier: "toDonationStatus", sender: donation)
+        // ✅ THIS SCREEN'S ONLY JOB
+        donation?.pickupDate = datePicker.date
+        donation?.pickupStatus = .scheduled
+        // ❌ No performSegue
     }
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toDonationStatus",
-           let destination = segue.destination as? StatusTrackingViewController,
-           let donation = sender as? Donations {
-
+        if segue.identifier == "toPickupScheduled",
+           let destination = segue.destination as? PickupScheduledViewController {
             destination.donation = donation
         }
     }

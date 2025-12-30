@@ -28,14 +28,11 @@ class HomePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        allDonations = [
-            Donations(location: "Manama", status: "Fresh", category: "Drinks", title: "Water Bottles"),
-            Donations(location: "Muharraq", status: "Expired", category: "Dairy Products", title: "Milk"),
-            Donations(location: "Manama", status: "Fresh", category: "Prepared Meals", title: "Lunch Boxes"),
-            Donations(location: "Northern Governorate", status: "Expires Soon", category: "Baked Goods", title: "Bread")
-        ]
-
+        // ✅ SINGLE SOURCE OF TRUTH
+        allDonations = DonationStore.shared.donations
         filteredDonations = allDonations
+
+        reloadCards()
     }
 
     override func viewDidLayoutSubviews() {
@@ -44,13 +41,37 @@ class HomePageViewController: UIViewController {
         shadowView.layer.applySketchShadow()
     }
 
+    // MARK: - UI UPDATE
+    func reloadCards() {
+
+        cardsStackView.arrangedSubviews.forEach {
+            cardsStackView.removeArrangedSubview($0)
+            $0.removeFromSuperview()
+        }
+
+        for (index, donation) in filteredDonations.enumerated() {
+
+            let cardButton = UIButton(type: .system)
+            cardButton.setTitle(donation.title, for: .normal)
+            cardButton.contentHorizontalAlignment = .left
+            cardButton.tag = index
+
+            cardButton.addTarget(
+                self,
+                action: #selector(viewDetailsTapped(_:)),
+                for: .touchUpInside
+            )
+
+            cardsStackView.addArrangedSubview(cardButton)
+        }
+    }
+
     // MARK: - ACTIONS
     @IBAction func filterButtonTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "showFilter", sender: nil)
     }
 
-    // ✅ THIS IS THE IMPORTANT ONE (VIEW DETAILS)
-    @IBAction func viewDetailsTapped(_ sender: UIButton) {
+    @objc func viewDetailsTapped(_ sender: UIButton) {
         selectedDonation = filteredDonations[sender.tag]
         performSegue(withIdentifier: "toDonationDetails", sender: self)
     }
@@ -58,14 +79,12 @@ class HomePageViewController: UIViewController {
     // MARK: - NAVIGATION
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        // ✅ PASS DONATION TO DETAILS
         if segue.identifier == "toDonationDetails",
            let destination = segue.destination as? DonationDetailsViewController,
            let donation = selectedDonation {
             destination.donation = donation
         }
 
-        // KEEP FILTER LOGIC
         if segue.identifier == "showFilter" {
             if let filterVC = segue.destination as? FilterViewController {
                 filterVC.delegate = self
@@ -94,7 +113,7 @@ extension HomePageViewController: FilterViewControllerDelegate {
 
             let statusMatch =
                 status == nil ||
-                donation.status.lowercased() == status!.lowercased()
+                donation.foodStatus.lowercased() == status!.lowercased()
 
             let categoryMatch =
                 category == nil ||
@@ -102,6 +121,8 @@ extension HomePageViewController: FilterViewControllerDelegate {
 
             return locationMatch && statusMatch && categoryMatch
         }
+
+        reloadCards()
     }
 }
 
@@ -129,5 +150,6 @@ extension CALayer {
         }
     }
 }
+
 
 
