@@ -1,0 +1,25 @@
+*.xcodeproj/*
+!*xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+*.xcworkspace/*
+!*.scworkspace/contents.xcworkspaceddata
+
+#Credentials - KEEP PRIVATE
+Config.plist
+
+#Swift Package Manager
+.swiftpm/
+.build/
+
+#macOD
+.DS_STORE
+
+#User data
+xcuserdata/
+DerivedData/
+*.xcuserstate
+
+#Build
+build/
+*.ipa
+'''
