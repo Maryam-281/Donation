@@ -1066,23 +1066,24 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="292"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="XM2-zy-IzF">
-                                                <rect key="frame" x="16" y="16" width="361" height="260"/>
+                                                <rect key="frame" x="35" y="16" width="323" height="260"/>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="XM2-zy-IzF" secondAttribute="bottom" constant="16" id="HUe-0E-CU3"/>
                                             <constraint firstItem="XM2-zy-IzF" firstAttribute="top" secondItem="l7p-e1-ZTK" secondAttribute="top" constant="16" id="OAp-yn-gDc"/>
-                                            <constraint firstItem="XM2-zy-IzF" firstAttribute="leading" secondItem="l7p-e1-ZTK" secondAttribute="leading" constant="16" id="fWw-S9-7gc"/>
-                                            <constraint firstAttribute="trailing" secondItem="XM2-zy-IzF" secondAttribute="trailing" constant="16" id="yZ5-mK-Rzs"/>
+                                            <constraint firstItem="XM2-zy-IzF" firstAttribute="leading" secondItem="l7p-e1-ZTK" secondAttribute="leading" constant="35" id="fWw-S9-7gc"/>
+                                            <constraint firstAttribute="trailing" secondItem="XM2-zy-IzF" secondAttribute="trailing" constant="35" id="yZ5-mK-Rzs"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="l7p-e1-ZTK" secondAttribute="trailing" id="FqX-u0-aVh"/>
                                     <constraint firstItem="l7p-e1-ZTK" firstAttribute="top" secondItem="gsE-ra-ZDi" secondAttribute="top" id="G0K-oU-1Ge"/>
+                                    <constraint firstAttribute="bottom" secondItem="l7p-e1-ZTK" secondAttribute="bottom" id="NhO-8Z-e4t"/>
                                     <constraint firstItem="l7p-e1-ZTK" firstAttribute="leading" secondItem="gsE-ra-ZDi" secondAttribute="leading" id="fPD-jP-8Be"/>
-                                    <constraint firstAttribute="bottom" secondItem="l7p-e1-ZTK" secondAttribute="bottom" constant="266" id="fQb-lF-OPt"/>
+                                    <constraint firstItem="l7p-e1-ZTK" firstAttribute="width" secondItem="gsE-ra-ZDi" secondAttribute="width" id="ul2-A2-inI"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="aoY-bH-2it"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="vIr-Yy-GeG"/>
@@ -1305,7 +1306,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5LZ-ZM-6OV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-752" y="-102"/>
+            <point key="canvasLocation" x="772" y="-113"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="m2a-ba-LAc">
@@ -1406,7 +1407,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L05-dO-xRm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1859" y="-102"/>
+            <point key="canvasLocation" x="-221" y="-113"/>
         </scene>
         <!--Item-->
         <scene sceneID="gKj-BX-uhj">
