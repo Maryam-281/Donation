@@ -57,7 +57,10 @@ class HomePageViewController: UIViewController {
 
             cardsStackView.addArrangedSubview(card)
         }
+
+        cardsStackView.layoutIfNeeded()
     }
+
 
     // MARK: - Actions
     @IBAction func filterButtonTapped(_ sender: UIButton) {
