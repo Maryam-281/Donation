@@ -7,87 +7,69 @@
 
 import UIKit
 
-// MARK: - VIEW CONTROLLER
 class HomePageViewController: UIViewController {
 
-    // MARK: - OUTLETS
-    @IBOutlet weak var shadowView: UIView!
+    // MARK: - Outlets
     @IBOutlet weak var cardsStackView: UIStackView!
 
-    // MARK: - DATA
+    // MARK: - Data
     var allDonations: [Donations] = []
     var filteredDonations: [Donations] = []
 
-    // MARK: - CURRENT SELECTION / FILTERS
+    // MARK: - Selection
     var selectedDonation: Donations?
-    var selectedLocation: String?
-    var selectedStatus: String?
-    var selectedCategory: String?
 
-    // MARK: - LIFECYCLE
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        shadowView.isUserInteractionEnabled = false
 
         allDonations = DonationStore.shared.donations
         filteredDonations = allDonations
         reloadCards()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        shadowView.layer.cornerRadius = 20
-        shadowView.layer.applySketchShadow()
-    }
-
-    // MARK: - UI UPDATE
+    // MARK: - UI
     func reloadCards() {
 
         cardsStackView.arrangedSubviews.forEach {
-            cardsStackView.removeArrangedSubview($0)
             $0.removeFromSuperview()
         }
 
-        for (index, donation) in filteredDonations.enumerated() {
+        for donation in filteredDonations {
 
-            let cardButton = UIButton(type: .custom)
-            cardButton.setTitle(donation.title, for: .normal)
-            cardButton.contentHorizontalAlignment = .left
-            cardButton.tag = index
+            guard let card = Bundle.main.loadNibNamed(
+                "CardView",
+                owner: nil,
+                options: nil
+            )?.first as? CardView else {
+                continue
+            }
 
-            // 🔴 REQUIRED: give the button real size
-            cardButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-            cardButton.titleLabel?.numberOfLines = 2
+            card.configure(with: donation)
 
-            cardButton.addTarget(
-                self,
-                action: #selector(viewDetailsTapped(_:)),
-                for: .touchUpInside
-            )
+            card.onDetailsTapped = { [weak self] donation in
+                self?.selectedDonation = donation
+                self?.performSegue(
+                    withIdentifier: "toDonationDetails",
+                    sender: nil
+                )
+            }
 
-            cardsStackView.addArrangedSubview(cardButton)
+            cardsStackView.addArrangedSubview(card)
         }
     }
 
-    // MARK: - ACTIONS
+    // MARK: - Actions
     @IBAction func filterButtonTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "showFilter", sender: nil)
     }
 
-    @objc func viewDetailsTapped(_ sender: UIButton) {
-        print("✅ TAP WORKS:", sender.tag)
-    }
-
-
-
-    // MARK: - NAVIGATION
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if segue.identifier == "toDonationDetails",
-           let destination = segue.destination as? DonationDetailsViewController,
-           let donation = selectedDonation {
-            destination.donation = donation
+           let destination = segue.destination as? DonationDetailsViewController {
+            destination.donation = selectedDonation
         }
 
         if segue.identifier == "showFilter" {
@@ -101,14 +83,10 @@ class HomePageViewController: UIViewController {
     }
 }
 
-// MARK: - FILTER DELEGATE
+// MARK: - Filter Delegate
 extension HomePageViewController: FilterViewControllerDelegate {
 
     func didApplyFilters(location: String?, status: String?, category: String?) {
-
-        selectedLocation = location
-        selectedStatus = status
-        selectedCategory = category
 
         filteredDonations = allDonations.filter { donation in
 
@@ -128,31 +106,6 @@ extension HomePageViewController: FilterViewControllerDelegate {
         }
 
         reloadCards()
-    }
-}
-
-// MARK: - SHADOW EXTENSION
-extension CALayer {
-
-    func applySketchShadow(
-        color: UIColor = .black,
-        alpha: Float = 0.15,
-        x: CGFloat = 0,
-        y: CGFloat = 20,
-        blur: CGFloat = 15,
-        spread: CGFloat = 0
-    ) {
-        shadowColor = color.cgColor
-        shadowOpacity = alpha
-        shadowOffset = CGSize(width: x, height: y)
-        shadowRadius = blur / 2.0
-        masksToBounds = false
-
-        if spread != 0 {
-            let dx = -spread
-            let rect = bounds.insetBy(dx: dx, dy: dx)
-            shadowPath = UIBezierPath(rect: rect).cgPath
-        }
     }
 }
 

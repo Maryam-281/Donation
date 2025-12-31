@@ -15,6 +15,7 @@ class FilteredResultsViewController: UIViewController {
     var selectedLocation: String?
     var selectedStatus: String?
     var selectedCategory: String?
+    var selectedDonation: Donations?
 
     // MARK: - Data
     var allDonations: [Donations] = []
@@ -57,14 +58,38 @@ class FilteredResultsViewController: UIViewController {
     private func reloadCards() {
 
         cardsStackView.arrangedSubviews.forEach {
-            cardsStackView.removeArrangedSubview($0)
             $0.removeFromSuperview()
         }
 
         for donation in filteredDonations {
-            cardsStackView.addArrangedSubview(createCard(for: donation))
+
+            let card = Bundle.main.loadNibNamed(
+                "CardView",
+                owner: self,
+                options: nil
+            )?.first as! CardView
+
+            card.configure(with: donation)
+
+            card.onDetailsTapped = { [weak self] donation in
+                self?.selectedDonation = donation
+                self?.performSegue(
+                    withIdentifier: "toDonationDetails",
+                    sender: nil
+                )
+            }
+
+            cardsStackView.addArrangedSubview(card)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDonationDetails",
+           let destination = segue.destination as? DonationDetailsViewController {
+            destination.donation = selectedDonation
+        }
+    }
+
 
     private func createCard(for donation: Donations) -> UIView {
 

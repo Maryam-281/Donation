@@ -25,9 +25,22 @@ class DonationDetailsViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        print("🟢 viewDidLoad called")
+
+        print("titleLabel:", titleLabel as Any)
+        print("descriptionTextView:", descriptionTextView as Any)
+        print("categoryLabel:", categoryLabel as Any)
+        print("productionDateLabel:", productionDateLabel as Any)
+        print("expirationDateLabel:", expirationDateLabel as Any)
+        print("donorLabel:", donorLabel as Any)
+        print("statusLabel:", statusLabel as Any)
+        print("locationLabel:", locationLabel as Any)
+
         configureTextView()
         updateUI()
     }
+
 
     // MARK: - UI Setup
     private func configureTextView() {
