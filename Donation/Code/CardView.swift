@@ -19,6 +19,8 @@ class CardView: UIView {
     // MARK: - Data
     private var donation: Donations?
     var onDetailsTapped: ((Donations) -> Void)?
+
+    // MARK: - Intrinsic Size
     override var intrinsicContentSize: CGSize {
         return CGSize(width: UIView.noIntrinsicMetric, height: 260)
     }
@@ -27,24 +29,29 @@ class CardView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        // Card shape
         layer.cornerRadius = 16
         layer.masksToBounds = false
-
-        // Shadow (ONLY HERE)
         layer.applySketchShadow()
     }
-
 
     // MARK: - Configure
     func configure(with donation: Donations) {
         self.donation = donation
 
+        // Text
         titleLabel.text = donation.title
         expiryLabel.text = formattedExpiry(from: donation.expirationDate)
-        distanceLabel.text = "2 km"
+
+        // ✅ SHOW LOCATION (NOT "2 km")
+        distanceLabel.text = donation.location
+
+        // Image
+        foodImageView.image = UIImage(named: donation.imageName)
+        foodImageView.contentMode = .scaleAspectFill
+        foodImageView.clipsToBounds = true
     }
 
+    // MARK: - Helpers
     private func formattedExpiry(from date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium

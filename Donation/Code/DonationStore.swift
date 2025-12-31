@@ -24,6 +24,7 @@ This Chicken with Broccoli and Rice is a delicious blend of succulent, savory ch
             location: "Manama",
             category: "Prepared Meals",
             foodStatus: "Fresh",
+            imageName: "chicken",
             productionDate: Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
             expirationDate: Calendar.current.date(byAdding: .day, value: 2, to: Date())!
         ),
@@ -39,6 +40,7 @@ Freshly baked and golden brown, this pastry is perfect for breakfast or a light 
             location: "Manama",
             category: "Baked Goods",
             foodStatus: "Fresh",
+            imageName: "painau" ,
             productionDate: Date(),
             expirationDate: Calendar.current.date(byAdding: .day, value: 1, to: Date())!
         ),
@@ -54,6 +56,7 @@ It is ideal for a healthy snack or dessert option.
             location: "Muharraq",
             category: "Fruits & Vegetables",
             foodStatus: "Expired",
+            imageName: "fruit_salad",
             productionDate: Date(),
             expirationDate: Calendar.current.date(byAdding: .day, value: -1, to: Date())!
         ),
@@ -69,6 +72,7 @@ Best enjoyed fresh.
             location: "Southern Governorate",
             category: "Baked Goods",
             foodStatus: "Expires Soon",
+            imageName: "bread",
             productionDate: Date(),
             expirationDate: Calendar.current.date(byAdding: .day, value: 2, to: Date())!
         ),
@@ -84,6 +88,7 @@ Ideal as a healthy side dish or light meal.
             location: "Northern Governorate",
             category: "Fruits & Vegetables",
             foodStatus: "Fresh",
+            imageName: "salad",
             productionDate: Date(),
             expirationDate: Calendar.current.date(byAdding: .day, value: 1, to: Date())!
         ),
@@ -99,6 +104,7 @@ Perfect for cooler days or anyone in need of a hearty meal.
             location: "Northern Governorate",
             category: "Prepared Meals",
             foodStatus: "Expires Soon",
+            imageName: "chicken_soup",
             productionDate: Date(),
             expirationDate: Calendar.current.date(byAdding: .day, value: 2, to: Date())!
         )

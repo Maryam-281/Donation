@@ -8,7 +8,6 @@
 import UIKit
 import Foundation
 
-
 enum PickupStatus {
     case available
     case accepted
@@ -24,7 +23,8 @@ class Donations {
     let donorName: String
     let location: String
     let category: String
-    let foodStatus: String   // ✅ Fresh / Expired / Expires Soon
+    let foodStatus: String
+    let imageName: String   // ✅ ADDED
 
     // MARK: - Dates
     let productionDate: Date
@@ -41,6 +41,7 @@ class Donations {
         location: String,
         category: String,
         foodStatus: String,
+        imageName: String,          // ✅ ADDED
         productionDate: Date,
         expirationDate: Date
     ) {
@@ -50,12 +51,12 @@ class Donations {
         self.location = location
         self.category = category
         self.foodStatus = foodStatus
+        self.imageName = imageName
         self.productionDate = productionDate
         self.expirationDate = expirationDate
         self.pickupStatus = .available
         self.pickupDate = nil
     }
 }
-
 
 

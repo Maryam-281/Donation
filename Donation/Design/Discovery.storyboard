@@ -1248,12 +1248,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Filtered Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHP-6Y-hia">
-                                <rect key="frame" x="95" y="76" width="203" height="34"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6rg-jy-0Hf">
                                 <rect key="frame" x="0.0" y="162" width="393" height="622"/>
                                 <subviews>
@@ -1283,15 +1277,26 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Nbj-kl-wFB"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="ogI-7E-EWs"/>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filtered Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHP-6Y-hia">
+                                <rect key="frame" x="16" y="76" width="361" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GYy-fz-vxi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="xHP-6Y-hia" firstAttribute="top" secondItem="GYy-fz-vxi" secondAttribute="top" constant="-86" id="2EV-Xx-MSP"/>
+                            <constraint firstAttribute="trailing" secondItem="xHP-6Y-hia" secondAttribute="trailing" constant="16" id="3uq-cq-wKg"/>
                             <constraint firstItem="6rg-jy-0Hf" firstAttribute="top" secondItem="GYy-fz-vxi" secondAttribute="top" id="74T-gg-Q8l"/>
+                            <constraint firstItem="xHP-6Y-hia" firstAttribute="leading" secondItem="ySy-iA-jTF" secondAttribute="leading" constant="16" id="FRb-9h-bDC"/>
                             <constraint firstItem="6rg-jy-0Hf" firstAttribute="leading" secondItem="ySy-iA-jTF" secondAttribute="leading" id="Kcc-cn-QVW"/>
                             <constraint firstItem="6rg-jy-0Hf" firstAttribute="bottom" secondItem="GYy-fz-vxi" secondAttribute="bottom" id="Ozh-RH-DIO"/>
+                            <constraint firstItem="xHP-6Y-hia" firstAttribute="top" secondItem="ySy-iA-jTF" secondAttribute="top" constant="16" id="Sys-th-Qb2"/>
+                            <constraint firstAttribute="trailing" secondItem="xHP-6Y-hia" secondAttribute="trailing" constant="16" id="Vjj-JE-e7c"/>
                             <constraint firstAttribute="trailing" secondItem="6rg-jy-0Hf" secondAttribute="trailing" id="g9v-Wm-obT"/>
-                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="centerX" secondItem="xHP-6Y-hia" secondAttribute="centerX" id="iWU-fw-79a"/>
+                            <constraint firstItem="xHP-6Y-hia" firstAttribute="leading" secondItem="ySy-iA-jTF" secondAttribute="leading" constant="16" id="kH5-jz-9ev"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gmc-sj-sxg"/>
