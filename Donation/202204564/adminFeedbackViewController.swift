@@ -1,8 +1,8 @@
 //
-//  DonationFilter.swift
+//  adminFeedbackViewController.swift
 //  Donation
 //
-//  Created by macOS on 22/12/2025.
+//  Created by macOS on 31/12/2025.
 //
 
 import UIKit
@@ -12,79 +12,58 @@ import SwiftUICharts
 
 
 
-class DonationFilter: UIViewController {
-    
-    // initialze radio buttons
-    @IBOutlet weak var first10RadioButton: UIButton!
-    @IBOutlet weak var otherRadioButton: UIButton!
-    
-    //initialize
+class adminFeedbackViewController: UIViewController {
+
     @IBOutlet weak var fromDatePicker: UIDatePicker!
     @IBOutlet weak var toDatePicker: UIDatePicker!
-    
     @IBOutlet weak var chartContainerView: UIView!
-    
-    @IBOutlet weak var filterButton: UIButton!
-    
-    @IBOutlet weak var resetButton: UIButton!
-    
-    // variables
-    var hostingController: UIHostingController<DateRangeChartView>?
-    //data for loading - donation data
-    var allData: [ChartDataPoint] = []
-    
+    @IBOutlet weak var applyButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // call functions
-        setupRadioButtons()
         loadSampleData()
-        //updateChart()
-    }
-    
-    
-    // funation to unselect the radio buttons when loading
-    func setupRadioButtons() {
-        first10RadioButton.isSelected = false
-        otherRadioButton.isSelected = false
-    }
-    
-    // function to return the sender selection
-    @IBAction func radioButtonTapped(_ sender: UIButton) {
+        super.viewDidLoad()
 
-        first10RadioButton.isSelected = false
-        otherRadioButton.isSelected = false
-        sender.isSelected = true
+        // Do any additional setup after loading the view.
     }
     
-    //Filter Button to update chart
-    @IBAction func filterBtnClicked(_ sender: UIButton) {
+    @IBAction func applybtnClicked(_ sender: UIButton) {
         updateChart()
         chartContainerView.isHidden = false
         sender.isSelected = true
     }
     
-    @IBAction func resetBtnClicked(_ sender: UIButton) {
-        first10RadioButton.isSelected = false
-        otherRadioButton.isSelected = false
+    @IBAction func clearBtnClicked(_ sender: UIButton) {
+        chartContainerView.isHidden = true
         fromDatePicker.setDate(Date(), animated: true)
         toDatePicker.setDate(Date(), animated: true)
-        chartContainerView.isHidden = true
         sender.isSelected = true
-        
     }
     
-    
-    // chart and date picker
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+            switch sender.selectedSegmentIndex {
+            case 0:
+                self.performSegue(withIdentifier: "feedbackToHome", sender: self)
+                break
+            case 1:
+                self.performSegue(withIdentifier: "feedbackToDonations", sender: self)
+                break
+            default:
+                break
+            }
+        }
+        
     struct ChartDataPoint: Identifiable {
         let id = UUID()
         let date: Date
         let value: Double
     }
     
-    // load chart sample data
+    var hostingController: UIHostingController<DateRangeChartView>?
+    //data for loading - donation data
+    var allData: [ChartDataPoint] = []
+    
     func loadSampleData() {
         let calendar = Calendar.current
         
@@ -94,10 +73,6 @@ class DonationFilter: UIViewController {
             allData.append(ChartDataPoint(date: date, value: value))
         }
     }
-    
-    // change the chart according to dates
-    
-    
     
     func updateChart() {
             let startDate = fromDatePicker.date
@@ -124,22 +99,4 @@ class DonationFilter: UIViewController {
                 hostingController = hc
             }
         }
-
-    
 }
-    
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-
