@@ -1248,7 +1248,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filtered Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHP-6Y-hia">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Filtered Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHP-6Y-hia">
                                 <rect key="frame" x="95" y="76" width="203" height="34"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <nil key="textColor"/>
@@ -1257,29 +1257,28 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6rg-jy-0Hf">
                                 <rect key="frame" x="0.0" y="162" width="393" height="622"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nol-h3-qCG">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nol-h3-qCG" userLabel="Contentview">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="622"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nzp-7g-fxN">
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nzp-7g-fxN">
                                                 <rect key="frame" x="16" y="16" width="361" height="590"/>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="nzp-7g-fxN" firstAttribute="leading" secondItem="Nol-h3-qCG" secondAttribute="leading" constant="16" id="RPA-xK-8oU"/>
-                                            <constraint firstAttribute="trailing" secondItem="nzp-7g-fxN" secondAttribute="trailing" constant="16" id="VLA-2E-TKB"/>
-                                            <constraint firstItem="nzp-7g-fxN" firstAttribute="top" secondItem="Nol-h3-qCG" secondAttribute="top" constant="16" id="Vcz-7S-ewz"/>
-                                            <constraint firstAttribute="bottom" secondItem="nzp-7g-fxN" secondAttribute="bottom" constant="16" id="kcv-nA-0KB"/>
+                                            <constraint firstItem="nzp-7g-fxN" firstAttribute="leading" secondItem="Nol-h3-qCG" secondAttribute="leading" constant="16" id="Gmg-mL-eap"/>
+                                            <constraint firstItem="nzp-7g-fxN" firstAttribute="top" secondItem="Nol-h3-qCG" secondAttribute="top" constant="16" id="cgl-HS-cUp"/>
+                                            <constraint firstAttribute="trailing" secondItem="nzp-7g-fxN" secondAttribute="trailing" constant="16" id="xZC-2f-GRd"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Nol-h3-qCG" firstAttribute="top" secondItem="6rg-jy-0Hf" secondAttribute="top" id="NHV-WE-otc"/>
-                                    <constraint firstItem="Nol-h3-qCG" firstAttribute="bottom" secondItem="ogI-7E-EWs" secondAttribute="bottom" id="SM4-do-V0L"/>
-                                    <constraint firstAttribute="bottom" secondItem="Nol-h3-qCG" secondAttribute="bottom" id="cQZ-QM-1GW"/>
-                                    <constraint firstAttribute="trailing" secondItem="Nol-h3-qCG" secondAttribute="trailing" id="ez7-U7-uHe"/>
-                                    <constraint firstItem="Nol-h3-qCG" firstAttribute="width" secondItem="6rg-jy-0Hf" secondAttribute="width" id="rX3-pc-7lY"/>
-                                    <constraint firstItem="Nol-h3-qCG" firstAttribute="leading" secondItem="6rg-jy-0Hf" secondAttribute="leading" id="w5Q-q3-eA4"/>
+                                    <constraint firstItem="ogI-7E-EWs" firstAttribute="bottom" secondItem="Nol-h3-qCG" secondAttribute="bottom" id="6oX-ad-Mle"/>
+                                    <constraint firstAttribute="trailing" secondItem="Nol-h3-qCG" secondAttribute="trailing" id="G76-Zv-87W"/>
+                                    <constraint firstItem="Nol-h3-qCG" firstAttribute="bottom" secondItem="Nbj-kl-wFB" secondAttribute="bottom" constant="622" id="e3c-VE-Amy"/>
+                                    <constraint firstItem="Nol-h3-qCG" firstAttribute="top" secondItem="Nbj-kl-wFB" secondAttribute="top" id="ofO-7W-Arw"/>
+                                    <constraint firstItem="ogI-7E-EWs" firstAttribute="trailing" secondItem="Nol-h3-qCG" secondAttribute="trailing" id="q4k-8R-xWZ"/>
+                                    <constraint firstItem="Nol-h3-qCG" firstAttribute="centerX" secondItem="6rg-jy-0Hf" secondAttribute="centerX" id="rym-fh-Ild"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Nbj-kl-wFB"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="ogI-7E-EWs"/>
@@ -1288,15 +1287,11 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                         <viewLayoutGuide key="safeArea" id="GYy-fz-vxi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="xHP-6Y-hia" firstAttribute="top" secondItem="ySy-iA-jTF" secondAttribute="top" constant="76" id="3kv-yq-cim"/>
-                            <constraint firstItem="GYy-fz-vxi" firstAttribute="bottom" secondItem="6rg-jy-0Hf" secondAttribute="bottom" id="4dW-9c-OkT"/>
-                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="top" secondItem="xHP-6Y-hia" secondAttribute="bottom" constant="52" id="MHB-H4-vmh"/>
-                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="leading" secondItem="GYy-fz-vxi" secondAttribute="leading" id="cjO-pR-o0Y"/>
-                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="centerX" secondItem="xHP-6Y-hia" secondAttribute="centerX" id="d5I-zF-qfO"/>
-                            <constraint firstItem="xHP-6Y-hia" firstAttribute="leading" secondItem="ySy-iA-jTF" secondAttribute="leading" constant="95" id="glZ-fN-p9I"/>
-                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="top" secondItem="GYy-fz-vxi" secondAttribute="top" id="h8B-x6-4qQ"/>
-                            <constraint firstAttribute="trailing" secondItem="xHP-6Y-hia" secondAttribute="trailing" constant="95" id="j0u-Ws-XkN"/>
-                            <constraint firstItem="GYy-fz-vxi" firstAttribute="trailing" secondItem="6rg-jy-0Hf" secondAttribute="trailing" id="y4R-VB-eox"/>
+                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="top" secondItem="GYy-fz-vxi" secondAttribute="top" id="74T-gg-Q8l"/>
+                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="leading" secondItem="ySy-iA-jTF" secondAttribute="leading" id="Kcc-cn-QVW"/>
+                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="bottom" secondItem="GYy-fz-vxi" secondAttribute="bottom" id="Ozh-RH-DIO"/>
+                            <constraint firstAttribute="trailing" secondItem="6rg-jy-0Hf" secondAttribute="trailing" id="g9v-Wm-obT"/>
+                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="centerX" secondItem="xHP-6Y-hia" secondAttribute="centerX" id="iWU-fw-79a"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gmc-sj-sxg"/>

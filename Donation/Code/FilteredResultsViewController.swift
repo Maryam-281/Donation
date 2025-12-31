@@ -79,7 +79,21 @@ class FilteredResultsViewController: UIViewController {
                 )
             }
 
-            cardsStackView.addArrangedSubview(card)
+            let wrapper = UIView()
+            wrapper.translatesAutoresizingMaskIntoConstraints = false
+
+            wrapper.addSubview(card)
+            card.translatesAutoresizingMaskIntoConstraints = false
+
+            NSLayoutConstraint.activate([
+                card.topAnchor.constraint(equalTo: wrapper.topAnchor),
+                card.leadingAnchor.constraint(equalTo: wrapper.leadingAnchor),
+                card.trailingAnchor.constraint(equalTo: wrapper.trailingAnchor),
+                card.bottomAnchor.constraint(equalTo: wrapper.bottomAnchor),
+            ])
+
+            cardsStackView.addArrangedSubview(wrapper)
+
         }
     }
     
@@ -109,6 +123,7 @@ class FilteredResultsViewController: UIViewController {
         statusLabel.textColor = .gray
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
 
+            
         card.addSubview(titleLabel)
         card.addSubview(statusLabel)
 
