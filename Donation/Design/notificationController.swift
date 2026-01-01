@@ -1,18 +1,22 @@
 //
-//  NotificationDController.swift
+//  notificationController.swift
 //  Donation
 //
-//  Created by BP-36-201-01 on 30/12/2025.
+//  Created by BP-36-201-09 on 01/01/2026.
 //
 
 import UIKit
 
-class NotificationDController: UIViewController {
+class notificationController: UIViewController {
 
-    @IBOutlet weak var O1: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let notifications = [
+            "Your donation was accepted",
+            "Your donation was picked up",
+            "Your donation was rejected"
+        ]
         // Do any additional setup after loading the view.
     }
     

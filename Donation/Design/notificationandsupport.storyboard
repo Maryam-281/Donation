@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TGF-gq-4iC">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Notifications Controller-->
+        <!--Item-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="NotificationsController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="notificationController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -222,13 +222,14 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="tbN-BH-zvA"/>
                     <connections>
                         <outlet property="donationView" destination="0sE-Aj-Mqp" id="nCk-Uj-13i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="171.75572519083968" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="1098.4732824427481" y="3.5211267605633805"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="dr4-k2-13r">
@@ -408,10 +409,10 @@
             </objects>
             <point key="canvasLocation" x="170" y="740"/>
         </scene>
-        <!--View Controller-->
+        <!--Contactus Controller-->
         <scene sceneID="PbW-fs-AU7">
             <objects>
-                <viewController id="p4Q-ZJ-V34" sceneMemberID="viewController">
+                <viewController id="p4Q-ZJ-V34" customClass="contactusController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d5G-ij-b0G">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -473,13 +474,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Phone Number" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKY-RZ-Ewg">
-                                <rect key="frame" x="21" y="394" width="349" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" systemColor="systemGrayColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Upq-oB-btb">
                                 <rect key="frame" x="19" y="745" width="356" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -501,6 +495,13 @@
                         <viewLayoutGuide key="safeArea" id="tbK-Hf-81O"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="button" destination="Upq-oB-btb" id="yvg-5y-8Oo"/>
+                        <outlet property="email" destination="QCh-bA-Zq1" id="9ER-NI-eqp"/>
+                        <outlet property="message" destination="HFA-3b-sfb" id="Wve-Uw-scL"/>
+                        <outlet property="name" destination="aNv-V9-pr3" id="mI7-IM-m6a"/>
+                        <outlet property="submit" destination="Upq-oB-btb" id="wZy-kf-Ait"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tru-5L-gVp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -530,7 +531,7 @@
                                                 </buttonConfiguration>
                                             </button>
                                             <connections>
-                                                <segue destination="Y6W-OH-hqX" kind="presentation" modalPresentationStyle="fullScreen" id="riu-bU-ElP"/>
+                                                <segue destination="TGF-gq-4iC" kind="presentation" modalPresentationStyle="fullScreen" id="riu-bU-ElP"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="iFl-ZO-ZVu">
@@ -544,7 +545,7 @@
                                                 </buttonConfiguration>
                                             </button>
                                             <connections>
-                                                <segue destination="Y6W-OH-hqX" kind="presentation" modalPresentationStyle="fullScreen" id="6BD-Hc-Ycj"/>
+                                                <segue destination="TGF-gq-4iC" kind="presentation" modalPresentationStyle="fullScreen" id="6BD-Hc-Ycj"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -597,12 +598,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nuX-2D-v24" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1105" y="4"/>
+            <point key="canvasLocation" x="2031.2977099236641" y="3.5211267605633805"/>
         </scene>
-        <!--View Controller-->
+        <!--Notificationsetting Controller-->
         <scene sceneID="HPn-FO-g73">
             <objects>
-                <viewController id="jvF-sH-jg9" sceneMemberID="viewController">
+                <viewController id="jvF-sH-jg9" customClass="notificationsettingController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V7M-SW-G3l">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -623,7 +624,7 @@
                                                 </buttonConfiguration>
                                             </button>
                                             <connections>
-                                                <segue destination="Y6W-OH-hqX" kind="presentation" modalPresentationStyle="fullScreen" id="V2S-mb-MXG"/>
+                                                <segue destination="TGF-gq-4iC" kind="presentation" modalPresentationStyle="fullScreen" id="V2S-mb-MXG"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="cAs-xE-DPO">
@@ -637,7 +638,7 @@
                                                 </buttonConfiguration>
                                             </button>
                                             <connections>
-                                                <segue destination="Y6W-OH-hqX" kind="presentation" modalPresentationStyle="fullScreen" id="7Nx-rU-yMa"/>
+                                                <segue destination="TGF-gq-4iC" kind="presentation" modalPresentationStyle="fullScreen" id="7Nx-rU-yMa"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -724,6 +725,9 @@
                                     <segment title=""/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="S2:" destination="jvF-sH-jg9" eventType="valueChanged" id="8M6-V7-pra"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="96Y-6h-zYm">
                                 <rect key="frame" x="324" y="261" width="53" height="32"/>
@@ -733,6 +737,9 @@
                                     <segment title=""/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="S3:" destination="jvF-sH-jg9" eventType="valueChanged" id="4j4-WA-xQR"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mbX-Ip-R3z">
                                 <rect key="frame" x="324" y="316" width="53" height="32"/>
@@ -742,6 +749,9 @@
                                     <segment title=""/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="S4:" destination="jvF-sH-jg9" eventType="valueChanged" id="Kl5-0w-CVg"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZZX-14-4ip">
                                 <rect key="frame" x="324" y="540" width="53" height="32"/>
@@ -751,6 +761,9 @@
                                     <segment title=""/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="S6:" destination="jvF-sH-jg9" eventType="valueChanged" id="RKC-YL-ibP"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="xOH-uQ-1t2">
                                 <rect key="frame" x="324" y="485" width="53" height="32"/>
@@ -760,6 +773,9 @@
                                     <segment title=""/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" systemColor="systemGreenColor"/>
+                                <connections>
+                                    <action selector="S5:" destination="jvF-sH-jg9" eventType="valueChanged" id="5gw-AE-rNI"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lSV-RF-Tb5">
                                 <rect key="frame" x="324" y="596" width="53" height="32"/>
@@ -769,15 +785,21 @@
                                     <segment title=""/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="S7:" destination="jvF-sH-jg9" eventType="valueChanged" id="BBR-3u-97r"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FfN-zZ-Y58"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="S1" destination="UcS-5Z-4I6" id="JTH-5i-mhL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kwv-P1-tNh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1979" y="4"/>
+            <point key="canvasLocation" x="2904.5801526717555" y="3.5211267605633805"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="j6h-GH-jOf">
@@ -953,7 +975,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uvw-zu-7U1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2848" y="4"/>
+            <point key="canvasLocation" x="3773.2824427480914" y="3.5211267605633805"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="aih-Fo-jOA">
@@ -1546,10 +1568,10 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
             </objects>
             <point key="canvasLocation" x="171.75572519083968" y="1493.661971830986"/>
         </scene>
-        <!--View Controller-->
+        <!--Issue Controller-->
         <scene sceneID="gjP-xV-yDa">
             <objects>
-                <viewController id="okl-sI-KbO" sceneMemberID="viewController">
+                <viewController id="okl-sI-KbO" customClass="issueController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uMR-Dc-eh8">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1644,6 +1666,15 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
                         <viewLayoutGuide key="safeArea" id="CpC-Wg-TP2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="done" destination="D1T-eg-dEk" id="ieq-nH-nhA"/>
+                        <outlet property="issue1" destination="vRc-VP-LIN" id="aco-zt-mZ0"/>
+                        <outlet property="issue2" destination="FwS-ge-CFb" id="6ZJ-ua-hZn"/>
+                        <outlet property="issue3" destination="lI4-O9-v72" id="Qde-SP-88Q"/>
+                        <outlet property="message" destination="AiV-GY-3w1" id="RtZ-r3-LPe"/>
+                        <outlet property="submit" destination="D1T-eg-dEk" id="ivI-f8-Qc2"/>
+                        <outlet property="type" destination="Yh1-91-2rA" id="M8x-or-Xtm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8B5-Wr-GRf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1851,11 +1882,28 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
             </objects>
             <point key="canvasLocation" x="2321" y="1494"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Jab-Gv-Ffj">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="TGF-gq-4iC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OLw-Q5-i3M">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="viewControllers" id="kAM-BU-Qaa"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vGs-za-tpF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="171.75572519083968" y="3.5211267605633805"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="foH-Lu-TGW"/>
-        <segue reference="5EL-L6-hwT"/>
         <segue reference="7Nx-rU-yMa"/>
+        <segue reference="bQB-0f-2c4"/>
+        <segue reference="UgB-Fc-6Ym"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>

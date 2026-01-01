@@ -1,22 +1,33 @@
 //
-//  NotificationsController.swift
+//  contactusController.swift
 //  Donation
 //
-//  Created by BP-36-201-01 on 30/12/2025.
+//  Created by BP-36-201-09 on 01/01/2026.
 //
 
 import UIKit
 
-class NotificationsController: UIViewController {
+class contactusController: UIViewController {
 
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var message: UITextField!
+    
+    @IBAction func submitTapped(_ sender: UIButton) {
+        if name.text == "" || email.text == "" {
+            print("Missing information")
+        } else {
+            performSegue(withIdentifier: "showSuccess", sender: self)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-    @IBOutlet weak var donationView: UIView!
-    
+
     /*
     // MARK: - Navigation
 
