@@ -89,4 +89,8 @@ class FilteredResultsViewController: UIViewController {
             destination.donation = selectedDonation
         }
     }
+    
+    @IBAction func closeTapped(_ sender: UIButton) {
+            dismiss(animated: true)
+        }
 }

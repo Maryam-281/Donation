@@ -11,6 +11,7 @@ class HomePageViewController: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var cardsStackView: UIStackView!
+    @IBOutlet weak var searchTextField: UITextField!
 
     // MARK: - Data
     var allDonations: [Donations] = []
@@ -25,6 +26,15 @@ class HomePageViewController: UIViewController {
 
         allDonations = DonationStore.shared.donations
         filteredDonations = allDonations
+
+        // 🔍 Search setup
+        searchTextField.delegate = self
+        searchTextField.addTarget(
+            self,
+            action: #selector(searchTextChanged),
+            for: .editingChanged
+        )
+
         reloadCards()
     }
 
@@ -61,6 +71,24 @@ class HomePageViewController: UIViewController {
         cardsStackView.layoutIfNeeded()
     }
 
+    // MARK: - Search
+    @objc private func searchTextChanged() {
+
+        let query = searchTextField.text?
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased() ?? ""
+
+        if query.isEmpty {
+            filteredDonations = allDonations
+        } else {
+            filteredDonations = allDonations.filter { donation in
+                donation.title.lowercased().contains(query) ||
+                donation.location.lowercased().contains(query)
+            }
+        }
+
+        reloadCards()
+    }
 
     // MARK: - Actions
     @IBAction func filterButtonTapped(_ sender: UIButton) {
@@ -111,6 +139,18 @@ extension HomePageViewController: FilterViewControllerDelegate {
         reloadCards()
     }
 }
+
+// MARK: - UITextField Delegate
+extension HomePageViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+
+
 
 
 
