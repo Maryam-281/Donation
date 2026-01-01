@@ -26,15 +26,6 @@ class FilterViewController: UIViewController {
     var selectedCategory: String?
     
     weak var delegate: FilterViewControllerDelegate?
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toFilteredResults",
-           let destination = segue.destination as? FilteredResultsViewController {
-
-            destination.selectedLocation = selectedLocation
-            destination.selectedStatus = selectedStatus
-            destination.selectedCategory = selectedCategory
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,9 +149,23 @@ class FilterViewController: UIViewController {
 
     // Apply Filters
     @IBAction func applyButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "toFilteredResults", sender: nil)
-    }
 
+        let storyboard = UIStoryboard(name: "Discovery", bundle: nil)
+
+        guard let resultsVC = storyboard.instantiateViewController(
+            withIdentifier: "FilteredResultsViewController"
+        ) as? FilteredResultsViewController else {
+            fatalError("FilteredResultsViewController not found in Discovery.storyboard")
+        }
+
+        // Pass selected filters
+        resultsVC.selectedLocation = selectedLocation
+        resultsVC.selectedStatus = selectedStatus
+        resultsVC.selectedCategory = selectedCategory
+
+        resultsVC.modalPresentationStyle = .fullScreen
+        present(resultsVC, animated: true)
+    }
 
 
 
@@ -170,6 +175,5 @@ class FilterViewController: UIViewController {
         }
 
     }
-
 
 
