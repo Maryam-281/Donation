@@ -1250,8 +1250,9 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6rg-jy-0Hf">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6rg-jy-0Hf">
                                 <rect key="frame" x="0.0" y="162" width="393" height="622"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nol-h3-qCG" userLabel="Contentview">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="622"/>
@@ -1277,42 +1278,27 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Nbj-kl-wFB"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="ogI-7E-EWs"/>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Filtered Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHP-6Y-hia">
-                                <rect key="frame" x="95" y="76" width="203" height="34"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIy-LR-FPP">
-                                <rect key="frame" x="338" y="-34.333333333333343" width="20" height="34.333333333333343"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIy-LR-FPP">
+                                <rect key="frame" x="316" y="76" width="46.333333333333329" height="34.333333333333329"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system"/>
                                 <connections>
                                     <action selector="closeTapped:" destination="xSA-0I-8da" eventType="touchUpInside" id="Jhd-sj-Bgx"/>
+                                    <action selector="closeTapped:" destination="LJI-RV-GE3" eventType="touchUpInside" id="Pif-jZ-VU0"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Filtered Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHP-6Y-hia">
+                                <rect key="frame" x="95" y="76" width="203" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GYy-fz-vxi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="top" secondItem="GYy-fz-vxi" secondAttribute="top" id="74T-gg-Q8l"/>
-                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="top" secondItem="yIy-LR-FPP" secondAttribute="bottom" constant="59" id="7Al-u5-tK2"/>
-                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="top" secondItem="yIy-LR-FPP" secondAttribute="bottom" constant="59" id="Ee0-R6-nv4"/>
-                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="leading" secondItem="ySy-iA-jTF" secondAttribute="leading" id="Kcc-cn-QVW"/>
-                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="bottom" secondItem="GYy-fz-vxi" secondAttribute="bottom" id="Ozh-RH-DIO"/>
-                            <constraint firstItem="yIy-LR-FPP" firstAttribute="leading" secondItem="xHP-6Y-hia" secondAttribute="trailing" constant="40" id="PNi-qA-n9n"/>
-                            <constraint firstItem="yIy-LR-FPP" firstAttribute="leading" secondItem="xHP-6Y-hia" secondAttribute="trailing" constant="40" id="RQP-oE-ZfM"/>
-                            <constraint firstItem="GYy-fz-vxi" firstAttribute="trailing" secondItem="yIy-LR-FPP" secondAttribute="trailing" constant="35" id="RRT-gP-17v"/>
-                            <constraint firstItem="6rg-jy-0Hf" firstAttribute="top" secondItem="xHP-6Y-hia" secondAttribute="bottom" constant="52" id="Wa8-x9-VV1"/>
-                            <constraint firstItem="xHP-6Y-hia" firstAttribute="leading" secondItem="GYy-fz-vxi" secondAttribute="leading" constant="95" id="XyQ-mx-0GR"/>
-                            <constraint firstItem="yIy-LR-FPP" firstAttribute="leading" secondItem="xHP-6Y-hia" secondAttribute="trailing" constant="40" id="cnq-y1-a3f"/>
-                            <constraint firstItem="xHP-6Y-hia" firstAttribute="top" secondItem="GYy-fz-vxi" secondAttribute="top" constant="17" id="eYa-6L-A2b"/>
-                            <constraint firstAttribute="trailing" secondItem="6rg-jy-0Hf" secondAttribute="trailing" id="g9v-Wm-obT"/>
-                            <constraint firstItem="xHP-6Y-hia" firstAttribute="leading" secondItem="GYy-fz-vxi" secondAttribute="leading" constant="95" id="kFI-jC-FHe"/>
-                            <constraint firstItem="xHP-6Y-hia" firstAttribute="top" secondItem="GYy-fz-vxi" secondAttribute="top" constant="17" id="nZ2-rR-l3I"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yIy-LR-FPP" secondAttribute="trailing" constant="19" id="wKg-uW-E8S"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gmc-sj-sxg"/>
                     <connections>
@@ -1321,7 +1307,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5LZ-ZM-6OV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="734" y="-121"/>
+            <point key="canvasLocation" x="772" y="-87"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="m2a-ba-LAc">
