@@ -5,7 +5,6 @@
 //  Created by BP-36-201-10 on 01/01/2026.
 //
 
-import Foundation
 import UIKit
 
 class SearchViewController: UIViewController {
@@ -21,14 +20,17 @@ class SearchViewController: UIViewController {
     // MARK: - Selection
     var selectedDonation: Donations?
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "Search"
 
+        // Load data
         allDonations = DonationStore.shared.donations
         filteredDonations = allDonations
 
+        // Search setup
         searchTextField.delegate = self
         searchTextField.addTarget(
             self,
@@ -36,11 +38,23 @@ class SearchViewController: UIViewController {
             for: .editingChanged
         )
 
+        searchTextField.autocapitalizationType = .none
+        searchTextField.clearButtonMode = .whileEditing
+        searchTextField.returnKeyType = .search
+
+        reloadCards()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // 🔑 Required when inside TabBar / NavController
         reloadCards()
     }
 
     // MARK: - Search
     @objc private func searchTextChanged() {
+
         let query = searchTextField.text?
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .lowercased() ?? ""
@@ -49,8 +63,8 @@ class SearchViewController: UIViewController {
             filteredDonations = allDonations
         } else {
             filteredDonations = allDonations.filter {
-                $0.title.lowercased().contains(query) ||
-                $0.location.lowercased().contains(query)
+                $0.title.localizedCaseInsensitiveContains(query) ||
+                $0.location.localizedCaseInsensitiveContains(query)
             }
         }
 
@@ -59,14 +73,20 @@ class SearchViewController: UIViewController {
 
     // MARK: - UI
     private func reloadCards() {
-        cardsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+
+        cardsStackView.arrangedSubviews.forEach {
+            $0.removeFromSuperview()
+        }
 
         for donation in filteredDonations {
+
             guard let card = Bundle.main.loadNibNamed(
                 "CardView",
                 owner: nil,
                 options: nil
-            )?.first as? CardView else { continue }
+            )?.first as? CardView else {
+                continue
+            }
 
             card.configure(with: donation)
 
@@ -80,8 +100,11 @@ class SearchViewController: UIViewController {
 
             cardsStackView.addArrangedSubview(card)
         }
+
+        cardsStackView.layoutIfNeeded()
     }
 
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDonationDetails",
            let destination = segue.destination as? DonationDetailsViewController {
@@ -90,7 +113,9 @@ class SearchViewController: UIViewController {
     }
 }
 
+// MARK: - UITextField Delegate
 extension SearchViewController: UITextFieldDelegate {
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
