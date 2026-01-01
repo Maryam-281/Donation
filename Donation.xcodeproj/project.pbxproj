@@ -83,6 +83,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				D1A52F7D2F053F1900DC427D /* Donation 2 */,
+			);
 			name = Donation;
 			packageProductDependencies = (
 				D1A52F7F2F053F6300DC427D /* Auth */,
