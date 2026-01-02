@@ -77,7 +77,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HOU-LV-Xbn" secondAttribute="trailing" id="459-6Y-hgb"/>
                 <constraint firstItem="HOU-LV-Xbn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="L0U-2d-Ym9"/>
@@ -85,6 +85,8 @@
                 <constraint firstAttribute="bottom" secondItem="HOU-LV-Xbn" secondAttribute="bottom" id="dTM-Mq-yjz"/>
             </constraints>
             <connections>
+                <outlet property="ContainerView" destination="HOU-LV-Xbn" id="Vtb-4o-VXn"/>
+                <outlet property="containerView" destination="HOU-LV-Xbn" id="RFi-Kk-3t5"/>
                 <outlet property="distanceLabel" destination="IJs-Tq-RHb" id="ybH-83-OK0"/>
                 <outlet property="expiryLabel" destination="waq-vT-AsA" id="sMY-nb-EMr"/>
                 <outlet property="foodImageView" destination="Cso-zG-PQR" id="ssx-eI-FDb"/>

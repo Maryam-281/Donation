@@ -38,7 +38,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jt9-Hl-adf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1639" y="-113"/>
+            <point key="canvasLocation" x="1702" y="540"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="fSF-t4-ijX">
@@ -362,168 +362,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OzD-qP-b1S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2404" y="1275"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Zky-JV-IzJ">
-            <objects>
-                <viewController id="Bxy-Sf-CiC" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QXN-6w-2XP">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Donation Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Dr-3w-Cmw">
-                                <rect key="frame" x="88" y="76" width="216" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrow.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ykh-RY-HxT">
-                                <rect key="frame" x="35" y="85" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Salad" translatesAutoresizingMaskIntoConstraints="NO" id="Vhw-3E-6rt">
-                                <rect key="frame" x="43" y="138" width="306" height="197"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vegetable Salad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ib-W8-w3S">
-                                <rect key="frame" x="43" y="361" width="147" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cnl-wY-cvV">
-                                <rect key="frame" x="43" y="385" width="306" height="134"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">This eggplant salad is a delicious blend of warm roasted eggplant and fresh, raw vegetables. It combines the rich, tender texture of the eggplant with the bright, juicy acidity of tomatoes, the sharp crunch of onions, and the light, crisp texture of green leaves. It's a satisfying mix of earthy and fresh flavors that feels both hearty and healthy.</string>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Manama, 2 km away" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="b3Z-Tq-xRn">
-                                <rect key="frame" x="58" y="591" width="240" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="B0g-Wg-rg3">
-                                <rect key="frame" x="43" y="600" width="17" height="12"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MaI-0C-Coy">
-                                <rect key="frame" x="43" y="527" width="240" height="71"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Production date: 20/06/2025 
-Expiration date: 24/06/2025                     Donor: Yara Ahned</string>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPu-G2-BYj">
-                                <rect key="frame" x="43" y="725" width="306" height="59"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" name="PrimaryBlue"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Accept Donations" cornerStyle="large">
-                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
-                                </buttonConfiguration>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Okk-8r-e8H"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ksW-vd-bmm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="773" y="1275"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="scY-k5-Lyc">
-            <objects>
-                <viewController id="89l-Gq-8nb" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gpm-2t-KEd">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Donation Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xr1-oU-YSr">
-                                <rect key="frame" x="88" y="76" width="216" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrow.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9Hj-Qb-Q1t">
-                                <rect key="frame" x="35" y="85" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="painau" translatesAutoresizingMaskIntoConstraints="NO" id="80e-px-nMr">
-                                <rect key="frame" x="43" y="138" width="306" height="197"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pain Au Chocolat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgO-Bb-8cu">
-                                <rect key="frame" x="43" y="361" width="154" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqR-ow-DBp">
-                                <rect key="frame" x="43" y="385" width="306" height="126"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">This pain au chocolat is a delicious blend of warm, flaky pastry and rich, dark chocolate. It combines the tender, buttery layers of a laminated dough with the sweet, gooey intensity of melted chocolate batons. It's a satisfying mix of earthy and sweet flavors that feels both indulgent and comforting.</string>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Manama, 2 km away" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bbg-zj-2Jv">
-                                <rect key="frame" x="58" y="591" width="240" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ZaY-tN-bgt">
-                                <rect key="frame" x="43" y="600" width="17" height="12"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dp-5r-GgJ">
-                                <rect key="frame" x="43" y="725" width="306" height="59"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" name="PrimaryBlue"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Accept Donations" cornerStyle="large">
-                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
-                                </buttonConfiguration>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WOc-bb-xVw">
-                                <rect key="frame" x="43" y="527" width="240" height="71"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Production date: 25/03/2025 
-Expiration date: 30/03/2025                Donor: Yara Ahned</string>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Cxb-pX-cM9"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VaC-KI-oLd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1556" y="1275"/>
         </scene>
         <!--Item-->
         <scene sceneID="3Ze-Ro-Jfj">
@@ -1066,15 +904,15 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="292"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="XM2-zy-IzF">
-                                                <rect key="frame" x="35" y="16" width="323" height="260"/>
+                                                <rect key="frame" x="40" y="16" width="313" height="260"/>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="XM2-zy-IzF" secondAttribute="bottom" constant="16" id="HUe-0E-CU3"/>
                                             <constraint firstItem="XM2-zy-IzF" firstAttribute="top" secondItem="l7p-e1-ZTK" secondAttribute="top" constant="16" id="OAp-yn-gDc"/>
-                                            <constraint firstItem="XM2-zy-IzF" firstAttribute="leading" secondItem="l7p-e1-ZTK" secondAttribute="leading" constant="35" id="fWw-S9-7gc"/>
-                                            <constraint firstAttribute="trailing" secondItem="XM2-zy-IzF" secondAttribute="trailing" constant="35" id="yZ5-mK-Rzs"/>
+                                            <constraint firstItem="XM2-zy-IzF" firstAttribute="leading" secondItem="l7p-e1-ZTK" secondAttribute="leading" constant="40" id="fWw-S9-7gc"/>
+                                            <constraint firstAttribute="trailing" secondItem="XM2-zy-IzF" secondAttribute="trailing" constant="40" id="yZ5-mK-Rzs"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1110,7 +948,7 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWE-d1-HcR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2166" y="-873"/>
+            <point key="canvasLocation" x="1599" y="-901"/>
         </scene>
         <!--Item-->
         <scene sceneID="4n2-HV-agr">
@@ -1303,11 +1141,12 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
                     <navigationItem key="navigationItem" id="gmc-sj-sxg"/>
                     <connections>
                         <outlet property="cardsStackView" destination="nzp-7g-fxN" id="Hmf-0Y-FBu"/>
+                        <segue destination="6t2-1H-NEN" kind="presentation" identifier="toDonationDetails" modalPresentationStyle="fullScreen" id="2cv-gZ-Hqs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5LZ-ZM-6OV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="727" y="-102"/>
+            <point key="canvasLocation" x="1208" y="-207"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="m2a-ba-LAc">
@@ -1499,11 +1338,11 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Uug-se-hpG"/>
+        <segue reference="2cv-gZ-Hqs"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="AccentColor"/>
     <resources>
         <image name="Chicken" width="278" height="181"/>
-        <image name="Salad" width="3600" height="2400"/>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="arrowtriangle.down.fill" catalog="system" width="128" height="120"/>
@@ -1514,7 +1353,6 @@ Expiration date: 30/03/2025                Donor: Yara Ahned</string>
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <image name="location.fill" catalog="system" width="128" height="119"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="painau" width="1500" height="1000"/>
         <image name="truck.box.fill" catalog="system" width="128" height="88"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="AccentColor">
