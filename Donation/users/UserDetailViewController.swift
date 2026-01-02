@@ -24,7 +24,7 @@ class UserDetailViewController: UIViewController {
     
     private let headerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemBlue
+        view.backgroundColor = UIColor(hex: "89AAC5")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -77,7 +77,7 @@ class UserDetailViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Edit Profile", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = UIColor(hex: "89AAC5")
         button.layer.cornerRadius = 16
         button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -209,7 +209,7 @@ class UserDetailViewController: UIViewController {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         let iconView = UIImageView(image: UIImage(systemName: icon))
-        iconView.tintColor = .systemBlue
+        iconView.tintColor = UIColor(hex: "89AAC5")
         iconView.contentMode = .scaleAspectFit
         iconView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -274,7 +274,7 @@ class UserDetailViewController: UIViewController {
         let renderer = UIGraphicsImageRenderer(size: size)
         
         return renderer.image { context in
-            UIColor.systemBlue.setFill()
+            UIColor(hex: "89AAC5")?.setFill()
             context.fill(CGRect(origin: .zero, size: size))
             
             let paragraphStyle = NSMutableParagraphStyle()

@@ -30,10 +30,10 @@ class ManageUsersViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Add New User", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = UIColor(hex: "89AAC5")
         button.layer.cornerRadius = 28
         button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
-        button.layer.shadowColor = UIColor.systemBlue.cgColor
+        button.layer.shadowColor = UIColor(hex: "89AAC5")?.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 4)
         button.layer.shadowRadius = 12
         button.layer.shadowOpacity = 0.3
@@ -313,7 +313,7 @@ extension ManageUsersViewController: UITableViewDelegate, UITableViewDataSource 
             self?.editUser(at: indexPath)
             completion(true)
         }
-        editAction.backgroundColor = .systemBlue
+        editAction.backgroundColor = UIColor(hex: "89AAC5")
         editAction.image = UIImage(systemName: "pencil")
         
         return UISwipeActionsConfiguration(actions: [deleteAction, editAction])

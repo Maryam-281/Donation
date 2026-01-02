@@ -68,10 +68,10 @@ class AddUserViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Save", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = UIColor(hex: "89AAC5")
         button.layer.cornerRadius = 16
         button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
-        button.layer.shadowColor = UIColor.systemBlue.cgColor
+        button.layer.shadowColor = UIColor(hex: "89AAC5")?.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 4)
         button.layer.shadowRadius = 12
         button.layer.shadowOpacity = 0.3

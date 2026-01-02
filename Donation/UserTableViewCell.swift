@@ -29,7 +29,7 @@ class UserTableViewCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 28
-        imageView.backgroundColor = .systemBlue.withAlphaComponent(0.1)
+        imageView.backgroundColor = UIColor(hex: "89AAC5")?.withAlphaComponent(0.1)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -169,7 +169,7 @@ class UserTableViewCell: UITableViewCell {
         
         return renderer.image { context in
             // Background
-            UIColor.systemBlue.setFill()
+            UIColor(hex: "89AAC5")?.setFill()
             context.fill(CGRect(origin: .zero, size: size))
             
             // Text

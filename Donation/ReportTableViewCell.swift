@@ -27,7 +27,7 @@ class ReportTableViewCell: UITableViewCell {
     private let reportIdLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .semibold)
-        label.textColor = .systemBlue
+        label.textColor = UIColor(hex: "89AAC5")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -158,7 +158,7 @@ class ReportTableViewCell: UITableViewCell {
         case .pending:
             statusBadge.backgroundColor = .systemOrange
         case .reviewed:
-            statusBadge.backgroundColor = .systemBlue
+            statusBadge.backgroundColor = UIColor(hex: "89AAC5")
         case .resolved:
             statusBadge.backgroundColor = .systemGreen
         case .dismissed:

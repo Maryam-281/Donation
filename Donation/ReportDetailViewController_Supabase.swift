@@ -37,7 +37,7 @@ class ReportDetailViewController: UIViewController {
     private let reportIdLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
-        label.textColor = .systemBlue
+        label.textColor = UIColor(hex: "89AAC5")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -294,7 +294,7 @@ class ReportDetailViewController: UIViewController {
         case .pending:
             statusBadge.backgroundColor = .systemOrange
         case .reviewed:
-            statusBadge.backgroundColor = .systemBlue
+            statusBadge.backgroundColor = UIColor(hex: "89AAC5")
         case .resolved:
             statusBadge.backgroundColor = .systemGreen
             actionsStackView.isHidden = true
