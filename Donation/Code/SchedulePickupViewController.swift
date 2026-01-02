@@ -19,7 +19,8 @@ class SchedulePickupViewController: UIViewController {
     // - donation title
     // - optional note text view
     private var contentView: SchedulePickupContentView!
-
+    private var pickupNote: String?
+    
     // The calendar used to select pickup date & time
     // Inline style = full calendar view
     private let datePicker: UIDatePicker = {
@@ -128,12 +129,22 @@ class SchedulePickupViewController: UIViewController {
         donation?.pickupDate = datePicker.date
         donation?.pickupStatus = .scheduled
 
-        // Read optional note (can be empty)
-        let note = contentView.noteTextView.text ?? ""
-        print("Optional note:", note)
+        // Save optional note
+        pickupNote = contentView.noteTextView.text
 
         // Move to confirmation screen
         performSegue(withIdentifier: "toPickupScheduled", sender: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toPickupScheduled",
+           let destination = segue.destination as? PickupScheduledViewController {
+
+            destination.donation = donation
+            destination.note = pickupNote
+        }
+    }
+
+
 }
 
