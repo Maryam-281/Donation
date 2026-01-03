@@ -1,5 +1,5 @@
 //
-//  adminHomeViewController.swift
+//  userAnalytixDashboard.swift
 //  Donation
 //
 //  Created by macOS on 31/12/2025.
@@ -9,8 +9,8 @@ import UIKit
 import Foundation
 import DGCharts
 
+class userAnalyticsDashboard: UIViewController {
 
-class adminHomeViewController: UIViewController {
     @IBOutlet weak var donationView: UIView!
     @IBOutlet weak var donationSuportView: UIView!
     @IBOutlet weak var donationMonthlyChartBorderView: UIView!
@@ -20,6 +20,8 @@ class adminHomeViewController: UIViewController {
     @IBOutlet weak var allDonations: UILabel!
     @IBOutlet weak var supportedDonations: UILabel!
     
+    let user = "testing"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         donationView.layer.borderColor = UIColor.lightGray.cgColor
@@ -27,24 +29,13 @@ class adminHomeViewController: UIViewController {
         donationMonthlyChartBorderView.layer.borderColor = UIColor.lightGray.cgColor
         donationYearlyChartBorderView.layer.borderColor = UIColor.lightGray.cgColor
         // Do any additional setup after loading the view.
-        loadLineMonthlyData()
-        loadLinerYearlyData()
-        fetchCount()
+        loadLineMonthlyData(userId: user)
+        loadLinerYearlyData(userId: user)
+        fetchCountDonation(user: user)
         fetchCountDonationInYear()
     }
     
-    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 1:
-            performSegue(withIdentifier: "homeToDonations", sender: self)
-        case 2:
-            performSegue(withIdentifier: "homeToFeedback", sender: self)
-        default:
-            break
-        }
-    }
-    
-    struct Donation_history: Codable {
+    struct Donations: Codable {
         let donationid: Int
     }
     struct DonationSupported: Codable {
@@ -58,25 +49,25 @@ class adminHomeViewController: UIViewController {
         let month_start: String
         let donation_count: Int
     }
-
     
-    func fetchCount()
+    func fetchCountDonation(user: String)
     {
-        Task {
-            do {
-                let response = try await SupabaseManager.shared.client
-                    .from("Donation_history")
-                    .select("donationid", count: .exact )
-                    .execute()
-                let val = response.data
-                let decoded = try JSONDecoder().decode([Donation_history].self, from: val)
-                allDonations.text =  String (decoded.count)
-            } catch {
-                print("❌ Supabase error:", error)
+
+         Task {
+             do {
+                 let response = try await SupabaseManager.shared.client
+                     .from("Donation_history")
+                     .select("donationid", count: .exact )
+                     .eq("user", value: user)
+                     .execute()
+                 let val = response.data
+                 let decoded = try JSONDecoder().decode([Donations].self, from: val)
+                 allDonations.text =  String (decoded.count)
+             } catch {
+                    print("❌ Supabase error:", error)
+                }
             }
         }
-    }
-    
     func fetchCountDonationInYear() {
         Task {
             do {
@@ -88,6 +79,7 @@ class adminHomeViewController: UIViewController {
                 let response = try await SupabaseManager.shared.client
                     .from("Donation_history")
                     .select("donationid", count: .exact)
+                    .eq("user", value: "testing")
                     .eq("status", value: "delivered")
                     .gte("date", value: "\(year)-01-01")  // greater than Jan 1 of current year
                     .lte("date", value: "\(year)-12-31")  // less than Dec 31 of current year
@@ -102,25 +94,30 @@ class adminHomeViewController: UIViewController {
             }
         }
     }
-    func loadLineMonthlyData() {
+    
+    
+    func loadLineMonthlyData(userId: String) {
         Task {
             do {
-                // 1️⃣ Call the Supabase RPC function
+                // 1️⃣ Call the Supabase RPC function with the user_id parameter
                 let response = try await SupabaseManager.shared.client
-                    .rpc("get_weekly_donations")
+                    .rpc("get_weekly_donations_user", params: ["user_id": userId])
                     .execute()
+                
+                // 2️⃣ Decode the response
                 let decoded = try JSONDecoder().decode([WeeklyDonation].self, from: response.data)
+                
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                 dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-
+                
                 let displayFormatter = DateFormatter()
                 displayFormatter.dateFormat = "MMM d"
                 displayFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-
+                
                 var weekLabels: [String] = []
                 var entries: [ChartDataEntry] = []
-
+                
                 for (index, donation) in decoded.enumerated() {
                     if let startDate = dateFormatter.date(from: donation.week_start),
                        let endDate = Calendar.current.date(byAdding: .day, value: 6, to: startDate) {
@@ -136,44 +133,50 @@ class adminHomeViewController: UIViewController {
                         )
                     }
                 }
-
-                // 6️⃣ Create dataset
+                
+                // 3️⃣ Create dataset
                 let dataset = LineChartDataSet(entries: entries, label: "Donations")
                 dataset.colors = [.systemBlue]
                 dataset.circleColors = [.systemBlue]
                 dataset.circleRadius = 5
                 dataset.lineWidth = 2
                 dataset.drawValuesEnabled = true
-                // 7️⃣ Setup chart data
+                
+                // 4️⃣ Setup chart data
                 let data = LineChartData(dataSet: dataset)
                 monthlyDonationChart.data = data
                 monthlyDonationChart.animate(yAxisDuration: 1.0)
                 monthlyDonationChart.rightAxis.enabled = false
                 monthlyDonationChart.legend.enabled = true
-                // 8️⃣ Configure x-axis to show formatted dates
+                
+                // 5️⃣ Configure x-axis
                 let xAxis = monthlyDonationChart.xAxis
                 xAxis.valueFormatter = IndexAxisValueFormatter(values: weekLabels)
                 xAxis.granularity = 1
                 xAxis.granularityEnabled = true
                 xAxis.labelPosition = .bottom
                 xAxis.drawGridLinesEnabled = false
+                
                 let legend = monthlyDonationChart.legend
                 legend.enabled = true
                 legend.horizontalAlignment = .right
                 legend.verticalAlignment = .top
                 legend.orientation = .horizontal
                 legend.drawInside = false
+                
             } catch {
                 print("❌ Supabase error:", error)
             }
         }
     }
-    func loadLinerYearlyData() {
+
+    
+    func loadLinerYearlyData(userId: String) {
         Task {
             do {
-                // 1️⃣ Fetch data
+                // 1️⃣ Fetch data for the specific user
                 let response = try await SupabaseManager.shared.client
-                    .rpc("get_monthly_donations_year")
+                    .rpc("get_monthly_donations_year_user", params: ["user_id": userId])
                     .execute()
 
                 let decoded: [MonthlyDonation] =
@@ -224,7 +227,7 @@ class adminHomeViewController: UIViewController {
                 // 9️⃣ X-axis formatting (YEAR–MONTH)
                 let xAxis = yearDonationChart.xAxis
                 xAxis.labelPosition = .bottom
-                xAxis.granularity = 30 * 24 * 60 * 60
+                xAxis.granularity = 30 * 24 * 60 * 60 // approx 1 month
                 xAxis.valueFormatter = MonthYearValueFormatter()
                 
                 let legend = yearDonationChart.legend
@@ -240,22 +243,3 @@ class adminHomeViewController: UIViewController {
         }
     }
 }
-    
-
-final class MonthYearValueFormatter: AxisValueFormatter {
-
-    private let formatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateFormat = "yy-MM"
-        return df
-    }()
-
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        let date = Date(timeIntervalSince1970: value)
-        return formatter.string(from: date)
-    }
-}
-
-
-
-

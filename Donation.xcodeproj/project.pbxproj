@@ -12,9 +12,22 @@
 		22527B072F053A3C00FC793B /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 22527B062F053A3C00FC793B /* PostgREST */; };
 		22527B092F053A3C00FC793B /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = 22527B082F053A3C00FC793B /* Realtime */; };
 		22527B0B2F053A3C00FC793B /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 22527B0A2F053A3C00FC793B /* Storage */; };
-		22527B0D2F053A3C00FC793B /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 22527B0C2F053A3C00FC793B /* Supabase */; };
-		227AC8322EF9BB7400B48968 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 227AC8312EF9BB7400B48968 /* SwiftUICharts */; };
+		22EB86332F06E968004AF5B3 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 22EB86322F06E968004AF5B3 /* DGCharts */; };
+		22EB86392F07DE0B004AF5B3 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 22EB86382F07DE0B004AF5B3 /* Supabase */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2204F1902F06D6FF003350DC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D52614382EDC2EC200B2A667 /* Donation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Donation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,23 +59,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22527B0D2F053A3C00FC793B /* Supabase in Frameworks */,
+				22EB86392F07DE0B004AF5B3 /* Supabase in Frameworks */,
 				22527B0B2F053A3C00FC793B /* Storage in Frameworks */,
 				22527B072F053A3C00FC793B /* PostgREST in Frameworks */,
 				22527B052F053A3B00FC793B /* Functions in Frameworks */,
 				22527B032F053A3B00FC793B /* Auth in Frameworks */,
+				22EB86332F06E968004AF5B3 /* DGCharts in Frameworks */,
 				22527B092F053A3C00FC793B /* Realtime in Frameworks */,
-				227AC8322EF9BB7400B48968 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22EB86372F07DE0B004AF5B3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D526142F2EDC2EC200B2A667 = {
 			isa = PBXGroup;
 			children = (
 				D526143A2EDC2EC200B2A667 /* Donation */,
+				22EB86372F07DE0B004AF5B3 /* Frameworks */,
 				D52614392EDC2EC200B2A667 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,6 +106,7 @@
 				D52614342EDC2EC200B2A667 /* Sources */,
 				D52614352EDC2EC200B2A667 /* Frameworks */,
 				D52614362EDC2EC200B2A667 /* Resources */,
+				2204F1902F06D6FF003350DC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -95,13 +117,13 @@
 			);
 			name = Donation;
 			packageProductDependencies = (
-				227AC8312EF9BB7400B48968 /* SwiftUICharts */,
 				22527B022F053A3B00FC793B /* Auth */,
 				22527B042F053A3B00FC793B /* Functions */,
 				22527B062F053A3C00FC793B /* PostgREST */,
 				22527B082F053A3C00FC793B /* Realtime */,
 				22527B0A2F053A3C00FC793B /* Storage */,
-				22527B0C2F053A3C00FC793B /* Supabase */,
+				22EB86322F06E968004AF5B3 /* DGCharts */,
+				22EB86382F07DE0B004AF5B3 /* Supabase */,
 			);
 			productName = Donation;
 			productReference = D52614382EDC2EC200B2A667 /* Donation.app */;
@@ -132,8 +154,8 @@
 			mainGroup = D526142F2EDC2EC200B2A667;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				227AC8302EF9BB7400B48968 /* XCRemoteSwiftPackageReference "chartview" */,
 				22527B012F053A3B00FC793B /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				22EB86312F06E968004AF5B3 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D52614392EDC2EC200B2A667 /* Products */;
@@ -173,6 +195,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Donation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -185,6 +208,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = bp.polytechnic.Donation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -200,6 +224,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "/**";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Donation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -212,6 +237,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = bp.polytechnic.Donation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -371,12 +397,12 @@
 				minimumVersion = 2.5.1;
 			};
 		};
-		227AC8302EF9BB7400B48968 /* XCRemoteSwiftPackageReference "chartview" */ = {
+		22EB86312F06E968004AF5B3 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apppear/chartview.git";
+			repositoryURL = "https://github.com/danielgindi/Charts";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.5;
+				minimumVersion = 5.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -407,15 +433,15 @@
 			package = 22527B012F053A3B00FC793B /* XCRemoteSwiftPackageReference "supabase-swift" */;
 			productName = Storage;
 		};
-		22527B0C2F053A3C00FC793B /* Supabase */ = {
+		22EB86322F06E968004AF5B3 /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22EB86312F06E968004AF5B3 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
+		22EB86382F07DE0B004AF5B3 /* Supabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 22527B012F053A3B00FC793B /* XCRemoteSwiftPackageReference "supabase-swift" */;
 			productName = Supabase;
-		};
-		227AC8312EF9BB7400B48968 /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 227AC8302EF9BB7400B48968 /* XCRemoteSwiftPackageReference "chartview" */;
-			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

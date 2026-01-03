@@ -7,139 +7,182 @@
 
 import UIKit
 import Foundation
-import SwiftUI
-import SwiftUICharts
-
+import DGCharts
 
 
 class DonationFilter: UIViewController {
     
+    
+    
     // initialze radio buttons
-    @IBOutlet weak var first10RadioButton: UIButton!
-    @IBOutlet weak var otherRadioButton: UIButton!
+    @IBOutlet weak var last10DaysButton: UIButton!
+    @IBOutlet weak var customRangeButton: UIButton!
     
     //initialize
     @IBOutlet weak var fromDatePicker: UIDatePicker!
     @IBOutlet weak var toDatePicker: UIDatePicker!
-    
-    @IBOutlet weak var chartContainerView: UIView!
-    
+    @IBOutlet weak var linerChart: LineChartView!
     @IBOutlet weak var filterButton: UIButton!
-    
     @IBOutlet weak var resetButton: UIButton!
     
-    // variables
-    var hostingController: UIHostingController<DateRangeChartView>?
-    //data for loading - donation data
-    var allData: [ChartDataPoint] = []
-    
-    
+    let currentUser = "testing"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // call functions
-        setupRadioButtons()
-        loadSampleData()
-        //updateChart()
     }
     
     
     // funation to unselect the radio buttons when loading
     func setupRadioButtons() {
-        first10RadioButton.isSelected = false
-        otherRadioButton.isSelected = false
+        last10DaysButton.isSelected = false
+        customRangeButton.isSelected = false
     }
     
     // function to return the sender selection
     @IBAction func radioButtonTapped(_ sender: UIButton) {
-
-        first10RadioButton.isSelected = false
-        otherRadioButton.isSelected = false
-        sender.isSelected = true
+        if sender == last10DaysButton {
+                last10DaysButton.isSelected = true
+                customRangeButton.isSelected = false
+            } else if sender == customRangeButton {
+                last10DaysButton.isSelected = false
+                customRangeButton.isSelected = true
+            }
     }
     
     //Filter Button to update chart
     @IBAction func filterBtnClicked(_ sender: UIButton) {
-        updateChart()
-        chartContainerView.isHidden = false
-        sender.isSelected = true
-    }
+        var startDate: Date
+            var endDate: Date
+
+            // Determine which filter is selected
+            if last10DaysButton.isSelected {
+                endDate = Date() // today
+                startDate = Calendar.current.date(byAdding: .day, value: -10, to: endDate)!
+            } else if customRangeButton.isSelected {
+                startDate = fromDatePicker.date
+                endDate = toDatePicker.date
+                
+                // Validate date range
+                guard startDate <= endDate else {
+                    print("❌ Start date must be before end date")
+                    return
+                }
+            } else {
+                print("❌ Please select a filter option")
+                return
+            }
+
+            // Call chart loading function with user
+            loadLinerChartData(startDate: startDate, endDate: endDate, user: currentUser)
+
+            // Update button UI
+            sender.isSelected = true
+        }
     
     @IBAction func resetBtnClicked(_ sender: UIButton) {
-        first10RadioButton.isSelected = false
-        otherRadioButton.isSelected = false
-        fromDatePicker.setDate(Date(), animated: true)
-        toDatePicker.setDate(Date(), animated: true)
-        chartContainerView.isHidden = true
-        sender.isSelected = true
+        // 1️⃣ Clear chart data
+           linerChart.data = nil
+           linerChart.notifyDataSetChanged()  // ensures chart redraws empty state
+
+           // 2️⃣ Deselect radio buttons
+           last10DaysButton.isSelected = false
+           customRangeButton.isSelected = false
+
+           // 3️⃣ Reset date pickers to today
+           let today = Date()
+           fromDatePicker.setDate(today, animated: true)
+           toDatePicker.setDate(today, animated: true)
+
+           // 4️⃣ Optionally, mark the reset button as selected
+           sender.isSelected = true
         
     }
     
-    
-    // chart and date picker
-    struct ChartDataPoint: Identifiable {
-        let id = UUID()
-        let date: Date
-        let value: Double
+    struct MonthlyDonation: Decodable {
+        let month_start: String
+        let donation_count: Int
     }
     
-    // load chart sample data
-    func loadSampleData() {
-        let calendar = Calendar.current
-        
-        for i in 0..<30 {
-            let date = calendar.date(byAdding: .day, value: -i, to: Date())!
-            let value = Double.random(in: 10...100)
-            allData.append(ChartDataPoint(date: date, value: value))
-        }
-    }
-    
-    // change the chart according to dates
-    
-    
-    
-    func updateChart() {
-            let startDate = fromDatePicker.date
-            let endDate = toDatePicker.date
-        
-            guard startDate <= endDate else { return }
-
-            let filteredData = allData.filter { $0.date >= startDate && $0.date <= endDate } .sorted { $0.date < $1.date }
-
-            let values = filteredData.map { $0.value }
-
-            let chartView = DateRangeChartView(values: values, chartTitle: "Donations")
-
-            if let hostingController = hostingController {
+    func loadLinerChartData(startDate: Date, endDate: Date, user: String) {
+        Task {
+            do {
+                // 1️⃣ Format dates for SQL
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 
-                hostingController.rootView = chartView
-            } else {
-                let hc = UIHostingController(rootView: chartView)
-                addChild(hc)
-                hc.view.frame = chartContainerView.bounds
-                hc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                chartContainerView.addSubview(hc.view)
-                hc.didMove(toParent: self)
-                hostingController = hc
+                let startDateString = dateFormatter.string(from: startDate)
+                let endDateString = dateFormatter.string(from: endDate)
+                
+                // 2️⃣ Call Supabase RPC with user parameter
+                let response = try await SupabaseManager.shared.client
+                    .rpc("get_monthly_donations_range_user", params: [
+                        "start_date": startDateString,
+                        "end_date": endDateString,
+                        "p_user": user   // matches the renamed SQL parameter
+                    ])
+                    .execute()
+                
+                // 3️⃣ Decode response
+                let decoded: [MonthlyDonation] = try JSONDecoder().decode([MonthlyDonation].self, from: response.data)
+                
+                // 4️⃣ Map month → donation count
+                var monthDict: [Date: Double] = [:]
+                for donation in decoded {
+                    if let date = dateFormatter.date(from: donation.month_start) {
+                        monthDict[date] = Double(donation.donation_count)
+                    }
+                }
+                
+                // 5️⃣ Sort months
+                let monthDates = monthDict.keys.sorted()
+                
+                // 6️⃣ Create chart entries
+                let entries: [ChartDataEntry] = monthDates.map { date in
+                    ChartDataEntry(
+                        x: date.timeIntervalSince1970,
+                        y: monthDict[date] ?? 0
+                    )
+                }
+                
+                // 7️⃣ Create dataset
+                let dataset = LineChartDataSet(entries: entries, label: "Donations")
+                dataset.colors = [.systemBlue]
+                dataset.circleColors = [.systemBlue]
+                dataset.circleRadius = 5
+                dataset.lineWidth = 2
+                dataset.mode = .cubicBezier
+                dataset.drawValuesEnabled = true
+                
+                // 8️⃣ Assign chart data
+                linerChart.data = LineChartData(dataSet: dataset)
+                linerChart.animate(yAxisDuration: 1.0)
+                
+                // 9️⃣ Configure x-axis
+                let xAxis = linerChart.xAxis
+                xAxis.labelPosition = .bottom
+                xAxis.granularity = 30 * 24 * 60 * 60 // roughly 1 month
+                
+                if let first = monthDates.first, let last = monthDates.last {
+                    xAxis.axisMinimum = first.timeIntervalSince1970
+                    xAxis.axisMaximum = Calendar.current.date(byAdding: .month, value: 1, to: last)!.timeIntervalSince1970
+                }
+                
+                // Format x-axis labels
+                xAxis.valueFormatter = MonthYearValueFormatter()
+                
+                // Configure legend
+                let legend = linerChart.legend
+                legend.enabled = true
+                legend.horizontalAlignment = .right
+                legend.verticalAlignment = .top
+                legend.orientation = .horizontal
+                legend.drawInside = false
+                
+            } catch {
+                print("❌ Supabase error:", error)
             }
         }
-
-    
-}
-    
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
-
-
+}

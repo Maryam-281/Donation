@@ -6,13 +6,12 @@
 //
 
 import UIKit
+import SwiftUICore
 
 class donarFeedbackViewController: UIViewController {
     
     @IBOutlet var ratingButtons: [UIButton]!
-    
     @IBOutlet weak var commentsTextbox: UITextField!
-    
     @IBOutlet weak var sentButton: UIButton!
     
     // variables
@@ -28,19 +27,19 @@ class donarFeedbackViewController: UIViewController {
     }
     
     var comments : String = ""
-    var donationsId : Int = 1
+    var donationId : Int = 0
+
+    //to recived cdonation ID FK
+  
+    class FeedbackViewController: UIViewController {
+        var donationID: Int?
+       // donationId = donationID
+    }
     
     struct DonerFeedback: Encodable {
         let pickupTime: Int
         let DonerComments: String
         let donationid : Int
-    }
-    
-    //to recived cdonation ID FK
-  
-    class FeedbackViewController: UIViewController {
-        var donationID: Int?
-        //donationsId = donationID
     }
 
     
@@ -63,6 +62,7 @@ class donarFeedbackViewController: UIViewController {
     @IBAction func submitTapped(_ sender: UIButton)
     {
         
+        
         guard rating > 0 else {
             print("No rating is selected")
             return
@@ -73,15 +73,14 @@ class donarFeedbackViewController: UIViewController {
         
         // Insert into Supabase
         if let   text = commentsTextbox.text, !text.isEmpty {
-           
-           comments = text
-            
-            let feedback = DonerFeedback(
+            comments = text
+        }
+        let feedback = DonerFeedback(
                 pickupTime: rating,
                 DonerComments: comments,
-                donationid: donationsId )
+                donationid: donationId )
             
-            Task {
+         Task {
                 do {
                     try await SupabaseManager.shared.client
                         .from("DonerFeedback")
@@ -89,12 +88,10 @@ class donarFeedbackViewController: UIViewController {
                         .execute()
 
                     print("✅ Insert success")
-
                 } catch {
                     print("❌ Supabase error:", error)
                 }
             }
-        }
 
     }
 }

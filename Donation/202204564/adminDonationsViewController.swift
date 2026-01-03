@@ -7,8 +7,7 @@
 
 import UIKit
 import Foundation
-import SwiftUI
-import SwiftUICharts
+import DGCharts
 
 
 
@@ -16,19 +15,13 @@ class adminDonationsViewController: UIViewController {
     
     @IBOutlet weak var fromDatePicker: UIDatePicker!
     @IBOutlet weak var toDatePicker: UIDatePicker!
-    @IBOutlet weak var chartContainerView: UIView!
     @IBOutlet weak var filterButten: UIButton!
+    @IBOutlet weak var linerChart: LineChartView!
     @IBOutlet weak var resetButton: UIButton!
-    
-    
-    var hostingController: UIHostingController<DateRangeChartView>?
-    
-    var allData: [ChartDataPoint] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        loadSampleData()
     }
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
@@ -44,59 +37,114 @@ class adminDonationsViewController: UIViewController {
         }
     }
     
+    struct MonthlyDonation: Decodable {
+        let month_start: String
+        let donation_count: Int
+    }
     
     @IBAction func filterbtnClicked(_ sender: UIButton) {
-        updateChart()
-        chartContainerView.isHidden = false
-        sender.isSelected = true
+            // 1️⃣ Get dates from UI
+            let startDate = fromDatePicker.date
+            let endDate = toDatePicker.date
+            
+            // 2️⃣ Validate dates
+            guard startDate <= endDate else {
+                print("❌ Start date must be before end date")
+                return
+            }
+            
+            // 3️⃣ Load chart data for the selected range
+            loadLinerChartData(startDate: startDate, endDate: endDate)
+            
+            // 4️⃣ Update button state
+            sender.isSelected = true
     }
     
     @IBAction func resetBtnClicked(_ sender: UIButton) {
-        chartContainerView.isHidden = true
+        linerChart.data = nil
         fromDatePicker.setDate(Date(), animated: true)
         toDatePicker.setDate(Date(), animated: true)
         sender.isSelected = true
     }
-    
-    struct ChartDataPoint: Identifiable {
-        let id = UUID()
-        let date: Date
-        let value: Double
-    }
-    
-    func loadSampleData() {
-        let calender  = Calendar.current
-        
-        for i in 0..<30 {
-            let date = calender.date(byAdding: .day, value: -i, to: Date())!
-            let value = Double.random(in: 10...100)
-            allData.append(ChartDataPoint(date: date, value: value))
-        }
-    }
-    
-    func updateChart() {
-        let startDate = fromDatePicker.date
-        let endDate = toDatePicker.date
-        
-        guard startDate <= endDate else { return }
-        
-        let filteredData = allData.filter { $0.date >= startDate && $0.date <= endDate } .sorted { $0.date < $1.date }
-        
-        let values = filteredData.map { $0.value }
-        
-        let chartView = DateRangeChartView(values: values, chartTitle: "Donations")
-        
-        if let hostingController = hostingController {
-            
-            hostingController.rootView = chartView
-        } else {
-            let hc = UIHostingController(rootView: chartView)
-            addChild(hc)
-            hc.view.frame = chartContainerView.bounds
-            hc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            chartContainerView.addSubview(hc.view)
-            hc.didMove(toParent: self)
-            hostingController = hc
+ 
+    func loadLinerChartData(startDate: Date, endDate: Date) {
+        Task {
+            do {
+                // 1️⃣ Format dates as "yyyy-MM-dd" to match SQL
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                
+                let startDateString = dateFormatter.string(from: startDate)
+                let endDateString = dateFormatter.string(from: endDate)
+                
+                // 2️⃣ Call Supabase RPC with parameters
+                let response = try await SupabaseManager.shared.client
+                    .rpc("get_monthly_donations_range", params: [
+                        "start_date": startDateString,
+                        "end_date": endDateString
+                    ])
+                    .execute()
+                
+                // 3️⃣ Decode response
+                let decoded: [MonthlyDonation] = try JSONDecoder().decode([MonthlyDonation].self, from: response.data)
+                
+                // 4️⃣ Map month → count
+                var monthDict: [Date: Double] = [:]
+                for donation in decoded {
+                    if let date = dateFormatter.date(from: donation.month_start) {
+                        monthDict[date] = Double(donation.donation_count)
+                    }
+                }
+                
+                // 5️⃣ Sort months
+                let monthDates = monthDict.keys.sorted()
+
+                // 6️⃣ Create chart entries
+                let entries: [ChartDataEntry] = monthDates.map { date in
+                    ChartDataEntry(
+                        x: date.timeIntervalSince1970,
+                        y: monthDict[date] ?? 0
+                    )
+                }
+
+                // 7️⃣ Create dataset
+                let dataset = LineChartDataSet(entries: entries, label: "Donations")
+                dataset.colors = [.systemBlue]
+                dataset.circleColors = [.systemBlue]
+                dataset.circleRadius = 5
+                dataset.lineWidth = 2
+                dataset.mode = .cubicBezier
+                dataset.drawValuesEnabled = true
+                
+                // 8️⃣ Assign data
+                linerChart.data = LineChartData(dataSet: dataset)
+                linerChart.animate(yAxisDuration: 1.0)
+
+                // 9️⃣ Configure x-axis
+                let xAxis = linerChart.xAxis
+                xAxis.labelPosition = .bottom
+                xAxis.granularity = 30 * 24 * 60 * 60 // roughly 1 month
+
+                // ⚡ Ensure chart covers the full range including last month
+                if let first = monthDates.first, let last = monthDates.last {
+                    xAxis.axisMinimum = first.timeIntervalSince1970
+                    xAxis.axisMaximum = Calendar.current.date(byAdding: .month, value: 1, to: last)!.timeIntervalSince1970
+                }
+
+                // Format x-axis labels
+                xAxis.valueFormatter = MonthYearValueFormatter()
+                
+                let legend = linerChart.legend
+                legend.enabled = true
+                legend.horizontalAlignment = .right
+                legend.verticalAlignment = .top
+                legend.orientation = .horizontal
+                legend.drawInside = false
+                
+            } catch {
+                print("❌ Supabase error:", error)
+            }
         }
     }
 }

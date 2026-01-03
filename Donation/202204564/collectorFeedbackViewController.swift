@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import SwiftUICore
 
 class collectorFeedbackViewController: UIViewController {
 
     @IBOutlet var packagingRatingbtns: [UIButton]!
     @IBOutlet var hygineRatingbtns: [UIButton]!
     @IBOutlet weak var commentsTextbox: UITextField!
+    @IBOutlet weak var sentButton: UIButton!
    
     var packagingRating = 0 {
         didSet{
@@ -32,6 +34,24 @@ class collectorFeedbackViewController: UIViewController {
             }
         }
     }
+    
+    var comments : String = ""
+    var colletingId : Int = 3
+    
+    //to recived cdonation ID FK
+  
+    class FeedbackViewController: UIViewController {
+        var colletingId: Int?
+        //donationsId = donationID
+    }
+    
+    struct CollectorFeedback: Encodable {
+        let packagingRate: Int
+        let hygieneRate: Int
+        let collectorComments: String
+        let colletingId : Int
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,5 +71,42 @@ class collectorFeedbackViewController: UIViewController {
         hygineRating = index + 1
     }
     
+    @IBAction func submitTapped(_ sender: UIButton)
+    {
+        
+        
+        guard hygineRating > 0 else {
+            print("No rating is selected")
+            return
+        }
+        guard packagingRating > 0 else {
+            print("No rating is selected")
+            return
+        }
+        // prevent double tap
+        sender.isEnabled = false
+        
+        // Insert into Supabase
+        if let   text = commentsTextbox.text, !text.isEmpty {
+            comments = text
+        }
+        let feedback = CollectorFeedback(
+            packagingRate: packagingRating,
+            hygieneRate: hygineRating,
+            collectorComments: comments,
+            colletingId: colletingId )
+            
+         Task {
+                do {
+                    try await SupabaseManager.shared.client
+                        .from("collectorFeedback")
+                        .insert(feedback)
+                        .execute()
 
+                    print("✅ Insert success")
+                } catch {
+                    print("❌ Supabase error:", error)
+                }
+            }
+    }
 }
