@@ -16,13 +16,23 @@ class contactusController: UIViewController {
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var message: UITextField!
     
-    @IBAction func submitTapped(_ sender: UIButton) {
-        if name.text == "" || email.text == "" {
-            print("Missing information")
-        } else {
-            performSegue(withIdentifier: "showSuccess", sender: self)
+    @IBAction func submitPressed(_ sender: UIButton) {
+        
+        let userName = name.text ?? ""
+        let userEmail = email.text ?? ""
+        let userMessage = message.text ?? ""
+
+        // 2. Simple check to see if they filled it out
+        if !userName.isEmpty && !userEmail.isEmpty {
+            print("Sending message from \(userName)...")
+            
+            // 3. Show a "Thank You" pop-up
+            let alert = UIAlertController(title: "Sent!", message: "We got your message and will help you soon.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
         }
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

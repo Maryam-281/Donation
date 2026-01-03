@@ -449,6 +449,7 @@
                         <outlet property="message" destination="HFA-3b-sfb" id="Wve-Uw-scL"/>
                         <outlet property="name" destination="aNv-V9-pr3" id="mI7-IM-m6a"/>
                         <outlet property="submit" destination="Upq-oB-btb" id="wZy-kf-Ait"/>
+                        <outlet property="submitPressed" destination="Upq-oB-btb" id="U26-WK-7c6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tru-5L-gVp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -542,6 +543,8 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="O1" destination="s9s-Y6-yI0" id="fMV-Sr-OJd"/>
+                        <outlet property="detailTime" destination="l6L-Iz-To9" id="yI4-qC-DRC"/>
+                        <outlet property="detailTitle" destination="GhM-Fw-jAJ" id="tTr-F2-881"/>
                         <outlet property="goback" destination="qM5-u3-eJf" id="oWi-Sp-zmk"/>
                         <outlet property="view" destination="3SJ-15-7Su" id="5K4-Td-MVM"/>
                         <outlet property="viewdonation" destination="3SJ-15-7Su" id="bbR-xa-E1o"/>
@@ -1676,8 +1679,8 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
                         <outlet property="issue1" destination="vRc-VP-LIN" id="aco-zt-mZ0"/>
                         <outlet property="issue2" destination="FwS-ge-CFb" id="6ZJ-ua-hZn"/>
                         <outlet property="issue3" destination="lI4-O9-v72" id="Qde-SP-88Q"/>
-                        <outlet property="message" destination="AiV-GY-3w1" id="RtZ-r3-LPe"/>
-                        <outlet property="submit" destination="D1T-eg-dEk" id="ivI-f8-Qc2"/>
+                        <outlet property="message" destination="AiV-GY-3w1" id="c62-84-dGZ"/>
+                        <outlet property="submit" destination="D1T-eg-dEk" id="Svh-AC-d2E"/>
                         <outlet property="type" destination="Yh1-91-2rA" id="Sv3-ar-nb4"/>
                     </connections>
                 </viewController>
@@ -1913,9 +1916,9 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="V2S-mb-MXG"/>
+        <segue reference="6BD-Hc-Ycj"/>
         <segue reference="foH-Lu-TGW"/>
-        <segue reference="5EL-L6-hwT"/>
+        <segue reference="UgB-Fc-6Ym"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>

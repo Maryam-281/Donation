@@ -13,14 +13,23 @@ class NotificationdetailsController: UIViewController {
     
     @IBOutlet weak var xx: UIBarButtonItem!
     
+    @IBOutlet weak var detailTitle: UITextField!
+    @IBOutlet weak var detailTime: UITextView!
+    
+    var receivedTitle: String?
+        var receivedTime: String?
+
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            
+            // Set the text to the labels when the page opens [cite: 36, 37]
+            detailTitle.text = receivedTitle ?? "Notification Detail"
+            detailTime.text = receivedTime ?? "Just now"
+        }
+    
+    
     @IBOutlet weak var vbutton: UIButton!
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
     
 
     /*

@@ -18,6 +18,15 @@ class help_supportController: UIViewController {
     @IBOutlet weak var terms: UIButton!    
     @IBOutlet weak var policy: UIButton!
     
+    @IBAction func supportOptionSelected(_ sender: UIButton) {
+        
+        if sender.tag == 1 {
+            performSegue(withIdentifier: "toAboutUs", sender: self)
+        } else if sender.tag == 2 {
+            performSegue(withIdentifier: "toFAQs", sender: self)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
