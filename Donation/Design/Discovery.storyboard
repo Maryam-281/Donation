@@ -38,7 +38,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jt9-Hl-adf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5092" y="1080"/>
+            <point key="canvasLocation" x="6017.5572519083971" y="1079.5774647887324"/>
         </scene>
         <!--Donation Details View Controller-->
         <scene sceneID="n9P-Ve-6JT">
@@ -86,7 +86,7 @@
         <!--Status Tracking View Controller-->
         <scene sceneID="bRd-DF-fuK">
             <objects>
-                <viewController id="N8P-dj-zQe" customClass="StatusTrackingViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="toDonationStatus" id="N8P-dj-zQe" customClass="StatusTrackingViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bVI-GR-g9o">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -223,7 +223,7 @@
                         <viewLayoutGuide key="safeArea" id="M6z-52-CvY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="truck.box.fill" catalog="system" id="CAU-nh-b3b"/>
+                    <navigationItem key="navigationItem" id="p4l-G4-4is"/>
                     <connections>
                         <outlet property="acceptedCircle" destination="18T-b6-zOa" id="mwQ-rl-vdy"/>
                         <outlet property="collectedCircle" destination="FiS-3I-xSJ" id="OHa-5g-Ten"/>
@@ -239,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPr-gU-YMw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2166" y="579"/>
+            <point key="canvasLocation" x="3092.3664122137402" y="578.87323943661977"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Oly-9p-KYf">
@@ -274,7 +274,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OzD-qP-b1S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4495" y="1080"/>
+            <point key="canvasLocation" x="5420.6106870229005" y="1079.5774647887324"/>
         </scene>
         <!--Item-->
         <scene sceneID="3Ze-Ro-Jfj">
@@ -389,7 +389,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J0P-ra-GPr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3627" y="546"/>
+            <point key="canvasLocation" x="4553.4351145038163" y="545.77464788732402"/>
         </scene>
         <!--Pickup Scheduled View Controller-->
         <scene sceneID="JiU-aE-fQ7">
@@ -434,29 +434,44 @@
                                     <constraint firstItem="AzM-cX-9NC" firstAttribute="leading" secondItem="E3P-X9-i4B" secondAttribute="leading" constant="20" id="zZZ-yM-2sX"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vo0-Ig-cmB">
-                                <rect key="frame" x="56" y="209" width="281" height="255"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vo0-Ig-cmB">
+                                <rect key="frame" x="35" y="209" width="324" height="255"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="80j-Sc-yNS">
-                                        <rect key="frame" x="4" y="0.0" width="275" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                        <string key="text">Donation: Chicken with Broccoli and Rice                                                                    Date: April 20 2025                                               Time: 10:00 AM                               Location: Manama</string>
-                                        <color key="textColor" systemColor="labelColor"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6cV-Ze-KJh">
-                                        <rect key="frame" x="8" y="124" width="250" height="111.33333333333331"/>
+                                        <rect key="frame" x="15" y="8" width="250" height="215.33333333333334"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbL-4M-flf">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TKe-Fn-tqQ">
+                                                <rect key="frame" x="0.0" y="26" width="250" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fob-Ta-DDZ">
+                                                <rect key="frame" x="0.0" y="52" width="250" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oso-EQ-ugo">
+                                                <rect key="frame" x="0.0" y="78" width="250" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes to donor (optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUn-nF-SiD">
-                                                <rect key="frame" x="0.0" y="0.0" width="250" height="13.333333333333334"/>
+                                                <rect key="frame" x="0.0" y="104" width="250" height="13.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4y8-f1-eGI">
-                                                <rect key="frame" x="0.0" y="21.333333333333343" width="250" height="90"/>
+                                                <rect key="frame" x="0.0" y="125.33333333333331" width="250" height="90"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="90" id="8NV-RJ-VFk"/>
@@ -478,12 +493,12 @@
                                 </constraints>
                                 <color key="tintColor" name="PrimaryBlue"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Accept Donations" cornerStyle="large">
+                                <buttonConfiguration key="configuration" style="filled" title="View Status" cornerStyle="large">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="continueTapped:" destination="GRC-Rd-cnr" eventType="touchUpInside" id="HtJ-o1-iNt"/>
-                                    <segue destination="N8P-dj-zQe" kind="presentation" identifier="toDonationStatus" modalPresentationStyle="fullScreen" id="20g-Zf-VgQ"/>
+                                    <action selector="viewStatusTapped:" destination="GRC-Rd-cnr" eventType="touchUpInside" id="77P-wf-52M"/>
+                                    <segue destination="LKJ-Lt-e3T" kind="presentation" identifier="toStatusNav" modalPresentationStyle="fullScreen" id="20g-Zf-VgQ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -491,7 +506,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Vo0-Ig-cmB" firstAttribute="top" secondItem="E3P-X9-i4B" secondAttribute="bottom" constant="3" id="0iL-hP-NTa"/>
-                            <constraint firstItem="Vo0-Ig-cmB" firstAttribute="leading" secondItem="Hu9-Ao-eby" secondAttribute="leading" constant="56" id="0y6-eP-BfW"/>
+                            <constraint firstItem="Vo0-Ig-cmB" firstAttribute="leading" secondItem="Hu9-Ao-eby" secondAttribute="leading" constant="35" id="0y6-eP-BfW"/>
                             <constraint firstItem="E3P-X9-i4B" firstAttribute="top" secondItem="nqc-hD-ZtV" secondAttribute="bottom" constant="7" id="BjB-FA-6nL"/>
                             <constraint firstItem="Vo0-Ig-cmB" firstAttribute="centerX" secondItem="pWf-wa-e35" secondAttribute="centerX" id="E85-zG-dpW"/>
                             <constraint firstItem="nqc-hD-ZtV" firstAttribute="top" secondItem="Hu9-Ao-eby" secondAttribute="top" constant="17" id="HRB-4d-8cR"/>
@@ -509,9 +524,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="noteTextField" destination="80j-Sc-yNS" id="m2Y-Oq-x1Y"/>
-                        <outlet property="statusImageView" destination="AzM-cX-9NC" id="4ji-Xz-IUj"/>
-                        <outlet property="statusLabel" destination="5ES-hc-VM2" id="Noh-JP-t6B"/>
+                        <outlet property="dateLabel" destination="TKe-Fn-tqQ" id="C41-uA-B8L"/>
+                        <outlet property="donationTitleLabel" destination="vbL-4M-flf" id="JWQ-eq-uMa"/>
+                        <outlet property="locationLabel" destination="oso-EQ-ugo" id="RYH-6C-Ibr"/>
+                        <outlet property="notesTextView" destination="4y8-f1-eGI" id="unZ-kD-PtT"/>
+                        <outlet property="subtitleLabel" destination="5ES-hc-VM2" id="she-av-Mmy"/>
+                        <outlet property="timeLabel" destination="fob-Ta-DDZ" id="rvP-Dw-uwD"/>
+                        <outlet property="titleLabel" destination="nqc-hD-ZtV" id="pOV-Zd-WfU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vfi-Z3-zuE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1048,10 +1067,31 @@
             </objects>
             <point key="canvasLocation" x="-222" y="-927"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="R42-aW-TYD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LKJ-Lt-e3T" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="truck.box.fill" catalog="system" id="CAU-nh-b3b"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DDA-IF-qL4">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="N8P-dj-zQe" kind="relationship" relationship="rootViewController" id="Zxm-rN-JJu"/>
+                        <segue destination="N8P-dj-zQe" kind="presentation" identifier="toDonationStatus" modalPresentationStyle="fullScreen" id="WkV-ze-AnN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zRd-8b-0ss" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2165.6488549618321" y="578.87323943661977"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Uug-se-hpG"/>
         <segue reference="Pji-jR-NbA"/>
+        <segue reference="WkV-ze-AnN"/>
         <segue reference="ocU-N3-2aq"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="AccentColor"/>

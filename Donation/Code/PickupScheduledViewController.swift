@@ -14,53 +14,74 @@ class PickupScheduledViewController: UIViewController {
     var note: String?
 
     // MARK: - Outlets
-    @IBOutlet weak var statusLabel: UITextView!
-    @IBOutlet weak var statusImageView: UIImageView!
-    @IBOutlet weak var noteTextField: UITextView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UITextView!
 
+    @IBOutlet weak var donationTitleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var notesTextView: UITextView!
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
+        setupUI()
+        configureSummary()
     }
 
-    // MARK: - UI Setup
-    private func configureUI() {
+    private func setupUI() {
+        notesTextView.isEditable = false
+        notesTextView.isScrollEnabled = false
+        notesTextView.layer.cornerRadius = 12
+        notesTextView.backgroundColor = .systemGray6
+    }
 
-        statusLabel.text =
-        "Your pickup has been successfully scheduled.\nThe donor has been notified."
+    private func configureSummary() {
+        guard let donation else { return }
 
-        statusLabel.isEditable = false
-        statusLabel.isSelectable = false
-        statusLabel.textAlignment = .center
+        titleLabel.text = "Pickup Scheduled"
+        subtitleLabel.text = """
+        Your pickup has been successfully scheduled.
+        The donor has been notified.
+        """
 
-        statusImageView.image = UIImage(named: "pickup_success")
-        statusImageView.contentMode = .scaleAspectFit
+        donationTitleLabel.text = donation.title
+        locationLabel.text = "📍 \(donation.location)"
 
-        if let note = note,
-           !note.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            noteTextField.text = note
-            noteTextField.isHidden = false
-        } else {
-            noteTextField.isHidden = true
+        if let date = donation.pickupDate {
+            let formatter = DateFormatter()
+
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .none
+            dateLabel.text = "Date: \(formatter.string(from: date))"
+
+            formatter.dateStyle = .none
+            formatter.timeStyle = .short
+            timeLabel.text = "Time: \(formatter.string(from: date))"
         }
 
-        noteTextField.isEditable = false
-        noteTextField.isScrollEnabled = true
+        notesTextView.text = note?.isEmpty == false ? note : "No notes provided."
     }
 
-    // MARK: - Actions
-    @IBAction func continueTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "toDonationStatus", sender: donation)
-    }
+    @IBAction func viewStatusTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Discovery", bundle: nil)
 
-    // MARK: - Navigation
+        guard let statusVC = storyboard.instantiateViewController(
+            withIdentifier: "toDonationStatus"
+        ) as? StatusTrackingViewController else { return }
+
+        statusVC.donation = donation
+        navigationController?.pushViewController(statusVC, animated: true)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toDonationStatus",
-           let vc = segue.destination as? StatusTrackingViewController,
-           let donation = sender as? Donations {
+        if segue.identifier == "toStatusNav",
+           let nav = segue.destination as? UINavigationController,
+           let statusVC = nav.viewControllers.first as? StatusTrackingViewController {
 
-            vc.donation = donation
-            vc.donation?.pickupStatus = .accepted
+            statusVC.donation = donation
         }
     }
+
 }

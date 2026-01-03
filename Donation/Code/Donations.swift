@@ -5,20 +5,19 @@
 //  Created by BP-36-201-09 on 28/12/2025.
 //
 
-import UIKit
 import Foundation
 
 enum PickupStatus {
     case available
+    case scheduled
     case accepted
     case collected
     case completed
-    case scheduled
 }
 
 class Donations {
 
-    // MARK: - Food Info
+    // MARK: - Core Donation Info
     let title: String
     let donationDescription: String
     let donorName: String
@@ -31,10 +30,12 @@ class Donations {
     let productionDate: Date
     let expirationDate: Date
 
-    // MARK: - Pickup
+    // MARK: - Pickup Tracking
     var pickupStatus: PickupStatus
     var pickupDate: Date?
+    var pickupNote: String?   // ← for user notes
 
+    // MARK: - Designated Initializer
     init(
         title: String,
         donationDescription: String,
@@ -55,8 +56,26 @@ class Donations {
         self.imageName = imageName
         self.productionDate = productionDate
         self.expirationDate = expirationDate
+
+        // Default pickup values
         self.pickupStatus = .available
         self.pickupDate = nil
+        self.pickupNote = nil
+    }
+
+    // MARK: - Convenience Init (optional, safe)
+    convenience init() {
+        self.init(
+            title: "",
+            donationDescription: "",
+            donorName: "",
+            location: "",
+            category: "",
+            foodStatus: "",
+            imageName: "",
+            productionDate: Date(),
+            expirationDate: Date()
+        )
     }
 }
 
