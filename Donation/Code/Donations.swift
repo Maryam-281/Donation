@@ -11,8 +11,9 @@ import Foundation
 enum PickupStatus {
     case available
     case accepted
+    case collected
+    case completed
     case scheduled
-    case pickedUp
 }
 
 class Donations {
@@ -24,7 +25,7 @@ class Donations {
     let location: String
     let category: String
     let foodStatus: String
-    let imageName: String   // ✅ ADDED
+    let imageName: String
 
     // MARK: - Dates
     let productionDate: Date
@@ -41,7 +42,7 @@ class Donations {
         location: String,
         category: String,
         foodStatus: String,
-        imageName: String,          // ✅ ADDED
+        imageName: String,
         productionDate: Date,
         expirationDate: Date
     ) {
