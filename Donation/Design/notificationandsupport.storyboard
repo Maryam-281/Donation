@@ -50,37 +50,6 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eEn-aE-m0d">
-                                <rect key="frame" x="0.0" y="755" width="393" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items/>
-                            </tabBar>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="truck.box" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4ID-pK-eEG">
-                                <rect key="frame" x="176" y="746.33333333333337" width="41" height="101"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bell" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="s8X-cS-g96">
-                                <rect key="frame" x="107" y="773.66666666666663" width="29" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="yYg-Jf-r41">
-                                <rect key="frame" x="253" y="776" width="32" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="house" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aSz-XN-w45">
-                                <rect key="frame" x="37" y="763.33333333333337" width="31" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="i3V-Qs-GxL">
-                                <rect key="frame" x="285" y="781.33333333333326" width="103" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cP9-gG-UrN">
                                 <rect key="frame" x="21" y="701" width="356" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -225,15 +194,22 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="tbN-BH-zvA"/>
+                    <connections>
+                        <outlet property="delete" destination="cP9-gG-UrN" id="nkK-3u-war"/>
+                        <outlet property="goback" destination="4Wv-bF-Y5Y" id="XyE-rd-AWq"/>
+                        <outlet property="settings" destination="oy5-16-MRa" id="1eV-xk-eIC"/>
+                        <outlet property="timeLabel1" destination="lHj-fO-cJe" id="Dpq-cN-LWk"/>
+                        <outlet property="titleLabel1" destination="DRn-zh-YIj" id="VnW-qg-H4B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1098.4732824427481" y="3.5211267605633805"/>
         </scene>
-        <!--View Controller-->
+        <!--Aboutus Controller-->
         <scene sceneID="dr4-k2-13r">
             <objects>
-                <viewController id="WK3-kA-nnK" sceneMemberID="viewController">
+                <viewController id="WK3-kA-nnK" customClass="aboutusController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rkW-9d-fyi">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="1100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -260,37 +236,6 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zc3-PY-mro">
-                                <rect key="frame" x="0.0" y="1003" width="393" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items/>
-                            </tabBar>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="truck.box" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="STT-os-rqw">
-                                <rect key="frame" x="176" y="993.33333333333348" width="41" height="101"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bell" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AIT-Ha-H85">
-                                <rect key="frame" x="107" y="1020.3333333333335" width="29" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Tew-yS-bLb">
-                                <rect key="frame" x="253" y="1023.3333333333335" width="32" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="house" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6aU-b7-6dg">
-                                <rect key="frame" x="37" y="1010.3333333333335" width="31" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="0L1-3f-GSM">
-                                <rect key="frame" x="285" y="1028.3333333333335" width="103" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="About Us " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Oaq-c6-iXN">
                                 <rect key="frame" x="16" y="227" width="77" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -403,6 +348,9 @@
                         <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.90000000000000002"/>
                     </view>
                     <size key="freeformSize" width="393" height="1100"/>
+                    <connections>
+                        <outlet property="goback" destination="ys9-fF-KSU" id="e9h-52-Iwx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cE6-f7-18O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -497,6 +445,7 @@
                     <connections>
                         <outlet property="button" destination="Upq-oB-btb" id="yvg-5y-8Oo"/>
                         <outlet property="email" destination="QCh-bA-Zq1" id="9ER-NI-eqp"/>
+                        <outlet property="goback" destination="ztE-Mk-DYa" id="mMv-ZJ-kse"/>
                         <outlet property="message" destination="HFA-3b-sfb" id="Wve-Uw-scL"/>
                         <outlet property="name" destination="aNv-V9-pr3" id="mI7-IM-m6a"/>
                         <outlet property="submit" destination="Upq-oB-btb" id="wZy-kf-Ait"/>
@@ -506,10 +455,10 @@
             </objects>
             <point key="canvasLocation" x="891" y="651"/>
         </scene>
-        <!--NotificationD Controller-->
+        <!--Notificationdetails Controller-->
         <scene sceneID="yBU-Do-5G0">
             <objects>
-                <viewController id="6IF-Om-VhJ" customClass="NotificationDController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6IF-Om-VhJ" customClass="NotificationdetailsController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GNk-3M-dyV">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -593,6 +542,11 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="O1" destination="s9s-Y6-yI0" id="fMV-Sr-OJd"/>
+                        <outlet property="goback" destination="qM5-u3-eJf" id="oWi-Sp-zmk"/>
+                        <outlet property="view" destination="3SJ-15-7Su" id="5K4-Td-MVM"/>
+                        <outlet property="viewdonation" destination="3SJ-15-7Su" id="bbR-xa-E1o"/>
+                        <outlet property="xbutton" destination="iFl-ZO-ZVu" id="Nlu-GO-9oh"/>
+                        <outlet property="xx" destination="iFl-ZO-ZVu" id="0He-nf-mjY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nuX-2D-v24" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -793,17 +747,19 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="S1" destination="UcS-5Z-4I6" id="JTH-5i-mhL"/>
+                        <outlet property="S1" destination="UcS-5Z-4I6" id="aZq-FQ-nzN"/>
+                        <outlet property="goback" destination="tcL-NT-tj2" id="cnA-0y-q2f"/>
+                        <outlet property="xx" destination="cAs-xE-DPO" id="kaj-Fr-Fcw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kwv-P1-tNh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2904.5801526717555" y="3.5211267605633805"/>
         </scene>
-        <!--View Controller-->
+        <!--Help support Controller-->
         <scene sceneID="j6h-GH-jOf">
             <objects>
-                <viewController id="IzK-2b-eWs" sceneMemberID="viewController">
+                <viewController id="IzK-2b-eWs" customClass="help_supportController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bo9-V4-3sW">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -971,15 +927,25 @@
                         <viewLayoutGuide key="safeArea" id="atR-OR-Igx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="FAQs" destination="ZFP-Z0-2pS" id="vVC-jP-4DI"/>
+                        <outlet property="aboutus" destination="GuG-rP-Hsz" id="bhM-tj-InB"/>
+                        <outlet property="contactus" destination="M98-mM-cmb" id="AYP-04-urw"/>
+                        <outlet property="goback" destination="BTs-eo-zE8" id="cR9-bF-hqc"/>
+                        <outlet property="guidelines" destination="blG-4l-7hH" id="Pml-Bq-xRd"/>
+                        <outlet property="issue" destination="zv3-9N-Rx7" id="sO0-fG-yF0"/>
+                        <outlet property="policy" destination="BvJ-qL-tLl" id="pG3-ZS-Vh1"/>
+                        <outlet property="terms" destination="KO7-kj-rUm" id="Lux-2U-eho"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uvw-zu-7U1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3773.2824427480914" y="3.5211267605633805"/>
         </scene>
-        <!--View Controller-->
+        <!--Messagesubmitted Controller-->
         <scene sceneID="aih-Fo-jOA">
             <objects>
-                <viewController id="9i3-Jh-0cF" sceneMemberID="viewController">
+                <viewController id="9i3-Jh-0cF" customClass="messagesubmittedController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xrw-YV-hHz">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1015,15 +981,18 @@
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="goback" destination="iCv-Xa-958" id="Tcv-VP-SEi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lj4-qb-U9i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1578" y="651"/>
         </scene>
-        <!--View Controller-->
+        <!--Terms conditions Controller-->
         <scene sceneID="J68-Fi-89d">
             <objects>
-                <viewController id="8gF-PS-GAc" sceneMemberID="viewController">
+                <viewController id="8gF-PS-GAc" customClass="terms_conditionsController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DuI-rX-pfK">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1110,15 +1079,18 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
                         <viewLayoutGuide key="safeArea" id="Gpa-W2-YZW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="goback" destination="4CW-3J-Aqh" id="f9z-c7-bMh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0q5-ce-f0P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2269" y="651"/>
         </scene>
-        <!--View Controller-->
+        <!--Donationguidelines Controller-->
         <scene sceneID="OY4-Mm-wV3">
             <objects>
-                <viewController id="GSF-6C-CBO" sceneMemberID="viewController">
+                <viewController id="GSF-6C-CBO" customClass="donationguidelinesController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FRL-a1-oQy">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1181,15 +1153,18 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
                         <viewLayoutGuide key="safeArea" id="HdI-b3-MLt"/>
                         <color key="backgroundColor" name="Color"/>
                     </view>
+                    <connections>
+                        <outlet property="goback" destination="baJ-Ko-oJu" id="Taa-ef-Bls"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zNR-rg-atH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2955" y="651"/>
         </scene>
-        <!--View Controller-->
+        <!--Controller-->
         <scene sceneID="7LO-3E-Mzg">
             <objects>
-                <viewController id="Nxu-j8-bRw" sceneMemberID="viewController">
+                <viewController id="Nxu-j8-bRw" customClass="FAQ1Controller" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BR3-aP-xAU">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1339,6 +1314,18 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
                         <viewLayoutGuide key="safeArea" id="RZO-z1-ljq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="b1" destination="cJA-PF-fBA" id="HjA-4r-Kgc"/>
+                        <outlet property="b2" destination="9jR-WV-Wt2" id="hqY-mt-2f7"/>
+                        <outlet property="b3" destination="P9d-bQ-xBV" id="LVs-CB-qbh"/>
+                        <outlet property="b4" destination="pKE-X3-QYi" id="uMp-jC-2pE"/>
+                        <outlet property="b5" destination="lY0-1N-ywW" id="2Hw-2C-VZQ"/>
+                        <outlet property="b6" destination="SpO-Lx-ljU" id="FOU-0Q-YCs"/>
+                        <outlet property="b7" destination="X8k-xU-TBg" id="LtB-B9-yPt"/>
+                        <outlet property="b8" destination="mms-HC-TUm" id="JCw-Cd-9PX"/>
+                        <outlet property="goback" destination="yJb-Xh-dQJ" id="BOr-Gd-7PZ"/>
+                        <outlet property="search" destination="TAC-tu-0rz" id="YjY-di-o07"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYU-Op-2dj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1489,15 +1476,26 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
                         <viewLayoutGuide key="safeArea" id="nqi-Ql-YtE"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
+                    <connections>
+                        <outlet property="b2" destination="jxJ-sE-DE3" id="Liu-lP-qZ2"/>
+                        <outlet property="b3" destination="0cZ-Rj-dy0" id="JlH-s2-yS3"/>
+                        <outlet property="b4" destination="7gQ-gQ-wBT" id="g9K-41-21P"/>
+                        <outlet property="b5" destination="Qrw-8h-NOa" id="ihX-X3-yRB"/>
+                        <outlet property="b6" destination="REi-7E-0rT" id="lkF-31-dqK"/>
+                        <outlet property="b7" destination="JyO-p1-IEd" id="IGq-yO-1oy"/>
+                        <outlet property="b8" destination="9vR-cF-vDO" id="sIq-qN-sXA"/>
+                        <outlet property="goback" destination="TgA-zs-ACg" id="G7P-gO-Ai0"/>
+                        <outlet property="search" destination="3Ua-9Y-3vP" id="Yqv-cF-XHB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AFQ-sa-6iQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4363" y="651"/>
         </scene>
-        <!--View Controller-->
+        <!--Reportissue Controller-->
         <scene sceneID="98s-u7-QFW">
             <objects>
-                <viewController id="emm-X5-LJy" sceneMemberID="viewController">
+                <viewController id="emm-X5-LJy" customClass="reportissueController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WnL-G0-efH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1562,15 +1560,21 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
                         <viewLayoutGuide key="safeArea" id="Vku-oN-0kN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="delete" destination="4fx-zb-eU0" id="yia-We-SyC"/>
+                        <outlet property="goback" destination="bqL-nn-lfi" id="3J4-fY-kiD"/>
+                        <outlet property="message" destination="f4y-NE-Wh5" id="OU5-yB-5CQ"/>
+                        <outlet property="type" destination="SwE-bF-kD1" id="600-vl-fA1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYJ-Hf-093" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="171.75572519083968" y="1493.661971830986"/>
         </scene>
-        <!--Issue Controller-->
+        <!--Reportissue2 Controller-->
         <scene sceneID="gjP-xV-yDa">
             <objects>
-                <viewController id="okl-sI-KbO" customClass="issueController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="okl-sI-KbO" customClass="reportissue2Controller" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uMR-Dc-eh8">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1666,23 +1670,25 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="delete" destination="D1T-eg-dEk" id="bmT-Yj-BPN"/>
                         <outlet property="done" destination="D1T-eg-dEk" id="ieq-nH-nhA"/>
+                        <outlet property="goback" destination="VjI-b8-pLJ" id="dli-I2-j9F"/>
                         <outlet property="issue1" destination="vRc-VP-LIN" id="aco-zt-mZ0"/>
                         <outlet property="issue2" destination="FwS-ge-CFb" id="6ZJ-ua-hZn"/>
                         <outlet property="issue3" destination="lI4-O9-v72" id="Qde-SP-88Q"/>
                         <outlet property="message" destination="AiV-GY-3w1" id="RtZ-r3-LPe"/>
                         <outlet property="submit" destination="D1T-eg-dEk" id="ivI-f8-Qc2"/>
-                        <outlet property="type" destination="Yh1-91-2rA" id="M8x-or-Xtm"/>
+                        <outlet property="type" destination="Yh1-91-2rA" id="Sv3-ar-nb4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8B5-Wr-GRf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="891" y="1494"/>
         </scene>
-        <!--View Controller-->
+        <!--Reportsubmitted Controller-->
         <scene sceneID="fvf-Qd-B7x">
             <objects>
-                <viewController id="Yrd-kC-jhZ" sceneMemberID="viewController">
+                <viewController id="Yrd-kC-jhZ" customClass="reportsubmittedController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cUQ-Hs-aTH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1716,15 +1722,18 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
                         <viewLayoutGuide key="safeArea" id="mYr-m5-ae9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="goback" destination="J6z-Kf-lWS" id="BRZ-bM-Ccd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pH0-lf-5M0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1605" y="1494"/>
         </scene>
-        <!--Controller-->
+        <!--Privacypolicy Controller-->
         <scene sceneID="sUQ-Ku-IpS">
             <objects>
-                <viewController id="o5e-tC-7HR" customClass="FAQController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="o5e-tC-7HR" customClass="privacypolicyController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bko-2R-e6C">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1876,6 +1885,9 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="393" height="855"/>
+                    <connections>
+                        <outlet property="goback" destination="Kj6-hA-mSf" id="J7g-ei-DoY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GFl-Z6-BCg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1901,25 +1913,20 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="riu-bU-ElP"/>
-        <segue reference="bQB-0f-2c4"/>
-        <segue reference="2iM-Ib-JqY"/>
+        <segue reference="V2S-mb-MXG"/>
+        <segue reference="foH-Lu-TGW"/>
+        <segue reference="5EL-L6-hwT"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
         <image name="arrow.forward" catalog="system" width="128" height="95"/>
-        <image name="bell" catalog="system" width="125" height="128"/>
         <image name="checkmark.circle" catalog="system" width="128" height="123"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <image name="circle" catalog="system" width="128" height="123"/>
         <image name="fork.knife.circle" catalog="system" width="128" height="123"/>
-        <image name="house" catalog="system" width="128" height="104"/>
         <image name="line.3.horizontal.decrease" catalog="system" width="128" height="73"/>
         <image name="logo" width="3791" height="3164"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="person" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="truck.box" catalog="system" width="128" height="90"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="Color">
             <color red="0.53725490196078429" green="0.66666666666666663" blue="0.77254901960784317" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

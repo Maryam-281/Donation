@@ -1,28 +1,22 @@
 //
-//  contactusController.swift
+//  help&supportController.swift
 //  Donation
 //
-//  Created by BP-36-201-09 on 01/01/2026.
+//  Created by BP-19-130-15 on 03/01/2026.
 //
 
 import UIKit
 
-class contactusController: UIViewController {
+class help_supportController: UIViewController {
 
     @IBOutlet weak var goback: UIBarButtonItem!
-    
-    
-    @IBOutlet weak var name: UITextField!
-    @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var message: UITextField!
-    
-    @IBAction func submitTapped(_ sender: UIButton) {
-        if name.text == "" || email.text == "" {
-            print("Missing information")
-        } else {
-            performSegue(withIdentifier: "showSuccess", sender: self)
-        }
-    }
+    @IBOutlet weak var FAQs: UIButton!
+    @IBOutlet weak var contactus: UIButton!
+    @IBOutlet weak var issue: UIButton!
+    @IBOutlet weak var aboutus: UIButton!
+    @IBOutlet weak var guidelines: UIButton!
+    @IBOutlet weak var terms: UIButton!    
+    @IBOutlet weak var policy: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -9,17 +9,36 @@ import UIKit
 
 class notificationController: UIViewController {
 
+    @IBOutlet weak var goback: UIBarButtonItem!
+    
+    @IBOutlet weak var settings: UIBarButtonItem!
+    
+    @IBOutlet weak var delete: UIButton!
+    
+    @IBOutlet weak var titleLabel1: UITextView!
+    @IBOutlet weak var timeLabel1: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let notifications = [
-            "Your donation was accepted",
-            "Your donation was picked up",
-            "Your donation was rejected"
-        ]
+        
+        // STEP 1: Create a fake notification
+            NotificationManager.shared.addNotification(
+                title: "Your donation was accepted!"
+            )
+        
+        // STEP 2: Load it into the UI
+            loadNotification()
         // Do any additional setup after loading the view.
     }
     
+    func loadNotification() {
+        let list = NotificationManager.shared.notifications
+
+        if let first = list.first {
+            titleLabel1.text = first
+            timeLabel1.text = "Just now"
+        }
+    }
 
     /*
     // MARK: - Navigation

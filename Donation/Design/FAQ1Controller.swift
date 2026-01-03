@@ -1,32 +1,20 @@
 //
-//  FAQController.swift
+//  FAQ1Controller.swift
 //  Donation
 //
-//  Created by BP-36-201-01 on 30/12/2025.
+//  Created by BP-19-130-15 on 03/01/2026.
 //
 
 import UIKit
 
-class FAQController: UIViewController {
-
-    @IBOutlet weak var goback: UIBarButtonItem!
+class FAQ1Controller: UIViewController {
+    
     
     @IBOutlet weak var search: UISearchBar!
     
+    @IBOutlet weak var goback: UIBarButtonItem!
     
-    @IBOutlet weak var a1: UITextView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        a1.layer.isHidden = false
-
-        // Do any additional setup after loading the view.
-    }
-    
-
-    @IBAction func q1(_ sender: Any) {
-        a1.layer.isHidden = true
-    }
-    
+    @IBOutlet weak var b1: UIButton!
     
     @IBOutlet weak var b2: UITextView!
     
@@ -42,6 +30,13 @@ class FAQController: UIViewController {
     
     @IBOutlet weak var b8: UITextView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
+    
+
     /*
     // MARK: - Navigation
 
