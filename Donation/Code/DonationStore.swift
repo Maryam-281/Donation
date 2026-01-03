@@ -25,8 +25,8 @@ This Chicken with Broccoli and Rice is a delicious blend of succulent, savory ch
             category: "Prepared Meals",
             foodStatus: "Fresh",
             imageName: "chicken",
-            productionDate: Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
-            expirationDate: Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+            productionDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 6))!,
+            expirationDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 11))!
         ),
 
         Donations(
@@ -40,9 +40,9 @@ Freshly baked and golden brown, this pastry is perfect for breakfast or a light 
             location: "Manama",
             category: "Baked Goods",
             foodStatus: "Fresh",
-            imageName: "painau" ,
-            productionDate: Date(),
-            expirationDate: Calendar.current.date(byAdding: .day, value: 1, to: Date())!
+            imageName: "painau",
+            productionDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 19))!,
+            expirationDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 21))!
         ),
 
         Donations(
@@ -57,8 +57,8 @@ It is ideal for a healthy snack or dessert option.
             category: "Fruits & Vegetables",
             foodStatus: "Expired",
             imageName: "fruit_salad",
-            productionDate: Date(),
-            expirationDate: Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+            productionDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 2))!,
+            expirationDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 4))!
         ),
 
         Donations(
@@ -73,8 +73,8 @@ Best enjoyed fresh.
             category: "Baked Goods",
             foodStatus: "Expires Soon",
             imageName: "bread",
-            productionDate: Date(),
-            expirationDate: Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+            productionDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 23))!,
+            expirationDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 27))!
         ),
 
         Donations(
@@ -89,8 +89,8 @@ Ideal as a healthy side dish or light meal.
             category: "Fruits & Vegetables",
             foodStatus: "Fresh",
             imageName: "salad",
-            productionDate: Date(),
-            expirationDate: Calendar.current.date(byAdding: .day, value: 1, to: Date())!
+            productionDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 14))!,
+            expirationDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 16))!
         ),
 
         Donations(
@@ -105,8 +105,77 @@ Perfect for cooler days or anyone in need of a hearty meal.
             category: "Prepared Meals",
             foodStatus: "Expires Soon",
             imageName: "chicken_soup",
-            productionDate: Date(),
-            expirationDate: Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+            productionDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 25))!,
+            expirationDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 29))!
+        ),
+
+      
+
+        Donations(
+            title: "Beef Biryani",
+            donationDescription: """
+A fragrant and flavorful rice dish made with tender pieces of beef slow-cooked in a blend of traditional spices and herbs. The basmati rice is infused with rich aromas, creating layers of flavor in every bite.
+
+This hearty meal is filling, comforting, and perfect for sharing, making it a popular choice for lunch or dinner.
+""",
+
+            donorName: "Spice Route",
+            location: "Riffa",
+            category: "Prepared Meals",
+            foodStatus: "Fresh",
+            imageName: "biryani",
+            productionDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 10))!,
+            expirationDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 15))!
+        ),
+
+        Donations(
+            title: "Assorted Donuts",
+            donationDescription: """
+A delightful box of freshly baked donuts featuring a variety of flavors and toppings. Each donut is soft, fluffy, and carefully glazed or topped to provide a perfect balance of sweetness.
+
+Ideal for sharing at gatherings, enjoying as a dessert, or pairing with a warm cup of coffee or tea.
+"""
+,
+            donorName: "Sweet Corner",
+            location: "Manama",
+            category: "Desserts",
+            foodStatus: "Expires Soon",
+            imageName: "donuts",
+            productionDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 17))!,
+            expirationDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 20))!
+        ),
+
+        Donations(
+            title: "Fresh Oranges",
+            donationDescription: """
+Juicy and naturally sweet oranges sourced from local farms and selected for freshness. These oranges are rich in vitamin C and offer a refreshing burst of flavor with every bite.
+
+Perfect for snacking, juicing, or adding to fruit salads and healthy meals.
+""",
+            donorName: "Farm Fresh",
+            location: "Isa Town",
+            category: "Fruits & Vegetables",
+            foodStatus: "Fresh",
+            imageName: "oranges",
+            productionDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 8))!,
+            expirationDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 18))!
+        ),
+
+        Donations(
+            title: "Cheese Sandwiches",
+            donationDescription: """
+Simple yet satisfying cheese sandwiches prepared using fresh bread and sliced cheese. Each sandwich offers a soft texture with a mild, comforting flavor that appeals to all ages.
+
+Ideal for quick meals, school lunches, or light snacks throughout the day.
+"""
+,
+            donorName: "School Cafeteria",
+            location: "Muharraq",
+            category: "Prepared Meals",
+            foodStatus: "Expired",
+            imageName: "sandwich",
+            productionDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 1))!,
+            expirationDate: Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 3))!
         )
     ]
 }
