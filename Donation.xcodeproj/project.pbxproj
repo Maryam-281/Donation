@@ -19,10 +19,23 @@
 		D52614382EDC2EC200B2A667 /* Donation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Donation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8C70315A2F0926DD00CB5857 /* Exceptions for "Donation" folder in "Donation" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D52614372EDC2EC200B2A667 /* Donation */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D1A52F7D2F053F1900DC427D /* Donation 2 */ = {
+		D1A52F7D2F053F1900DC427D /* Donation */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Donation 2";
+			exceptions = (
+				8C70315A2F0926DD00CB5857 /* Exceptions for "Donation" folder in "Donation" target */,
+			);
+			path = Donation;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -54,7 +67,7 @@
 		D526142F2EDC2EC200B2A667 = {
 			isa = PBXGroup;
 			children = (
-				D1A52F7D2F053F1900DC427D /* Donation 2 */,
+				D1A52F7D2F053F1900DC427D /* Donation */,
 				D1A52F892F053F7200DC427D /* Frameworks */,
 				D52614392EDC2EC200B2A667 /* Products */,
 			);
@@ -84,7 +97,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				D1A52F7D2F053F1900DC427D /* Donation 2 */,
+				D1A52F7D2F053F1900DC427D /* Donation */,
 			);
 			name = Donation;
 			packageProductDependencies = (

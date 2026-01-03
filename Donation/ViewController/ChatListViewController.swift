@@ -3,7 +3,8 @@ import UIKit
 class ChatListViewController: UIViewController {
     
     // This will be connected from Storyboard
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
+    
     
     private let chatService = ChatService()
     private var chats: [Chat] = []
