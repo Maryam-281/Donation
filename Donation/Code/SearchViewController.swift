@@ -28,7 +28,7 @@ class SearchViewController: UIViewController {
 
         // Load data
         allDonations = DonationStore.shared.donations
-        filteredDonations = allDonations
+        filteredDonations = []   // 🔑 Start empty
 
         // Search setup
         searchTextField.delegate = self
@@ -41,14 +41,13 @@ class SearchViewController: UIViewController {
         searchTextField.autocapitalizationType = .none
         searchTextField.clearButtonMode = .whileEditing
         searchTextField.returnKeyType = .search
+        searchTextField.placeholder = "Search by food or location"
 
         reloadCards()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        // 🔑 Required when inside TabBar / NavController
         reloadCards()
     }
 
@@ -60,7 +59,7 @@ class SearchViewController: UIViewController {
             .lowercased() ?? ""
 
         if query.isEmpty {
-            filteredDonations = allDonations
+            filteredDonations = []   // hide cards
         } else {
             filteredDonations = allDonations.filter {
                 $0.title.localizedCaseInsensitiveContains(query) ||
@@ -69,6 +68,11 @@ class SearchViewController: UIViewController {
         }
 
         reloadCards()
+    }
+
+    // MARK: - Actions
+    @IBAction func filterButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "searchShowFilter", sender: nil)
     }
 
     // MARK: - UI
@@ -106,9 +110,21 @@ class SearchViewController: UIViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
         if segue.identifier == "toDonationDetails",
            let destination = segue.destination as? DonationDetailsViewController {
             destination.donation = selectedDonation
+        }
+
+        if segue.identifier == "searchShowFilter" {
+
+            if let nav = segue.destination as? UINavigationController,
+               let filterVC = nav.topViewController as? FilterViewController {
+                filterVC.delegate = self
+            }
+            else if let filterVC = segue.destination as? FilterViewController {
+                filterVC.delegate = self
+            }
         }
     }
 }
@@ -119,5 +135,32 @@ extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+// MARK: - Filter Delegate
+extension SearchViewController: FilterViewControllerDelegate {
+
+    func didApplyFilters(
+        location: String?,
+        status: String?,
+        category: String?
+    ) {
+
+        filteredDonations = allDonations.filter { donation in
+
+            let matchesLocation =
+                location == nil || donation.location == location
+
+            let matchesStatus =
+                status == nil || donation.foodStatus == status
+
+            let matchesCategory =
+                category == nil || donation.category == category
+
+            return matchesLocation && matchesStatus && matchesCategory
+        }
+
+        reloadCards()
     }
 }
