@@ -9,23 +9,38 @@ import UIKit
 
 class help_supportController: UIViewController {
 
-    @IBOutlet weak var goback: UIBarButtonItem!
-    @IBOutlet weak var FAQs: UIButton!
-    @IBOutlet weak var contactus: UIButton!
-    @IBOutlet weak var issue: UIButton!
-    @IBOutlet weak var aboutus: UIButton!
-    @IBOutlet weak var guidelines: UIButton!
-    @IBOutlet weak var terms: UIButton!    
-    @IBOutlet weak var policy: UIButton!
+    @IBOutlet weak var backButton: UIBarButtonItem!
+    @IBOutlet weak var faqButton: UIButton!
+    @IBOutlet weak var contactUsButton: UIButton!
+    @IBOutlet weak var reportIssueButton: UIButton!
+    @IBOutlet weak var aboutUsButton: UIButton!
+    @IBOutlet weak var guidelinesButton: UIButton!
+    @IBOutlet weak var termsButton: UIButton!
+    @IBOutlet weak var privacyButton: UIButton!
     
-    @IBAction func supportOptionSelected(_ sender: UIButton) {
-        
-        if sender.tag == 1 {
-            performSegue(withIdentifier: "toAboutUs", sender: self)
-        } else if sender.tag == 2 {
-            performSegue(withIdentifier: "toFAQs", sender: self)
+    @IBAction func didTapSupportButton(_ sender: UIButton) {
+            
+            switch sender {
+            case aboutUsButton:
+                performSegue(withIdentifier: "toAboutUs", sender: self)
+            case faqButton:
+                performSegue(withIdentifier: "toFAQs", sender: self)
+            case guidelinesButton:
+                performSegue(withIdentifier: "toGuidelines", sender: self)
+            case contactUsButton:
+                performSegue(withIdentifier: "toContactUs", sender: self)
+            case reportIssueButton:
+                performSegue(withIdentifier: "toReportIssue", sender: self)
+            case termsButton:
+                performSegue(withIdentifier: "toTerms", sender: self)
+            case privacyButton:
+                performSegue(withIdentifier: "toPrivacyPolicy", sender: self)
+            case backButton:
+                self.dismiss(animated: true, completion: nil)
+            default:
+                break
+            }
         }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -44,7 +44,7 @@
                                                 </buttonConfiguration>
                                             </button>
                                             <connections>
-                                                <segue destination="jvF-sH-jg9" kind="presentation" modalPresentationStyle="fullScreen" id="npT-YI-Oug"/>
+                                                <segue destination="6IF-Om-VhJ" kind="presentation" identifier="toNotificationDetail" modalPresentationStyle="fullScreen" id="Thx-Nd-5A2"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1916,8 +1916,8 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6BD-Hc-Ycj"/>
-        <segue reference="foH-Lu-TGW"/>
+        <segue reference="V2S-mb-MXG"/>
+        <segue reference="bQB-0f-2c4"/>
         <segue reference="UgB-Fc-6Ym"/>
     </inferredMetricsTieBreakers>
     <resources>
