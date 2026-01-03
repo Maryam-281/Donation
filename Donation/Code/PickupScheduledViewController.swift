@@ -26,7 +26,6 @@ class PickupScheduledViewController: UIViewController {
     // MARK: - UI Setup
     private func configureUI() {
 
-        // Success message
         statusLabel.text =
         "Your pickup has been successfully scheduled.\nThe donor has been notified."
 
@@ -34,14 +33,11 @@ class PickupScheduledViewController: UIViewController {
         statusLabel.isSelectable = false
         statusLabel.textAlignment = .center
 
-        // Success image
         statusImageView.image = UIImage(named: "pickup_success")
         statusImageView.contentMode = .scaleAspectFit
 
-        // Optional note
         if let note = note,
            !note.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-
             noteTextField.text = note
             noteTextField.isHidden = false
         } else {
@@ -54,14 +50,17 @@ class PickupScheduledViewController: UIViewController {
 
     // MARK: - Actions
     @IBAction func continueTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "toDonationStatus", sender: nil)
+        performSegue(withIdentifier: "toDonationStatus", sender: donation)
     }
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDonationStatus",
-           let destination = segue.destination as? StatusTrackingViewController {
-            destination.donation = donation
+           let vc = segue.destination as? StatusTrackingViewController,
+           let donation = sender as? Donations {
+
+            vc.donation = donation
+            vc.donation?.pickupStatus = .accepted
         }
     }
 }

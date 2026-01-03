@@ -17,55 +17,48 @@ class StatusTrackingViewController: UIViewController {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
 
-    // MARK: - Circles
-    @IBOutlet weak var pendingCircle: UIView!
-    @IBOutlet weak var acceptedCircle: UIView!
-    @IBOutlet weak var collectedCircle: UIView!
-    @IBOutlet weak var completedCircle: UIView!
+    // MARK: - Circles (UIImageView)
+    @IBOutlet weak var pendingCircle: UIImageView!
+    @IBOutlet weak var acceptedCircle: UIImageView!
+    @IBOutlet weak var collectedCircle: UIImageView!
+    @IBOutlet weak var completedCircle: UIImageView!
 
     // MARK: - Buttons
-    @IBOutlet weak var primaryButton: UIButton!     // Confirm / Collection Completed
-    @IBOutlet weak var feedbackButton: UIButton!    // Send Feedback
-    @IBOutlet weak var doneButton: UIButton!        // Done
+    @IBOutlet weak var primaryButton: UIButton!
+    @IBOutlet weak var feedbackButton: UIButton!
+    @IBOutlet weak var doneButton: UIButton!
+
+    // MARK: - Colors
+    private let activeColor = UIColor(hex: "#89AAC5")
+    private let inactiveColor = UIColor(hex: "#C1D6E6")
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCircles()
         setupButtons()
         updateUI()
     }
 
     // MARK: - Setup
-    private func setupCircles() {
-        let circles = [pendingCircle, acceptedCircle, collectedCircle, completedCircle]
-        circles.forEach {
-            $0?.layer.cornerRadius = ($0?.frame.height ?? 0) / 2
-            $0?.clipsToBounds = true
-        }
-    }
-
     private func setupButtons() {
         feedbackButton.isHidden = true
         doneButton.isHidden = true
     }
 
     private func resetCircles() {
-        let lightGray = UIColor.systemGray4
-        pendingCircle.backgroundColor = lightGray
-        acceptedCircle.backgroundColor = lightGray
-        collectedCircle.backgroundColor = lightGray
-        completedCircle.backgroundColor = lightGray
+        pendingCircle.tintColor = inactiveColor
+        acceptedCircle.tintColor = inactiveColor
+        collectedCircle.tintColor = inactiveColor
+        completedCircle.tintColor = inactiveColor
     }
 
     // MARK: - UI Update
-    func updateUI() {
+    private func updateUI() {
         guard let donation = donation else { return }
 
         titleLabel.text = donation.title
         resetCircles()
 
-        // Default visibility
         primaryButton.isHidden = false
         feedbackButton.isHidden = true
         doneButton.isHidden = true
@@ -73,22 +66,22 @@ class StatusTrackingViewController: UIViewController {
         switch donation.pickupStatus {
 
         case .accepted:
-            acceptedCircle.backgroundColor = .systemBlue
+            acceptedCircle.tintColor = activeColor
             statusLabel.text = "Donation Accepted"
             dateLabel.text = "Waiting for pickup"
             primaryButton.setTitle("Confirm Pickup", for: .normal)
 
         case .collected:
-            acceptedCircle.backgroundColor = .systemBlue
-            collectedCircle.backgroundColor = .systemBlue
+            acceptedCircle.tintColor = activeColor
+            collectedCircle.tintColor = activeColor
             statusLabel.text = "Donation Collected"
             dateLabel.text = "In progress"
             primaryButton.setTitle("Collection Completed", for: .normal)
 
         case .completed:
-            acceptedCircle.backgroundColor = .systemBlue
-            collectedCircle.backgroundColor = .systemBlue
-            completedCircle.backgroundColor = .systemBlue
+            acceptedCircle.tintColor = activeColor
+            collectedCircle.tintColor = activeColor
+            completedCircle.tintColor = activeColor
             statusLabel.text = "Donation Completed"
             dateLabel.text = "Thank you!"
 
@@ -116,10 +109,29 @@ class StatusTrackingViewController: UIViewController {
 
     @IBAction func feedbackTapped(_ sender: UIButton) {
         print("Send Feedback tapped")
-        // Navigate to feedback screen later
+        // navigate to feedback screen later
     }
 
     @IBAction func doneTapped(_ sender: UIButton) {
-        navigationController?.popToRootViewController(animated: true)
+        performSegue(withIdentifier: "toPickupCompleted", sender: nil)
+    }
+
+}
+
+extension UIColor {
+    convenience init(hex: String) {
+        var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+        hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
+
+        var rgb: UInt64 = 0
+        Scanner(string: hexSanitized).scanHexInt64(&rgb)
+
+        let r = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
+        let g = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
+        let b = CGFloat(rgb & 0x0000FF) / 255.0
+
+        self.init(red: r, green: g, blue: b, alpha: 1.0)
     }
 }
+
+

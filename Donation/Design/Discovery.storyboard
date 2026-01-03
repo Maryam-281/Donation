@@ -86,7 +86,7 @@
         <!--Status Tracking View Controller-->
         <scene sceneID="bRd-DF-fuK">
             <objects>
-                <viewController id="N8P-dj-zQe" customClass="StatusTrackingViewController" customModule="StatusTrackingViewController" sceneMemberID="viewController">
+                <viewController id="N8P-dj-zQe" customClass="StatusTrackingViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bVI-GR-g9o">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -108,6 +108,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4JL-SF-g1q">
+                                <rect key="frame" x="40" y="180" width="313" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Lighter primary blue"/>
+                            </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7bg-Sm-R4h">
                                 <rect key="frame" x="36" y="151.66666666666652" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -123,11 +128,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" name="Lighter primary blue"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4JL-SF-g1q">
-                                <rect key="frame" x="40" y="180" width="313" height="5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Lighter primary blue"/>
-                            </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="18T-b6-zOa">
                                 <rect key="frame" x="117" y="151.66666666666666" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -182,42 +182,64 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swZ-KG-9Sg">
-                                <rect key="frame" x="36" y="725" width="306" height="59"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqg-ri-w9d">
+                                <rect key="frame" x="44" y="518" width="306" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" name="PrimaryBlue"/>
+                                <color key="tintColor" name="Primary Blue"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Done" cornerStyle="large" titleAlignment="center">
-                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Confirm Pickup" cornerStyle="large">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="primaryButtonTapped:" destination="N8P-dj-zQe" eventType="touchUpInside" id="sS9-6X-Usy"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q8W-4h-UNd">
-                                <rect key="frame" x="36" y="658" width="306" height="59"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bD-Yn-KQE">
+                                <rect key="frame" x="43" y="588" width="306" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" name="PrimaryBlue"/>
+                                <color key="tintColor" name="Primary Blue"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Send Feedback" cornerStyle="large" titleAlignment="center">
-                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Send Feedback" cornerStyle="large">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="feedbackTapped:" destination="N8P-dj-zQe" eventType="touchUpInside" id="g4O-x0-QgF"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tiS-ob-bSM">
-                                <rect key="frame" x="36" y="591" width="306" height="59"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XH4-x5-mVK">
+                                <rect key="frame" x="46" y="661" width="305" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" name="PrimaryBlue"/>
+                                <color key="tintColor" name="Primary Blue"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Confirm Pickup" cornerStyle="large" titleAlignment="center">
-                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Done" cornerStyle="large">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="doneTapped:" destination="N8P-dj-zQe" eventType="touchUpInside" id="kI0-3g-63H"/>
+                                    <segue destination="jwE-8l-I55" kind="presentation" identifier="toPickupCompleted" modalPresentationStyle="fullScreen" id="H5C-Cb-jLU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="M6z-52-CvY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="truck.box.fill" catalog="system" id="CAU-nh-b3b"/>
+                    <connections>
+                        <outlet property="acceptedCircle" destination="18T-b6-zOa" id="mwQ-rl-vdy"/>
+                        <outlet property="collectedCircle" destination="FiS-3I-xSJ" id="OHa-5g-Ten"/>
+                        <outlet property="completedCircle" destination="3Bv-ie-XbU" id="7Ne-av-r55"/>
+                        <outlet property="dateLabel" destination="gu3-W5-V1H" id="1GQ-eQ-cgW"/>
+                        <outlet property="doneButton" destination="XH4-x5-mVK" id="gqm-nT-kcj"/>
+                        <outlet property="feedbackButton" destination="2bD-Yn-KQE" id="u4x-GB-bSj"/>
+                        <outlet property="pendingCircle" destination="7bg-Sm-R4h" id="9yg-yX-tqq"/>
+                        <outlet property="primaryButton" destination="mqg-ri-w9d" id="kxz-l0-IL2"/>
+                        <outlet property="statusLabel" destination="xIu-rV-cCs" id="D9k-p0-HzY"/>
+                        <outlet property="titleLabel" destination="ZU7-RR-p0i" id="Cle-UH-6Je"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPr-gU-YMw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2572" y="615"/>
+            <point key="canvasLocation" x="2583.969465648855" y="524.64788732394368"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Oly-9p-KYf">
@@ -314,42 +336,60 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BQF-fq-nl9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3330.5343511450378" y="-113.38028169014085"/>
+            <point key="canvasLocation" x="2931" y="-207"/>
         </scene>
-        <!--View Controller-->
+        <!--Pickup Completed View Controller-->
         <scene sceneID="86h-iQ-eOF">
             <objects>
-                <viewController id="jwE-8l-I55" sceneMemberID="viewController">
+                <viewController id="jwE-8l-I55" customClass="PickupCompletedViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3BP-Ph-4sN">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OId-AZ-OOk">
-                                <rect key="frame" x="121" y="399" width="151" height="137"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" name="PrimaryBlue"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Pickup Completed Sucessfully" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GaW-bi-w0L">
-                                <rect key="frame" x="58" y="316" width="276" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jEg-Mc-G04">
+                                <rect key="frame" x="38" y="295.33333333333337" width="317" height="261.33333333333337"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OId-AZ-OOk">
+                                        <rect key="frame" x="83" y="103" width="151" height="137"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" name="PrimaryBlue"/>
+                                    </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Pickup Completed Sucessfully" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GaW-bi-w0L">
+                                        <rect key="frame" x="20" y="20" width="276" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="textColor" name="PrimaryBlue"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" name="PrimaryBlue"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="xmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wL5-0g-jta">
-                                <rect key="frame" x="348" y="87.666666666666742" width="20" height="20"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNp-3V-PRH">
+                                <rect key="frame" x="41" y="90" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system"/>
+                                <connections>
+                                    <action selector="closeTapped:" destination="xSA-0I-8da" eventType="touchUpInside" id="Knm-mc-QEE"/>
+                                    <action selector="closeTapped:" destination="jwE-8l-I55" eventType="touchUpInside" id="sby-xd-Kif"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tde-jr-Vdj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jEg-Mc-G04" firstAttribute="leading" secondItem="tde-jr-Vdj" secondAttribute="leading" constant="38" id="d27-fX-ZyQ"/>
+                            <constraint firstItem="tde-jr-Vdj" firstAttribute="bottom" secondItem="jEg-Mc-G04" secondAttribute="bottom" constant="261.33333333333337" id="gbm-dc-v21"/>
+                            <constraint firstItem="tde-jr-Vdj" firstAttribute="trailing" secondItem="jEg-Mc-G04" secondAttribute="trailing" constant="38" id="h2K-Ia-leE"/>
+                            <constraint firstItem="jEg-Mc-G04" firstAttribute="centerY" secondItem="3BP-Ph-4sN" secondAttribute="centerY" id="ryn-pe-Yzf"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J0P-ra-GPr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4921" y="615"/>
+            <point key="canvasLocation" x="3627" y="546"/>
         </scene>
         <!--Pickup Scheduled View Controller-->
         <scene sceneID="JiU-aE-fQ7">
@@ -1023,6 +1063,9 @@
         </namedColor>
         <namedColor name="Lighter primary blue">
             <color red="0.75686274509803919" green="0.83529411764705885" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary Blue">
+            <color red="0.53725490196078429" green="0.66666666666666663" blue="0.77254901960784317" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="PrimaryBlue">
             <color red="0.53725490196078429" green="0.66666666666666663" blue="0.77254901960784317" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
