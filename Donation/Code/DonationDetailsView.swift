@@ -22,17 +22,14 @@ class DonationDetailsView: UIView {
     // MARK: - Configure
     func configure(with donation: Donations) {
 
-        // Title & description
         titleLabel.text = donation.title
         descriptionTextView.text = donation.donationDescription
         descriptionTextView.isEditable = false
         descriptionTextView.isScrollEnabled = false
 
-        // Dates formatter
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
 
-        // Styled labels (UI-only text)
         categoryLabel.attributedText =
             styledText(label: "Category", value: donation.category)
 
@@ -45,24 +42,27 @@ class DonationDetailsView: UIView {
         expirationDateLabel.attributedText =
             styledText(
                 label: "Expiration",
-                value: expirationText(for: donation.expirationDate)
+                value: formatter.string(from: donation.expirationDate)
             )
 
         donorLabel.attributedText =
             styledText(label: "Donor", value: donation.donorName)
 
+        // ✅ ONE source of truth
+        let status = donation.expiryStatus()
+
         statusLabel.attributedText =
-            styledText(label: "Food status", value: donation.foodStatus)
+            styledText(label: "Food status", value: status.text)
+
+        statusLabel.textColor = status.color
 
         locationLabel.text = "📍 \(donation.location)"
 
-        applyStatusColor(status: donation.foodStatus)
-
-        // Image
         foodImageView.image = UIImage(named: donation.imageName)
         foodImageView.contentMode = .scaleAspectFill
         foodImageView.clipsToBounds = true
     }
+
 
     // MARK: - Helpers
 
@@ -86,36 +86,6 @@ class DonationDetailsView: UIView {
         return text
     }
 
-    /// Returns "Expires in X days" or "Expired"
-    private func expirationText(for date: Date) -> String {
-        let daysLeft = Calendar.current.dateComponents(
-            [.day],
-            from: Date(),
-            to: date
-        ).day ?? 0
-
-        if daysLeft < 0 {
-            return "Expired"
-        } else if daysLeft == 0 {
-            return "Expires today"
-        } else {
-            return "Expires in \(daysLeft) days"
-        }
-    }
-
-    /// Color-code food status
-    private func applyStatusColor(status: String) {
-        switch status.lowercased() {
-        case "fresh":
-            statusLabel.textColor = .systemGreen
-        case "expires soon":
-            statusLabel.textColor = .systemOrange
-        case "expired":
-            statusLabel.textColor = .systemRed
-        default:
-            statusLabel.textColor = .label
-        }
-    }
 }
 
 

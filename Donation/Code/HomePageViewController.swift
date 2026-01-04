@@ -7,27 +7,43 @@
 
 import UIKit
 
+/// This is the main home screen.
+/// It shows all donation cards and allows searching & filtering.
 class HomePageViewController: UIViewController {
 
-    // MARK: - Outlets
+    // MARK: - UI Outlets
+
+    /// StackView that holds all donation cards
     @IBOutlet weak var cardsStackView: UIStackView!
+
+    /// Search field at the top of the home page
     @IBOutlet weak var searchTextField: UITextField!
 
     // MARK: - Data
+
+    /// All donations loaded from the store (never modified)
     var allDonations: [Donations] = []
+
+    /// Donations currently shown on screen
     var filteredDonations: [Donations] = []
 
-    // MARK: - Selection
+    // MARK: - Navigation State
+
+    /// Donation selected by tapping a card
     var selectedDonation: Donations?
 
     // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Load all donations once
         allDonations = DonationStore.shared.donations
+
+        // Initially show everything
         filteredDonations = allDonations
 
-        // 🔍 Search setup
+        // Configure search text field
         searchTextField.delegate = self
         searchTextField.addTarget(
             self,
@@ -38,13 +54,17 @@ class HomePageViewController: UIViewController {
         reloadCards()
     }
 
-    // MARK: - UI
-    func reloadCards() {
+    // MARK: - UI Helpers
 
+    /// Clears old cards and recreates them from `filteredDonations`
+    private func reloadCards() {
+
+        // Remove existing cards
         cardsStackView.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
 
+        // Create a card for each donation
         for donation in filteredDonations {
 
             guard let card = Bundle.main.loadNibNamed(
@@ -55,8 +75,10 @@ class HomePageViewController: UIViewController {
                 continue
             }
 
+            // Fill card UI
             card.configure(with: donation)
 
+            // Handle tap on card
             card.onDetailsTapped = { [weak self] donation in
                 self?.selectedDonation = donation
                 self?.performSegue(
@@ -71,16 +93,20 @@ class HomePageViewController: UIViewController {
         cardsStackView.layoutIfNeeded()
     }
 
-    // MARK: - Search
+    // MARK: - Search Logic
+
+    /// Called every time the user types in the search field
     @objc private func searchTextChanged() {
 
         let query = searchTextField.text?
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .lowercased() ?? ""
 
+        // If search is empty → show all donations
         if query.isEmpty {
             filteredDonations = allDonations
         } else {
+            // Filter by title OR location
             filteredDonations = allDonations.filter { donation in
                 donation.title.lowercased().contains(query) ||
                 donation.location.lowercased().contains(query)
@@ -91,23 +117,34 @@ class HomePageViewController: UIViewController {
     }
 
     // MARK: - Actions
+
+    /// Opens the filter screen
     @IBAction func filterButtonTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "showFilter", sender: nil)
     }
 
     // MARK: - Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
+        // Navigate to donation details
         if segue.identifier == "toDonationDetails",
-           let destination = segue.destination as? DonationDetailsViewController {
+           let destination = segue.destination
+                as? DonationDetailsViewController {
             destination.donation = selectedDonation
         }
 
+        // Navigate to filter screen
         if segue.identifier == "showFilter" {
-            if let filterVC = segue.destination as? FilterViewController {
+
+            if let filterVC = segue.destination
+                as? FilterViewController {
                 filterVC.delegate = self
-            } else if let nav = segue.destination as? UINavigationController,
-                      let filterVC = nav.topViewController as? FilterViewController {
+
+            } else if let nav = segue.destination
+                        as? UINavigationController,
+                      let filterVC = nav.topViewController
+                        as? FilterViewController {
                 filterVC.delegate = self
             }
         }
@@ -115,34 +152,66 @@ class HomePageViewController: UIViewController {
 }
 
 // MARK: - Filter Delegate
+
 extension HomePageViewController: FilterViewControllerDelegate {
 
-    func didApplyFilters(location: String?, status: String?, category: String?) {
+    /// Called when the user applies filters
+    func didApplyFilters(
+        location: String?,
+        status: String?,
+        category: String?
+    ) {
 
         filteredDonations = allDonations.filter { donation in
 
-            let locationMatch =
+            // Location filter
+            let matchesLocation =
                 location == nil ||
-                donation.location.lowercased() == location!.lowercased()
+                donation.location.lowercased() ==
+                location!.lowercased()
 
-            let statusMatch =
-                status == nil ||
-                donation.foodStatus.lowercased() == status!.lowercased()
-
-            let categoryMatch =
+            // Category filter
+            let matchesCategory =
                 category == nil ||
-                donation.category.lowercased() == category!.lowercased()
+                donation.category.lowercased() ==
+                category!.lowercased()
 
-            return locationMatch && statusMatch && categoryMatch
+            // Status filter (uses ExpiryStatus enum)
+            let matchesStatus: Bool = {
+                guard let status = status,
+                      let filterStatus = expiryStatus(from: status) else {
+                    return true
+                }
+                return donation.expiryStatus() == filterStatus
+            }()
+
+            return matchesLocation && matchesStatus && matchesCategory
         }
 
         reloadCards()
     }
+
+    /// Converts filter text into ExpiryStatus enum
+    /// (UI works with text, model works with enums)
+    private func expiryStatus(from text: String) -> ExpiryStatus? {
+        switch text.lowercased() {
+        case "fresh":
+            return .fresh
+        case "expires soon":
+            return .expiresSoon
+        case "expired":
+            return .expired
+        default:
+            return nil
+        }
+    }
 }
 
 // MARK: - UITextField Delegate
+
 extension HomePageViewController: UITextFieldDelegate {
 
+    /// Hides the keyboard when the user taps "Search"
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

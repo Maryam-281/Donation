@@ -23,7 +23,6 @@ class Donations {
     let donorName: String
     let location: String
     let category: String
-    let foodStatus: String
     let imageName: String
 
     // MARK: - Dates
@@ -42,7 +41,6 @@ class Donations {
         donorName: String,
         location: String,
         category: String,
-        foodStatus: String,
         imageName: String,
         productionDate: Date,
         expirationDate: Date
@@ -52,7 +50,6 @@ class Donations {
         self.donorName = donorName
         self.location = location
         self.category = category
-        self.foodStatus = foodStatus
         self.imageName = imageName
         self.productionDate = productionDate
         self.expirationDate = expirationDate
@@ -71,12 +68,30 @@ class Donations {
             donorName: "",
             location: "",
             category: "",
-            foodStatus: "",
             imageName: "",
             productionDate: Date(),
             expirationDate: Date()
         )
     }
 }
+
+extension Donations {
+
+    func expiryStatus() -> ExpiryStatus {
+        let today = Calendar.current.startOfDay(for: Date())
+        let expiry = Calendar.current.startOfDay(for: expirationDate)
+
+        let daysLeft = Calendar.current.dateComponents([.day], from: today, to: expiry).day ?? 0
+
+        if daysLeft < 0 {
+            return .expired
+        } else if daysLeft <= 2 {
+            return .expiresSoon
+        } else {
+            return .fresh
+        }
+    }
+}
+
 
 

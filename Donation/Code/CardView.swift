@@ -51,9 +51,9 @@ class CardView: UIView {
         self.donation = donation
 
         titleLabel.text = donation.title
-        let expiry = expiryInfo(for: donation)
-        expiryLabel.text = expiry.text
-        expiryLabel.textColor = expiry.color
+        let status = donation.expiryStatus()
+        expiryLabel.text = status.text
+        expiryLabel.textColor = status.color
 
         distanceLabel.text = donation.location
 
@@ -116,23 +116,6 @@ class CardView: UIView {
         animatePressDown()
         animateRelease {
             self.onDetailsTapped?(donation)
-        }
-    }
-
-    
-    private func expiryInfo(for donation: Donations) -> (text: String, color: UIColor) {
-
-        let today = Calendar.current.startOfDay(for: Date())
-        let expiry = Calendar.current.startOfDay(for: donation.expirationDate)
-
-        let daysLeft = Calendar.current.dateComponents([.day], from: today, to: expiry).day ?? 0
-
-        if daysLeft < 0 {
-            return ("Expired", .systemRed)
-        } else if daysLeft <= 2 {
-            return ("Expires soon", .systemOrange)
-        } else {
-            return ("Fresh", .systemGreen)
         }
     }
 

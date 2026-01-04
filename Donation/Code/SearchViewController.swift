@@ -28,7 +28,7 @@ class SearchViewController: UIViewController {
 
         // Load data
         allDonations = DonationStore.shared.donations
-        filteredDonations = []   // 🔑 Start empty
+        filteredDonations = [] // start empty
 
         // Search setup
         searchTextField.delegate = self
@@ -59,7 +59,7 @@ class SearchViewController: UIViewController {
             .lowercased() ?? ""
 
         if query.isEmpty {
-            filteredDonations = []   // hide cards
+            filteredDonations = []
         } else {
             filteredDonations = allDonations.filter {
                 $0.title.localizedCaseInsensitiveContains(query) ||
@@ -121,15 +121,14 @@ class SearchViewController: UIViewController {
             if let nav = segue.destination as? UINavigationController,
                let filterVC = nav.topViewController as? FilterViewController {
                 filterVC.delegate = self
-            }
-            else if let filterVC = segue.destination as? FilterViewController {
+            } else if let filterVC = segue.destination as? FilterViewController {
                 filterVC.delegate = self
             }
         }
     }
 }
 
-// MARK: - UITextField Delegate
+// MARK: - UITextFieldDelegate
 extension SearchViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -152,15 +151,34 @@ extension SearchViewController: FilterViewControllerDelegate {
             let matchesLocation =
                 location == nil || donation.location == location
 
-            let matchesStatus =
-                status == nil || donation.foodStatus == status
-
             let matchesCategory =
                 category == nil || donation.category == category
+
+            let matchesStatus: Bool = {
+                guard let status = status,
+                      let filterStatus = expiryStatus(from: status) else {
+                    return true
+                }
+                return donation.expiryStatus() == filterStatus
+            }()
 
             return matchesLocation && matchesStatus && matchesCategory
         }
 
         reloadCards()
+    }
+
+    // Convert filter text → ExpiryStatus
+    private func expiryStatus(from text: String) -> ExpiryStatus? {
+        switch text.lowercased() {
+        case "fresh":
+            return .fresh
+        case "expires soon":
+            return .expiresSoon
+        case "expired":
+            return .expired
+        default:
+            return nil
+        }
     }
 }
