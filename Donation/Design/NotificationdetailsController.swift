@@ -11,6 +11,9 @@ class NotificationdetailsController: UIViewController {
 
     @IBOutlet weak var goback: UIBarButtonItem!
     
+    @IBOutlet weak var donation: UIButton!
+    
+    
     @IBOutlet weak var xx: UIBarButtonItem!
     
     @IBOutlet weak var detailTitle: UITextField!
@@ -28,7 +31,7 @@ class NotificationdetailsController: UIViewController {
         }
     
     
-    @IBOutlet weak var vbutton: UIButton!
+    
     
     
 

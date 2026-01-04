@@ -44,7 +44,7 @@
                                                 </buttonConfiguration>
                                             </button>
                                             <connections>
-                                                <segue destination="6IF-Om-VhJ" kind="presentation" identifier="toNotificationDetail" modalPresentationStyle="fullScreen" id="Thx-Nd-5A2"/>
+                                                <segue destination="jvF-sH-jg9" kind="presentation" modalPresentationStyle="fullScreen" id="gdB-J6-gPy"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -195,11 +195,11 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="tbN-BH-zvA"/>
                     <connections>
-                        <outlet property="delete" destination="cP9-gG-UrN" id="nkK-3u-war"/>
-                        <outlet property="goback" destination="4Wv-bF-Y5Y" id="XyE-rd-AWq"/>
-                        <outlet property="settings" destination="oy5-16-MRa" id="1eV-xk-eIC"/>
-                        <outlet property="timeLabel1" destination="lHj-fO-cJe" id="Dpq-cN-LWk"/>
-                        <outlet property="titleLabel1" destination="DRn-zh-YIj" id="VnW-qg-H4B"/>
+                        <outlet property="delete" destination="cP9-gG-UrN" id="eXn-xn-MSz"/>
+                        <outlet property="goback" destination="4Wv-bF-Y5Y" id="9Ar-w3-8gM"/>
+                        <outlet property="settings" destination="oy5-16-MRa" id="lhs-K6-oTR"/>
+                        <outlet property="timeLabel1" destination="lHj-fO-cJe" id="6dn-gL-0Wh"/>
+                        <outlet property="titleLabel1" destination="DRn-zh-YIj" id="AaW-bi-HAo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -356,7 +356,7 @@
             </objects>
             <point key="canvasLocation" x="170" y="740"/>
         </scene>
-        <!--Contactus Controller-->
+        <!--Item-->
         <scene sceneID="PbW-fs-AU7">
             <objects>
                 <viewController id="p4Q-ZJ-V34" customClass="contactusController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
@@ -428,6 +428,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Submit"/>
                                 <connections>
+                                    <action selector="submitPressed:" destination="p4Q-ZJ-V34" eventType="touchUpInside" id="0Xi-JR-aw4"/>
                                     <segue destination="9i3-Jh-0cF" kind="presentation" modalPresentationStyle="fullScreen" id="Wpf-xJ-IVn"/>
                                 </connections>
                             </button>
@@ -442,14 +443,12 @@
                         <viewLayoutGuide key="safeArea" id="tbK-Hf-81O"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="uKO-hp-Tev"/>
                     <connections>
-                        <outlet property="button" destination="Upq-oB-btb" id="yvg-5y-8Oo"/>
                         <outlet property="email" destination="QCh-bA-Zq1" id="9ER-NI-eqp"/>
                         <outlet property="goback" destination="ztE-Mk-DYa" id="mMv-ZJ-kse"/>
                         <outlet property="message" destination="HFA-3b-sfb" id="Wve-Uw-scL"/>
                         <outlet property="name" destination="aNv-V9-pr3" id="mI7-IM-m6a"/>
-                        <outlet property="submit" destination="Upq-oB-btb" id="wZy-kf-Ait"/>
-                        <outlet property="submitPressed" destination="Upq-oB-btb" id="U26-WK-7c6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tru-5L-gVp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -542,14 +541,11 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="O1" destination="s9s-Y6-yI0" id="fMV-Sr-OJd"/>
-                        <outlet property="detailTime" destination="l6L-Iz-To9" id="yI4-qC-DRC"/>
-                        <outlet property="detailTitle" destination="GhM-Fw-jAJ" id="tTr-F2-881"/>
-                        <outlet property="goback" destination="qM5-u3-eJf" id="oWi-Sp-zmk"/>
-                        <outlet property="view" destination="3SJ-15-7Su" id="5K4-Td-MVM"/>
-                        <outlet property="viewdonation" destination="3SJ-15-7Su" id="bbR-xa-E1o"/>
-                        <outlet property="xbutton" destination="iFl-ZO-ZVu" id="Nlu-GO-9oh"/>
-                        <outlet property="xx" destination="iFl-ZO-ZVu" id="0He-nf-mjY"/>
+                        <outlet property="detailTime" destination="l6L-Iz-To9" id="vbe-zS-7Td"/>
+                        <outlet property="detailTitle" destination="GhM-Fw-jAJ" id="G0W-zn-fH2"/>
+                        <outlet property="donation" destination="3SJ-15-7Su" id="wuY-MM-SHI"/>
+                        <outlet property="goback" destination="qM5-u3-eJf" id="Wrf-V9-KCt"/>
+                        <outlet property="xx" destination="iFl-ZO-ZVu" id="lSK-VV-hff"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nuX-2D-v24" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -750,7 +746,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="S1" destination="UcS-5Z-4I6" id="aZq-FQ-nzN"/>
+                        <outlet property="S1" destination="UcS-5Z-4I6" id="VZe-Di-gmt"/>
                         <outlet property="goback" destination="tcL-NT-tj2" id="cnA-0y-q2f"/>
                         <outlet property="xx" destination="cAs-xE-DPO" id="kaj-Fr-Fcw"/>
                     </connections>
@@ -931,14 +927,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="FAQs" destination="ZFP-Z0-2pS" id="vVC-jP-4DI"/>
-                        <outlet property="aboutus" destination="GuG-rP-Hsz" id="bhM-tj-InB"/>
-                        <outlet property="contactus" destination="M98-mM-cmb" id="AYP-04-urw"/>
-                        <outlet property="goback" destination="BTs-eo-zE8" id="cR9-bF-hqc"/>
-                        <outlet property="guidelines" destination="blG-4l-7hH" id="Pml-Bq-xRd"/>
-                        <outlet property="issue" destination="zv3-9N-Rx7" id="sO0-fG-yF0"/>
-                        <outlet property="policy" destination="BvJ-qL-tLl" id="pG3-ZS-Vh1"/>
-                        <outlet property="terms" destination="KO7-kj-rUm" id="Lux-2U-eho"/>
+                        <outlet property="aboutUsButton" destination="GuG-rP-Hsz" id="LAF-5z-zWM"/>
+                        <outlet property="contactUsButton" destination="M98-mM-cmb" id="p70-EC-J5e"/>
+                        <outlet property="faqButton" destination="ZFP-Z0-2pS" id="DYR-c6-Dww"/>
+                        <outlet property="guidelinesButton" destination="blG-4l-7hH" id="Ct4-gz-3Sm"/>
+                        <outlet property="privacyButton" destination="BvJ-qL-tLl" id="qPM-Iz-1wN"/>
+                        <outlet property="reportIssueButton" destination="zv3-9N-Rx7" id="TpJ-bi-XYj"/>
+                        <outlet property="termsButton" destination="KO7-kj-rUm" id="Ouw-WN-V0G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uvw-zu-7U1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1157,7 +1152,7 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
                         <color key="backgroundColor" name="Color"/>
                     </view>
                     <connections>
-                        <outlet property="goback" destination="baJ-Ko-oJu" id="Taa-ef-Bls"/>
+                        <outlet property="goback" destination="baJ-Ko-oJu" id="vCc-4e-ykA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zNR-rg-atH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1673,12 +1668,7 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="delete" destination="D1T-eg-dEk" id="bmT-Yj-BPN"/>
-                        <outlet property="done" destination="D1T-eg-dEk" id="ieq-nH-nhA"/>
                         <outlet property="goback" destination="VjI-b8-pLJ" id="dli-I2-j9F"/>
-                        <outlet property="issue1" destination="vRc-VP-LIN" id="aco-zt-mZ0"/>
-                        <outlet property="issue2" destination="FwS-ge-CFb" id="6ZJ-ua-hZn"/>
-                        <outlet property="issue3" destination="lI4-O9-v72" id="Qde-SP-88Q"/>
                         <outlet property="message" destination="AiV-GY-3w1" id="c62-84-dGZ"/>
                         <outlet property="submit" destination="D1T-eg-dEk" id="Svh-AC-d2E"/>
                         <outlet property="type" destination="Yh1-91-2rA" id="Sv3-ar-nb4"/>
@@ -1908,6 +1898,7 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
                     </tabBar>
                     <connections>
                         <segue destination="Y6W-OH-hqX" kind="relationship" relationship="viewControllers" id="kAM-BU-Qaa"/>
+                        <segue destination="p4Q-ZJ-V34" kind="relationship" relationship="viewControllers" id="3zD-Kf-YK8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vGs-za-tpF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1916,9 +1907,10 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="V2S-mb-MXG"/>
-        <segue reference="bQB-0f-2c4"/>
-        <segue reference="UgB-Fc-6Ym"/>
+        <segue reference="7Nx-rU-yMa"/>
+        <segue reference="foH-Lu-TGW"/>
+        <segue reference="gqk-Tx-yjT"/>
+        <segue reference="3zD-Kf-YK8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
@@ -1938,25 +1930,25 @@ Plateful may suspend or terminate accounts that violate these Terms.</string>
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -13,6 +13,7 @@ class notificationsettingController: UIViewController {
     
     @IBOutlet weak var xx: UIBarButtonItem!
     
+   
     
     @IBAction func S1(_ sender: UISwitch) {
         print(sender.isOn)
