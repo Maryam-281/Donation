@@ -1,10 +1,3 @@
-//
-//  Chat.swift
-//  Donation
-//
-//  Created by BP-36-201-19 on 31/12/2025.
-//
-
 import Foundation
 
 struct Chat: Codable, Identifiable {
@@ -15,4 +8,13 @@ struct Chat: Codable, Identifiable {
         case id
         case createdAt = "created_at"
     }
+}
+
+// Extended chat with participant info
+struct ChatWithParticipant: Identifiable {
+    let chat: Chat
+    let otherUser: User
+    let lastMessage: Message?
+    
+    var id: UUID { chat.id }
 }

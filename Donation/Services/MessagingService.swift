@@ -3,35 +3,66 @@ import Supabase
 
 class MessagingService {
     var messages: [Message] = []
-    private let supabase = SupabaseManager.shared.client
-    private var realtimeChannel: RealtimeChannelV2?
-    private var currentChatId: UUID?
+    private let supabase = SupabaseService.shared.client
+    private var pollingTimer: Timer?
     
-    // Callback for when messages update
     var onMessagesUpdated: (([Message]) -> Void)?
     
-    // Send a message
-    func sendMessage(text: String, chatId: UUID, senderId: UUID) async throws {
-        let newMessage: [String: String] = [
-            "chat_id": chatId.uuidString,
-            "sender_id": senderId.uuidString,
-            "text": text
-        ]
+    // MARK: - Helper Structs for Encoding
+    private struct MessageInsert: Encodable {
+        let chat_id: String
+        let sender_id: String
+        let receiver_id: String
+        let text: String
+        let image_url: String?
         
-        struct EmptyResponse: Codable {}
-        let _: [EmptyResponse] = try await supabase
+        init(chatId: UUID, senderId: UUID, receiverId: UUID, text: String, imageUrl: String? = nil) {
+            self.chat_id = chatId.uuidString
+            self.sender_id = senderId.uuidString
+            self.receiver_id = receiverId.uuidString
+            self.text = text
+            self.image_url = imageUrl
+        }
+    }
+    
+    private struct MessageUpdate: Encodable {
+        let read_at: String
+    }
+    
+    func sendMessage(text: String, chatId: UUID, senderId: UUID, receiverId: UUID) async throws {
+        let newMessage = MessageInsert(
+            chatId: chatId,
+            senderId: senderId,
+            receiverId: receiverId,
+            text: text
+        )
+        
+        try await supabase
             .from("messages")
             .insert(newMessage)
             .execute()
-            .value
+        
+        try? await fetchMessages(chatId: chatId)
     }
     
-    // Fetch messages for a chat
-    func fetchMessages(chatId: UUID) async throws {
-        // Custom decoder for dates
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
+    func sendMessageWithImage(text: String, imageUrl: String, chatId: UUID, senderId: UUID, receiverId: UUID) async throws {
+        let newMessage = MessageInsert(
+            chatId: chatId,
+            senderId: senderId,
+            receiverId: receiverId,
+            text: text,
+            imageUrl: imageUrl
+        )
         
+        try await supabase
+            .from("messages")
+            .insert(newMessage)
+            .execute()
+        
+        try? await fetchMessages(chatId: chatId)
+    }
+    
+    func fetchMessages(chatId: UUID) async throws {
         let response: [Message] = try await supabase
             .from("messages")
             .select()
@@ -42,67 +73,37 @@ class MessagingService {
         
         self.messages = response
         
-        // Notify on main thread
-        await MainActor.run {
+        DispatchQueue.main.async {
             self.onMessagesUpdated?(response)
         }
     }
     
-    // Subscribe to real-time updates
     func subscribeToMessages(chatId: UUID) {
-        self.currentChatId = chatId
-        let channelId = "messages-\(chatId.uuidString)"
-        realtimeChannel = supabase.realtimeV2.channel(channelId)
-        
         Task {
-            // Subscribe to INSERT changes on messages table
-            let changes = await realtimeChannel!.postgresChange(
-                InsertAction.self,
-                schema: "public",
-                table: "messages",
-                filter: "chat_id=eq.\(chatId.uuidString)"
-            )
-            
-            await realtimeChannel?.subscribe()
-            
-            // Listen for changes
-            for await _ in changes {
-                handleNewMessage()
+            try? await fetchMessages(chatId: chatId)
+        }
+        
+        pollingTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self] _ in
+            Task {
+                try? await self?.fetchMessages(chatId: chatId)
             }
         }
     }
     
-    // Handle new message inserts
-    private func handleNewMessage() {
-        // When we get a new insert, just refetch all messages
-        guard let chatId = currentChatId else { return }
-        
-        Task {
-            try? await fetchMessages(chatId: chatId)
-        }
-    }
-    
-    // Unsubscribe when leaving chat
     func unsubscribe() {
-        Task {
-            await realtimeChannel?.unsubscribe()
-        }
-        realtimeChannel = nil
-        currentChatId = nil
+        pollingTimer?.invalidate()
+        pollingTimer = nil
     }
     
-    // Mark message as read
     func markAsRead(messageId: UUID) async throws {
-        let update: [String: String] = [
-            "read_at": ISO8601DateFormatter().string(from: Date())
-        ]
+        let update = MessageUpdate(
+            read_at: ISO8601DateFormatter().string(from: Date())
+        )
         
-        struct EmptyResponse: Codable {}
-        let _: [EmptyResponse] = try await supabase
+        try await supabase
             .from("messages")
             .update(update)
             .eq("id", value: messageId.uuidString)
             .execute()
-            .value
     }
 }

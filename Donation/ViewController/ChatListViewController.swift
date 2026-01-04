@@ -1,98 +1,133 @@
 import UIKit
 
-class ChatListViewController: UIViewController {
+class ChatsListViewController: UIViewController {
     
-    // This will be connected from Storyboard
-    @IBOutlet var tableView: UITableView!
+    private let searchController: UISearchController = {
+        let sc = UISearchController(searchResultsController: nil)
+        sc.searchBar.placeholder = "Search chats"
+        sc.obscuresBackgroundDuringPresentation = false
+        return sc
+    }()
     
+    private let tableView: UITableView = {
+        let tv = UITableView()
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        return tv
+    }()
     
-    private let chatService = ChatService()
-    private var chats: [Chat] = []
+    private var allChats: [(chatId: UUID, otherUser: User, lastMessage: String)] = []
+    private var filteredChats: [(chatId: UUID, otherUser: User, lastMessage: String)] = []
     
-    // For testing - we'll replace this with real auth later
-    private var currentUserId: UUID = UUID()
+    private var isSearching: Bool {
+        return searchController.isActive && !(searchController.searchBar.text?.isEmpty ?? true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Messages"
+        title = "Chats"
+        view.backgroundColor = .systemBackground
         
-        // Add "New Chat" button
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .add,
-            target: self,
-            action: #selector(newChatTapped)
-        )
-        
-        // Setup table view
+        setupSearchController()
         setupTableView()
-        
-        // Load chats
-        loadChats()
+        loadTestChats()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadChats()
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.delegate = self
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
     }
     
     private func setupTableView() {
+        view.addSubview(tableView)
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ChatCell")
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
-    private func loadChats() {
-        Task {
-            do {
-                let fetchedChats = try await chatService.getUserChats(userId: currentUserId)
-                self.chats = fetchedChats
-                
-                await MainActor.run {
-                    self.tableView.reloadData()
-                }
-            } catch {
-                await MainActor.run {
-                    showError(error)
-                }
+    private func loadTestChats() {
+        // Create multiple test users for demonstration
+        let janeUser = User(
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440002")!,
+            firstName: "Jane",
+            lastName: "Smith",
+            email: "jane@test.com",
+            birthDate: nil,
+            phoneNumber: nil,
+            profileImageUrl: nil,
+            isActive: true,
+            createdAt: nil
+        )
+        
+        allChats = [
+            (
+                chatId: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440001")!,
+                otherUser: janeUser,
+                lastMessage: "I am doing great, thanks!"
+            )
+        ]
+        
+        filteredChats = allChats
+        tableView.reloadData()
+        print("✅ Loaded \(allChats.count) chats")
+    }
+    
+    private func filterChats(with searchText: String) {
+        if searchText.isEmpty {
+            filteredChats = allChats
+        } else {
+            filteredChats = allChats.filter { chat in
+                chat.otherUser.fullName.lowercased().contains(searchText.lowercased()) ||
+                chat.lastMessage.lowercased().contains(searchText.lowercased())
             }
         }
-    }
-    
-    @objc private func newChatTapped() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let newChatVC = storyboard.instantiateViewController(
-            withIdentifier: "NewChatViewController"
-        ) as? NewChatViewController else { return }
-        
-        newChatVC.currentUserId = currentUserId
-        navigationController?.pushViewController(newChatVC, animated: true)
-    }
-    
-    private func showError(_ error: Error) {
-        let alert = UIAlertController(
-            title: "Error",
-            message: error.localizedDescription,
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        tableView.reloadData()
     }
 }
 
-// MARK: - Table View
-extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - UISearchResultsUpdating
+extension ChatsListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchText = searchController.searchBar.text ?? ""
+        filterChats(with: searchText)
+    }
+}
+
+// MARK: - UISearchControllerDelegate
+extension ChatsListViewController: UISearchControllerDelegate {
+    func didDismissSearchController(_ searchController: UISearchController) {
+        filteredChats = allChats
+        tableView.reloadData()
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+extension ChatsListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chats.count
+        return isSearching ? filteredChats.count : allChats.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell", for: indexPath)
+        let chats = isSearching ? filteredChats : allChats
         let chat = chats[indexPath.row]
         
-        // Simple display - we'll improve this later
-        cell.textLabel?.text = "Chat \(chat.id.uuidString.prefix(8))"
+        var config = cell.defaultContentConfiguration()
+        config.text = chat.otherUser.fullName
+        config.secondaryText = chat.lastMessage
+        cell.contentConfiguration = config
         cell.accessoryType = .disclosureIndicator
         
         return cell
@@ -101,18 +136,15 @@ extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        let chats = isSearching ? filteredChats : allChats
         let chat = chats[indexPath.row]
-        openChat(chat)
-    }
-    
-    private func openChat(_ chat: Chat) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let chatVC = storyboard.instantiateViewController(
-            withIdentifier: "ChatViewController"
-        ) as? ChatViewController else { return }
+        let currentUserId = UUID(uuidString: "550e8400-e29b-41d4-a716-446655440001")!
         
-        chatVC.chatId = chat.id
+        let chatVC = ChatViewController()
+        chatVC.chatId = chat.chatId
         chatVC.currentUserId = currentUserId
+        chatVC.otherUser = chat.otherUser
+        
         navigationController?.pushViewController(chatVC, animated: true)
     }
 }

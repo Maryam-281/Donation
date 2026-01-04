@@ -2,37 +2,35 @@ import Foundation
 import Supabase
 
 class ChatService {
-    private let supabase = SupabaseManager.shared.client
+    private let supabase = SupabaseService.shared.client  // ← Changed
+    private let userService = UserService()
     
-    // Create a new chat with participants
+    // Rest stays the same...
+    
     func createChat(participantIds: [UUID]) async throws -> UUID {
-        // Create the chat - insert empty dictionary
-        struct ChatInsertResponse: Codable {
-            let id: String
-            let created_at: String
+        if let existingChatId = try await findExistingChat(between: participantIds) {
+            return existingChatId
         }
         
-        let response: [ChatInsertResponse] = try await supabase
+        let chatId = participantIds[0]
+        
+        let newChat: [String: String] = [
+            "id": chatId.uuidString
+        ]
+        
+        let _: EmptyResponse = try await supabase
             .from("chats")
-            .insert(["id": UUID().uuidString])
-            .select()
+            .insert(newChat)
             .execute()
             .value
         
-        guard let chatIdString = response.first?.id,
-              let chatId = UUID(uuidString: chatIdString) else {
-            throw NSError(domain: "ChatService", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to create chat"])
-        }
-        
-        // Add participants
         for userId in participantIds {
             let participant: [String: String] = [
                 "chat_id": chatId.uuidString,
                 "user_id": userId.uuidString
             ]
             
-            struct EmptyResponse: Codable {}
-            let _: [EmptyResponse] = try await supabase
+            let _: EmptyResponse = try await supabase
                 .from("chat_participants")
                 .insert(participant)
                 .execute()
@@ -42,9 +40,35 @@ class ChatService {
         return chatId
     }
     
-    // Get all chats for current user
-    func getUserChats(userId: UUID) async throws -> [Chat] {
-        // First get chat IDs where user is a participant
+    private func findExistingChat(between userIds: [UUID]) async throws -> UUID? {
+        guard userIds.count == 2 else { return nil }
+        
+        struct ParticipantResponse: Codable {
+            let chat_id: String
+        }
+        
+        let user1Chats: [ParticipantResponse] = try await supabase
+            .from("chat_participants")
+            .select("chat_id")
+            .eq("user_id", value: userIds[0].uuidString)
+            .execute()
+            .value
+        
+        let user2Chats: [ParticipantResponse] = try await supabase
+            .from("chat_participants")
+            .select("chat_id")
+            .eq("user_id", value: userIds[1].uuidString)
+            .execute()
+            .value
+        
+        let user1ChatIds = Set(user1Chats.map { $0.chat_id })
+        let user2ChatIds = Set(user2Chats.map { $0.chat_id })
+        let commonChats = user1ChatIds.intersection(user2ChatIds)
+        
+        return commonChats.first.flatMap { UUID(uuidString: $0) }
+    }
+    
+    func getUserChatsWithDetails(userId: UUID) async throws -> [ChatWithParticipant] {
         struct ParticipantResponse: Codable {
             let chat_id: String
         }
@@ -57,15 +81,9 @@ class ChatService {
             .value
         
         let chatIds = participations.compactMap { $0.chat_id }
-        
         guard !chatIds.isEmpty else { return [] }
         
-        // Custom decoder for dates
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        
-        // Then get the actual chat details
-        let response: [Chat] = try await supabase
+        let chats: [Chat] = try await supabase
             .from("chats")
             .select()
             .in("id", values: chatIds)
@@ -73,10 +91,25 @@ class ChatService {
             .execute()
             .value
         
-        return response
+        var chatsWithDetails: [ChatWithParticipant] = []
+        
+        for chat in chats {
+            let participants = try await getChatParticipants(chatId: chat.id)
+            let otherUserId = participants.first { $0 != userId } ?? userId
+            
+            let otherUser = try await userService.getUser(id: otherUserId)
+            let lastMessage = try? await getLastMessage(chatId: chat.id)
+            
+            chatsWithDetails.append(ChatWithParticipant(
+                chat: chat,
+                otherUser: otherUser,
+                lastMessage: lastMessage
+            ))
+        }
+        
+        return chatsWithDetails
     }
     
-    // Get participants for a chat
     func getChatParticipants(chatId: UUID) async throws -> [UUID] {
         struct ParticipantResponse: Codable {
             let user_id: String
@@ -92,14 +125,20 @@ class ChatService {
         return participants.compactMap { UUID(uuidString: $0.user_id) }
     }
     
-    // Delete a chat
-    func deleteChat(chatId: UUID) async throws {
-        struct EmptyResponse: Codable {}
-        let _: [EmptyResponse] = try await supabase
-            .from("chats")
-            .delete()
-            .eq("id", value: chatId.uuidString)
+    private func getLastMessage(chatId: UUID) async throws -> Message {
+        let messages: [Message] = try await supabase
+            .from("messages")
+            .select()
+            .eq("chat_id", value: chatId.uuidString)
+            .order("created_at")
+            .limit(1)
             .execute()
             .value
+        
+        guard let lastMessage = messages.first else {
+            throw NSError(domain: "ChatService", code: 404, userInfo: ["NSLocalizedDescriptionKey": "No messages found"])
+        }
+        
+        return lastMessage
     }
 }

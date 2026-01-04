@@ -74,7 +74,7 @@
         <!--Chat View Controller-->
         <scene sceneID="n6E-cY-7ff">
             <objects>
-                <viewController storyboardIdentifier="ChatViewController" id="JHR-Hm-6S6" customClass="ChatViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JHR-Hm-6S6" customClass="ChatViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C07-Jf-cbT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -204,7 +204,7 @@
         <!--Navigation Controller-->
         <scene sceneID="KPs-ge-jxB">
             <objects>
-                <navigationController id="Rb7-4j-Ozi" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" id="Rb7-4j-Ozi" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bY5-GJ-zYB">
                         <rect key="frame" x="0.0" y="118" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -1,25 +1,12 @@
-*.xcodeproj/*
-!*xcodeproj/project.pbxproj
-!*.xcodeproj/xcshareddata/
-*.xcworkspace/*
-!*.scworkspace/contents.xcworkspaceddata
-
-#Credentials - KEEP PRIVATE
+# Credentials
 Config.plist
 
-#Swift Package Manager
-.swiftpm/
-.build/
-
-#macOD
-.DS_STORE
-
-#User data
+# Xcode
+*.xcuserstate
 xcuserdata/
 DerivedData/
-*.xcuserstate
+.DS_Store
 
-#Build
-build/
-*.ipa
-'''
+# Swift Package Manager
+.swiftpm/
+.build/
