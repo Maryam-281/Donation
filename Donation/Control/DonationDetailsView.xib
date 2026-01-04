@@ -15,16 +15,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="D4y-Yw-dQ8">
-                    <rect key="frame" x="34" y="180" width="325" height="492"/>
+                    <rect key="frame" x="32" y="158" width="345" height="616"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bUk-Fn-rRC">
-                            <rect key="frame" x="0.0" y="0.0" width="325" height="197"/>
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="197"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="197" id="E4V-i8-g1N"/>
+                                <constraint firstAttribute="width" constant="345" id="Lbj-GO-rew"/>
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="z9x-uZ-yt4">
-                            <rect key="frame" x="0.0" y="222" width="305" height="270"/>
+                            <rect key="frame" x="0.0" y="222" width="325" height="394"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chicken with Broccoli and Rice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xG0-kR-QYn">
                                     <rect key="frame" x="0.0" y="0.0" width="277" height="23"/>
@@ -33,7 +34,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuG-Ay-Z4K">
-                                    <rect key="frame" x="0.0" y="25" width="305" height="139"/>
+                                    <rect key="frame" x="0.0" y="25" width="325" height="263"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <string key="text">This Chicken with Broccoli and Rice is a delicious blend of succulent, savory chicken pieces and crisp, vibrant broccoli florets. It combines the tender texture of stir-fried chicken with the firm, satisfying bite of freshly steamed broccoli and the soft, fluffy texture of perfectly cooked white rice.</string>
                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -41,37 +42,37 @@
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category: Prepared Meals" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvk-LK-h6j">
-                                    <rect key="frame" x="0.0" y="166" width="157.33333333333334" height="15.666666666666657"/>
+                                    <rect key="frame" x="0.0" y="290" width="157.33333333333334" height="15.666666666666686"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Production date: 20/04/2025" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUn-hb-05D">
-                                    <rect key="frame" x="0.0" y="183.66666666666663" width="175.66666666666666" height="15.666666666666657"/>
+                                    <rect key="frame" x="0.0" y="307.66666666666663" width="175.66666666666666" height="15.666666666666686"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration date: 24/04/2025 " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sln-uE-wzZ">
-                                    <rect key="frame" x="0.0" y="201.33333333333337" width="173.66666666666666" height="15.666666666666657"/>
+                                    <rect key="frame" x="0.0" y="325.33333333333337" width="173.66666666666666" height="15.666666666666686"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donor: Maryam Atrhhrffhhhlshehabi" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1i-AE-Td3">
-                                    <rect key="frame" x="0.0" y="219" width="217.33333333333334" height="15.666666666666657"/>
+                                    <rect key="frame" x="0.0" y="343" width="217.33333333333334" height="15.666666666666686"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Status: Fresh" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yxw-cv-KgE">
-                                    <rect key="frame" x="0.0" y="236.66666666666663" width="114" height="15.666666666666657"/>
+                                    <rect key="frame" x="0.0" y="360.66666666666663" width="114" height="15.666666666666686"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Southern governate" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFe-Lf-Cba">
-                                    <rect key="frame" x="0.0" y="254.33333333333334" width="120" height="15.666666666666657"/>
+                                    <rect key="frame" x="0.0" y="378.33333333333337" width="120" height="15.666666666666686"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -90,10 +91,10 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="D4y-Yw-dQ8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="34" id="2WB-KY-8wQ"/>
-                <constraint firstItem="D4y-Yw-dQ8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="6Jn-lH-Q3j"/>
-                <constraint firstItem="D4y-Yw-dQ8" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="62" id="Ihm-BP-S9c"/>
-                <constraint firstItem="D4y-Yw-dQ8" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="JEd-Tq-sQS"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="D4y-Yw-dQ8" secondAttribute="bottom" constant="10" id="G3N-yo-reM"/>
+                <constraint firstItem="D4y-Yw-dQ8" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="40" id="MhX-Aq-sSN"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="D4y-Yw-dQ8" secondAttribute="trailing" constant="16" id="OWT-4a-vz8"/>
+                <constraint firstItem="D4y-Yw-dQ8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="dJR-RA-J1p"/>
             </constraints>
             <connections>
                 <outlet property="categoryLabel" destination="Jvk-LK-h6j" id="IqK-py-c81"/>
