@@ -35,11 +35,20 @@ class DonationHistoryViewController: UIViewController {
     
     // MARK: - Properties
     private var donations: [DonationHistory] = []
-    private var userEmail: String = ""
+    private var userId: UUID?  // Changed from userEmail to userId
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // In viewDidLoad
+        Task {
+            try? await SupabaseService.shared.listAllTables()
+        }
+        
+        #if DEBUG
+        setupTestUser() // Only runs in debug builds
+        #endif
         
         setupNavigationBar()
         setupUI()
@@ -111,31 +120,31 @@ class DonationHistoryViewController: UIViewController {
         
         Task {
             do {
-                // Get user email
-                if let email = UserDefaults.standard.string(forKey: "userEmail") {
-                    userEmail = email
-                } else {
-                    userEmail = "testing@testing.com"
-                    UserDefaults.standard.set(userEmail, forKey: "userEmail")
+                guard let userIdString = UserDefaults.standard.string(forKey: "userId"),
+                      let uuid = UUID(uuidString: userIdString) else {
+                    throw NSError(domain: "DonationHistory", code: 401,
+                                userInfo: [NSLocalizedDescriptionKey: "Invalid user ID"])
                 }
                 
-                print("🔍 Searching for email: '\(userEmail)'")
+                userId = uuid
                 
-                donations = try await SupabaseService.shared.fetchDonationHistory(forEmail: userEmail)
+                // TEST: Run raw query test
+                try await SupabaseService.shared.testRawQuery(userId: uuid.uuidString.lowercased())
+                
+                print("🔍 Fetching donations for userId: '\(uuid.uuidString)'")
+                
+                donations = try await SupabaseService.shared.fetchDonationHistory(forUserId: uuid)
                 
                 print("📦 Received \(donations.count) donations")
-                print("📋 Donations: \(donations)")
                 
                 await MainActor.run {
                     showLoading(false)
                     updateEmptyState()
                     tableView.reloadData()
-                    
                     print("✅ UI Updated - isEmpty: \(donations.isEmpty)")
                 }
             } catch {
                 print("❌ Error: \(error)")
-                print("❌ Error details: \(error.localizedDescription)")
                 
                 await MainActor.run {
                     showLoading(false)
@@ -146,9 +155,15 @@ class DonationHistoryViewController: UIViewController {
     }
     
     @objc private func refreshData() {
+        guard let userId = userId else {
+            print("⚠️ No user ID available for refresh")
+            tableView.refreshControl?.endRefreshing()
+            return
+        }
+        
         Task {
             do {
-                donations = try await SupabaseService.shared.fetchDonationHistory(forEmail: userEmail)
+                donations = try await SupabaseService.shared.fetchDonationHistory(forUserId: userId)
                 
                 await MainActor.run {
                     tableView.refreshControl?.endRefreshing()
@@ -231,5 +246,15 @@ extension DonationHistoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    // MARK: - Testing Helper (Remove when login is implemented)
+    private func setupTestUser() {
+        #if DEBUG
+        // Get UUID from your Supabase User table
+        let testUserId = "83e4f185-b461-4172-b3d1-8860d2ba5648" // Replace with actual UUID from database
+        UserDefaults.standard.set(testUserId, forKey: "userId")
+        print("🧪 Test user ID set: \(testUserId)")
+        #endif
     }
 }

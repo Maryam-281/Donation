@@ -9,15 +9,20 @@ struct DonationHistory: Codable, Identifiable {
     let date: String?
     let status: String?
     let user: String?
+    let donor_id: UUID
+    let collector_id: UUID?
     
     var id: Int { donationid }
     
+    // Explicitly define coding keys to match database column names
     enum CodingKeys: String, CodingKey {
-        case donationid
-        case email
-        case date
-        case status
-        case user
+        case donationid = "donationid"
+        case email = "email"
+        case date = "date"
+        case status = "status"
+        case user = "user"
+        case donor_id = "donor_id"
+        case collector_id = "collector_id"
     }
     
     // Helper computed properties

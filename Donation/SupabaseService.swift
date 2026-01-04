@@ -18,18 +18,44 @@ class SupabaseService {
     }
     
     // MARK: - Fetch Donation History
-    func fetchDonationHistory(forEmail email: String) async throws -> [DonationHistory] {
-        print("🌐 Supabase: Fetching donations for email: '\(email)'")
+    // MARK: - Fetch Donation History for User (Donor OR Collector)
+    func fetchDonationHistory(forUserId userId: UUID) async throws -> [DonationHistory] {
+        let uuidString = userId.uuidString.lowercased()
+        print("🌐 Supabase: Fetching donations for userId: '\(uuidString)'")
         
+        // Try fetching without the OR filter first to debug
+        print("🧪 DEBUG: First trying to fetch by donor_id only...")
+        let donorResponse: [DonationHistory] = try await client
+            .from("Donation_history")
+            .select()
+            .eq("donor_id", value: uuidString)
+            .execute()
+            .value
+        print("🧪 DEBUG: Found \(donorResponse.count) donations as donor")
+        
+        print("🧪 DEBUG: Now trying to fetch by collector_id only...")
+        let collectorResponse: [DonationHistory] = try await client
+            .from("Donation_history")
+            .select()
+            .eq("collector_id", value: uuidString)
+            .execute()
+            .value
+        print("🧪 DEBUG: Found \(collectorResponse.count) donations as collector")
+        
+        // Now try with OR
+        print("🧪 DEBUG: Now trying with OR filter...")
         let response: [DonationHistory] = try await client
             .from("Donation_history")
             .select()
-            .eq("email", value: email)
+            .or("donor_id.eq.\(uuidString),collector_id.eq.\(uuidString)")
             .order("date", ascending: false)
             .execute()
             .value
         
-        print("🌐 Supabase: Response count: \(response.count)")
+        print("🌐 Supabase: Final response count: \(response.count)")
+        if response.count > 0 {
+            print("🌐 First donation: \(response[0])")
+        }
         
         return response
     }
@@ -145,5 +171,62 @@ class SupabaseService {
             .update(["status": status])
             .eq("donationid", value: donationId)
             .execute()
+    }
+    
+    func testRawQuery(userId: String) async throws {
+        print("🧪 Testing raw query for userId: \(userId)")
+        
+        // Use RPC or raw query if available
+        let query = """
+        SELECT * FROM "Donation_history" 
+        WHERE donor_id = '\(userId)' OR collector_id = '\(userId)'
+        """
+        
+        print("🧪 Query: \(query)")
+        
+        // Try a simpler select all first
+        let allDonations: [DonationHistory] = try await client
+            .from("Donation_history")
+            .select()
+            .execute()
+            .value
+        
+        print("🧪 Total donations in table: \(allDonations.count)")
+        
+        // Check if our UUID appears anywhere
+        let matching = allDonations.filter {
+            $0.donor_id.uuidString.lowercased() == userId.lowercased() ||
+            $0.collector_id?.uuidString.lowercased() == userId.lowercased()
+        }
+        print("🧪 Matching donations found: \(matching.count)")
+        if matching.count > 0 {
+            print("🧪 Matching donation: \(matching[0])")
+        }
+    }
+    func listAllTables() async throws {
+        print("🧪 Attempting to list tables...")
+        
+        // Try different table name variations
+        let tableVariations = [
+            "Donation_history",
+            "donation_history",
+            "DONATION_HISTORY",
+            "donationhistory"
+        ]
+        
+        for tableName in tableVariations {
+            do {
+                print("🧪 Trying table: '\(tableName)'")
+                let response: [DonationHistory] = try await client
+                    .from(tableName)
+                    .select()
+                    .limit(1)
+                    .execute()
+                    .value
+                print("✅ Table '\(tableName)' exists with \(response.count) records")
+            } catch {
+                print("❌ Table '\(tableName)' failed: \(error.localizedDescription)")
+            }
+        }
     }
 }
