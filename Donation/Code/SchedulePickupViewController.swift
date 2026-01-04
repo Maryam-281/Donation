@@ -73,11 +73,11 @@ class SchedulePickupViewController: UIViewController {
             ),
             subtitleLabel.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
-                constant: 28
+                constant: 38
             ),
             subtitleLabel.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
-                constant: 18
+                constant: -10
             )
         ])
     }
@@ -94,11 +94,11 @@ class SchedulePickupViewController: UIViewController {
             ),
             datePicker.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
-                constant: 16
+                constant: 24
             ),
             datePicker.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
-                constant: -16
+                constant: -24
             )
         ])
     }
@@ -119,15 +119,15 @@ class SchedulePickupViewController: UIViewController {
         NSLayoutConstraint.activate([
             contentView.topAnchor.constraint(
                 equalTo: datePicker.bottomAnchor,
-                constant: 2
+                constant: -10
             ),
             contentView.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
-                constant: 16
+                constant: 18
             ),
             contentView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
-                constant: -16
+                constant: -18
             )
         ])
     }

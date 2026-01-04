@@ -26,63 +26,95 @@ class StatusTrackingViewController: UIViewController {
     @IBOutlet weak var feedbackButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
 
-    private let activeColor = UIColor(named: "#89AAC5")
-    private let inactiveColor = UIColor(named: "#C1D6E6")
+    // MARK: - Colors
+    private let activeColor = UIColor(hex: "#89AAC5")
+    private let inactiveColor = UIColor(hex: "#C1D6E6")
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupButtons()
+        configureButtons()
         updateUI()
     }
 
-    private func setupButtons() {
+    // MARK: - Button Setup
+    private func configureButtons() {
+        // Force initial state (ignore storyboard)
+        primaryButton.isHidden = true
         feedbackButton.isHidden = true
         doneButton.isHidden = true
+
+        primaryButton.isEnabled = true
+        feedbackButton.isEnabled = true
+        doneButton.isEnabled = true
+
+        primaryButton.alpha = 1
+        feedbackButton.alpha = 1
+        doneButton.alpha = 1
     }
 
+    private func resetButtons() {
+        primaryButton.isHidden = true
+        feedbackButton.isHidden = true
+        doneButton.isHidden = true
+
+        primaryButton.isEnabled = true
+        feedbackButton.isEnabled = true
+        doneButton.isEnabled = true
+
+        primaryButton.alpha = 1
+        feedbackButton.alpha = 1
+        doneButton.alpha = 1
+    }
+
+    // MARK: - Circles
     private func resetCircles() {
         [pendingCircle, acceptedCircle, collectedCircle, completedCircle]
             .forEach { $0?.tintColor = inactiveColor }
     }
 
+    // MARK: - UI Update (SINGLE SOURCE OF TRUTH)
     private func updateUI() {
         guard let donation else { return }
-        
+
         titleLabel.text = donation.title
+
         resetCircles()
-        
-        primaryButton.isHidden = false
-        feedbackButton.isHidden = true
-        doneButton.isHidden = true
-        
+        resetButtons()
+
         switch donation.pickupStatus {
-            
+
         case .available:
             statusLabel.text = "Available"
             dateLabel.text = "Not scheduled yet"
-            primaryButton.isHidden = true
-            
+
         case .scheduled:
             pendingCircle.tintColor = activeColor
             statusLabel.text = "Pickup Scheduled"
             dateLabel.text = "Waiting for donor confirmation"
+
+            primaryButton.isHidden = false
             primaryButton.setTitle("Mark as Accepted", for: .normal)
-            
+
         case .accepted:
             pendingCircle.tintColor = activeColor
             acceptedCircle.tintColor = activeColor
             statusLabel.text = "Donation Accepted"
             dateLabel.text = "Waiting for pickup"
+
+            primaryButton.isHidden = false
             primaryButton.setTitle("Confirm Pickup", for: .normal)
-            
+
         case .collected:
             pendingCircle.tintColor = activeColor
             acceptedCircle.tintColor = activeColor
             collectedCircle.tintColor = activeColor
             statusLabel.text = "Donation Collected"
             dateLabel.text = "In progress"
+
+            primaryButton.isHidden = false
             primaryButton.setTitle("Collection Completed", for: .normal)
-            
+
         case .completed:
             pendingCircle.tintColor = activeColor
             acceptedCircle.tintColor = activeColor
@@ -90,25 +122,27 @@ class StatusTrackingViewController: UIViewController {
             completedCircle.tintColor = activeColor
             statusLabel.text = "Donation Completed"
             dateLabel.text = "Thank you!"
-            
-            primaryButton.isHidden = true
+
             feedbackButton.isHidden = false
             doneButton.isHidden = false
         }
     }
 
-
+    // MARK: - Actions
     @IBAction func primaryButtonTapped(_ sender: UIButton) {
-        switch donation?.pickupStatus {
+        guard let donation else { return }
+
+        switch donation.pickupStatus {
         case .scheduled:
-            donation?.pickupStatus = .accepted
+            donation.pickupStatus = .accepted
         case .accepted:
-            donation?.pickupStatus = .collected
+            donation.pickupStatus = .collected
         case .collected:
-            donation?.pickupStatus = .completed
+            donation.pickupStatus = .completed
         default:
             break
         }
+
         updateUI()
     }
 
