@@ -2,112 +2,80 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
+@MainActor
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
-    // يجي من LoginType
-    var selectedRole: String = ""
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if selectedRole.isEmpty {
-            selectedRole = UserDefaults.standard.string(forKey: "selectedRole") ?? ""
-        }
+        print("LoginViewController loaded")
     }
 
+    // MARK: - Login
     @IBAction func loginButtonTapped(_ sender: UIButton) {
 
         let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         let password = passwordTextField.text ?? ""
 
-        if email.isEmpty || password.isEmpty {
-            showAlert("Please enter email and password")
+        guard !email.isEmpty, !password.isEmpty else {
+            showAlert(title: "Missing Info", message: "Please enter email and password.")
             return
         }
 
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
-            guard let self = self else { return }
+            guard let self else { return }
 
             if let error = error {
-                self.showAlert(error.localizedDescription)
+                self.showAlert(title: "Login Failed", message: error.localizedDescription)
                 return
             }
 
-            // خزّني الدور
-            if !self.selectedRole.isEmpty {
-                UserDefaults.standard.set(self.selectedRole, forKey: "selectedRole")
-            }
-
-            // خزّني الإيميل لعرضه في Profile
-            if let userEmail = result?.user.email {
-                UserDefaults.standard.set(userEmail, forKey: "userEmail")
-            }
-
-            // نجيب الاسم من Firestore (إذا موجود) ونخزنه
-            if let uid = result?.user.uid {
-                Firestore.firestore().collection("users").document(uid).getDocument { doc, _ in
-                    if let data = doc?.data(),
-                       let name = data["name"] as? String,
-                       !name.isEmpty {
-                        UserDefaults.standard.set(name, forKey: "userName")
-                    }
-                    // بعدين روحي Home
-                    self.goToHome()
-                }
-            } else {
-                self.goToHome()
-            }
+            print("✅ LOGIN SUCCESS:", result?.user.uid ?? "no uid")
+            self.goToHome()
         }
     }
 
-    private func goToHome() {
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
-    }
-
-    // Forgot Password
+    // MARK: - Forgot Password
     @IBAction func forgotPasswordTapped(_ sender: UIButton) {
 
-        let alert = UIAlertController(
-            title: "Reset Password",
-            message: "Enter your email address",
-            preferredStyle: .alert
-        )
+        let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
 
-        alert.addTextField { textField in
-            textField.placeholder = "Email"
-            textField.keyboardType = .emailAddress
+        guard !email.isEmpty else {
+            showAlert(
+                title: "Enter Email",
+                message: "Please type your email first, then tap Forgot Password."
+            )
+            return
         }
 
-        let sendAction = UIAlertAction(title: "Send", style: .default) { _ in
-            let email = alert.textFields?.first?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        Auth.auth().sendPasswordReset(withEmail: email) { [weak self] error in
+            guard let self else { return }
 
-            if email.isEmpty {
-                self.showAlert("Please enter your email")
+            if let error = error {
+                self.showAlert(title: "Reset Failed", message: error.localizedDescription)
                 return
             }
 
-            Auth.auth().sendPasswordReset(withEmail: email) { error in
-                if let error = error {
-                    self.showAlert(error.localizedDescription)
-                } else {
-                    self.showAlert("Password reset email sent ✅ (Check inbox / spam)")
-                }
-            }
+            self.showAlert(
+                title: "Email Sent",
+                message: "A password reset link has been sent to:\n\(email)"
+            )
         }
-
-        alert.addAction(sendAction)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        present(alert, animated: true)
     }
 
-    func showAlert(_ message: String) {
-        let alert = UIAlertController(title: "Message", message: message, preferredStyle: .alert)
+    // MARK: - Go To Home
+    private func goToHome() {
+        let sb = UIStoryboard(name: "Login", bundle: nil)
+        let homeVC = sb.instantiateViewController(withIdentifier: "HomeViewController")
+        homeVC.modalPresentationStyle = .fullScreen
+        present(homeVC, animated: true)
+    }
+
+    // MARK: - Alert
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }

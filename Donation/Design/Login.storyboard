@@ -60,16 +60,119 @@
             </objects>
             <point key="canvasLocation" x="-1207" y="-33"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="055-GE-zoR">
             <objects>
-                <viewController id="fv4-3H-Ks4" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" id="fv4-3H-Ks4" customClass="SettingsViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Zs-Dr-Y9L">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="4fm-zy-Idn">
+                                <rect key="frame" x="70" y="119" width="253" height="521"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUc-wl-yJs">
+                                        <rect key="frame" x="1.6666666666666714" y="0.0" width="250" height="38.333333333333336"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="Khx-BB-pKR"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="About Us"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mSC-Jq-nML">
+                                        <rect key="frame" x="1.6666666666666714" y="60.333333333333343" width="250" height="38.333333333333343"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="6ku-c2-eWX"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Edit Profile"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPT-4U-dRw">
+                                        <rect key="frame" x="1.6666666666666714" y="120.66666666666664" width="250" height="38.333333333333329"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="KBk-O1-TSP"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="User List"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3jT-aA-gby">
+                                        <rect key="frame" x="1.6666666666666714" y="181" width="250" height="38.333333333333343"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="PkM-NW-hfK"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Donation History"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhC-gX-uHj">
+                                        <rect key="frame" x="1.6666666666666714" y="241.33333333333334" width="250" height="38.333333333333343"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="Jjr-Tw-GAS"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Notifcations"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xrN-rA-p1I">
+                                        <rect key="frame" x="1.6666666666666714" y="301.66666666666669" width="250" height="38.333333333333314"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="ixW-nV-OMi"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Add New User"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSc-Mb-OsS">
+                                        <rect key="frame" x="1.6666666666666714" y="362" width="250" height="38.333333333333314"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="Pw7-Ur-Weo"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Report List"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeB-hR-CUA">
+                                        <rect key="frame" x="1.6666666666666714" y="422.33333333333337" width="250" height="38.333333333333314"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="wSw-Eb-D8U"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Help &amp; Support"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lvq-yp-DAl">
+                                        <rect key="frame" x="1.6666666666666714" y="482.66666666666663" width="250" height="38.333333333333371"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="VsX-VD-PPa"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Create New Account"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7YF-zl-MWF">
+                                <rect key="frame" x="165" y="89" width="63" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="DZT-0c-ihQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4fm-zy-Idn" firstAttribute="top" secondItem="DZT-0c-ihQ" secondAttribute="top" constant="60" id="4Oi-Og-wvp"/>
+                            <constraint firstItem="4fm-zy-Idn" firstAttribute="leading" secondItem="DZT-0c-ihQ" secondAttribute="leading" constant="70" id="UT3-3o-7Wa"/>
+                            <constraint firstItem="DZT-0c-ihQ" firstAttribute="trailing" secondItem="4fm-zy-Idn" secondAttribute="trailing" constant="70" id="YYx-JC-JdE"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Np9-0J-ekG"/>
+                    <connections>
+                        <outlet property="btnAboutUs" destination="KUc-wl-yJs" id="C7K-Po-aag"/>
+                        <outlet property="btnAddNewUser" destination="xrN-rA-p1I" id="F9C-Gj-1CD"/>
+                        <outlet property="btnCreateNewAccount" destination="lvq-yp-DAl" id="2xV-Z4-10y"/>
+                        <outlet property="btnDonationHistory" destination="3jT-aA-gby" id="TCL-ZZ-LDJ"/>
+                        <outlet property="btnEditProfile" destination="mSC-Jq-nML" id="RGJ-gQ-NlZ"/>
+                        <outlet property="btnHelpSupport" destination="qeB-hR-CUA" id="tWx-N8-SCO"/>
+                        <outlet property="btnNotifications" destination="fhC-gX-uHj" id="dOD-aS-16Z"/>
+                        <outlet property="btnReportList" destination="aSc-Mb-OsS" id="dsM-Mg-Rbp"/>
+                        <outlet property="btnUsersList" destination="iPT-4U-dRw" id="3Js-DY-PCk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3D6-Zi-vPw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -94,14 +197,14 @@
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7ab-se-c4e">
                                         <rect key="frame" x="0.0" y="54" width="345" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tfc-Ay-lMi">
                                         <rect key="frame" x="0.0" y="108" width="345" height="38.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Log in"/>
                                         <connections>
-                                            <action selector="loginButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="CQw-oE-DdX"/>
+                                            <action selector="loginButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="XeU-w1-cap"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -136,7 +239,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Forgot Password ?"/>
                                 <connections>
-                                    <action selector="forgotPasswordTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="JgH-ZM-QpB"/>
+                                    <action selector="forgotPasswordTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ffz-Nm-BNF"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEz-1L-GAl">
@@ -167,8 +270,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="PoZ-Bm-jIo" id="ywK-Zd-lxB"/>
-                        <outlet property="passwordTextField" destination="7ab-se-c4e" id="JA8-H4-3lE"/>
+                        <outlet property="emailTextField" destination="PoZ-Bm-jIo" id="pvR-xl-Kfp"/>
+                        <outlet property="passwordTextField" destination="7ab-se-c4e" id="C0N-zy-1Bp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -288,21 +391,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXJ-QB-kgU">
-                                <rect key="frame" x="42" y="227" width="50" height="21"/>
+                                <rect key="frame" x="42" y="227" width="275" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fP-Z6-ibR">
-                                <rect key="frame" x="44" y="272" width="46" height="21"/>
+                                <rect key="frame" x="44" y="272" width="273" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Role:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wdf-2T-vOm">
-                                <rect key="frame" x="48" y="322" width="38" height="21"/>
+                                <rect key="frame" x="48" y="322" width="269" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -325,6 +428,7 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Settings"/>
                                 <connections>
                                     <action selector="settingsTapped:" destination="dy1-mC-Lff" eventType="touchUpInside" id="gS1-pN-uiu"/>
+                                    <segue destination="fv4-3H-Ks4" kind="show" id="28X-4C-MCN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -340,7 +444,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WyQ-cB-fDS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1613" y="-33"/>
+            <point key="canvasLocation" x="1612.9770992366412" y="-33.098591549295776"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
