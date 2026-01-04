@@ -34,21 +34,20 @@ class StatusTrackingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        lockButtonFonts()
+        configureLabels()
         styleFeedbackButton()
         configureButtons()
         updateUI()
     }
 
-    // MARK: - Font Lock (prevents storyboard font reset)
-    private func lockButtonFonts() {
-        let buttons = [primaryButton, feedbackButton, doneButton]
+    // MARK: - Label Configuration (NO TEXT HERE)
+    private func configureLabels() {
+        let labels = [titleLabel, statusLabel, dateLabel]
 
-        buttons.forEach { button in
-            guard let button else { return }
-            if let font = button.titleLabel?.font {
-                button.titleLabel?.font = font
-            }
+        labels.forEach { label in
+            guard let label else { return }
+            label.numberOfLines = 1
+            label.lineBreakMode = .byTruncatingTail
         }
     }
 
@@ -63,28 +62,12 @@ class StatusTrackingViewController: UIViewController {
         primaryButton.isHidden = true
         feedbackButton.isHidden = true
         doneButton.isHidden = true
-
-        primaryButton.isEnabled = true
-        feedbackButton.isEnabled = true
-        doneButton.isEnabled = true
-
-        primaryButton.alpha = 1
-        feedbackButton.alpha = 1
-        doneButton.alpha = 1
     }
 
     private func resetButtons() {
         primaryButton.isHidden = true
         feedbackButton.isHidden = true
         doneButton.isHidden = true
-
-        primaryButton.isEnabled = true
-        feedbackButton.isEnabled = true
-        doneButton.isEnabled = true
-
-        primaryButton.alpha = 1
-        feedbackButton.alpha = 1
-        doneButton.alpha = 1
     }
 
     // MARK: - Circles
@@ -93,11 +76,9 @@ class StatusTrackingViewController: UIViewController {
             .forEach { $0?.tintColor = inactiveColor }
     }
 
-    // MARK: - UI Update (Single Source of Truth)
+    // MARK: - UI Update (SINGLE SOURCE OF TRUTH)
     private func updateUI() {
         guard let donation else { return }
-
-        titleLabel.text = donation.title
 
         resetCircles()
         resetButtons()
@@ -105,43 +86,49 @@ class StatusTrackingViewController: UIViewController {
         switch donation.pickupStatus {
 
         case .available:
+            titleLabel.text = donation.title
             statusLabel.text = "Available"
             dateLabel.text = "Not scheduled yet"
 
         case .scheduled:
-            pendingCircle.tintColor = activeColor
+            titleLabel.text = donation.title
             statusLabel.text = "Pickup Scheduled"
             dateLabel.text = "Waiting for donor confirmation"
 
+            pendingCircle.tintColor = activeColor
             primaryButton.isHidden = false
             primaryButton.setTitle("Mark as Accepted", for: .normal)
 
         case .accepted:
-            pendingCircle.tintColor = activeColor
-            acceptedCircle.tintColor = activeColor
+            titleLabel.text = donation.title
             statusLabel.text = "Donation Accepted"
             dateLabel.text = "Waiting for pickup"
 
+            pendingCircle.tintColor = activeColor
+            acceptedCircle.tintColor = activeColor
             primaryButton.isHidden = false
             primaryButton.setTitle("Confirm Pickup", for: .normal)
 
         case .collected:
-            pendingCircle.tintColor = activeColor
-            acceptedCircle.tintColor = activeColor
-            collectedCircle.tintColor = activeColor
+            titleLabel.text = donation.title
             statusLabel.text = "Donation Collected"
             dateLabel.text = "In progress"
 
+            pendingCircle.tintColor = activeColor
+            acceptedCircle.tintColor = activeColor
+            collectedCircle.tintColor = activeColor
             primaryButton.isHidden = false
             primaryButton.setTitle("Collection Completed", for: .normal)
 
         case .completed:
+            titleLabel.text = donation.title
+            statusLabel.text = "Donation Completed"
+            dateLabel.text = "Thank you!"
+
             pendingCircle.tintColor = activeColor
             acceptedCircle.tintColor = activeColor
             collectedCircle.tintColor = activeColor
             completedCircle.tintColor = activeColor
-            statusLabel.text = "Donation Completed"
-            dateLabel.text = "Thank you!"
 
             feedbackButton.isHidden = false
             doneButton.isHidden = false
@@ -174,3 +161,4 @@ class StatusTrackingViewController: UIViewController {
         dismiss(animated: true)
     }
 }
+
