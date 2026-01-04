@@ -10,12 +10,32 @@ import UIKit
 class SchedulePickupViewController: UIViewController {
 
     // MARK: - Data
+
     var donation: Donations?
     private var pickupNote: String?
 
-    // MARK: - UI
+    // MARK: - Outlets (Already exist in your storyboard)
+
+    /// Main title label (text: "Schedule Donation")
+    @IBOutlet weak var scheduleTitleLabel: UILabel!
+
+    // MARK: - UI (Programmatic)
+
     private var contentView: SchedulePickupContentView!
 
+    /// Subheading shown under the main title
+    private let subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Please choose a date and time for your donation pickup"
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .secondaryLabel
+        label.numberOfLines = 0
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    /// Inline calendar picker
     private let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .dateAndTime
@@ -25,25 +45,65 @@ class SchedulePickupViewController: UIViewController {
     }()
 
     // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = .systemBackground
+
+        // make the calendar blue
+        view.tintColor = UIColor(hex: "89AAC5")
+
+        setupSubtitleLabel()
         setupDatePicker()
         setupContentView()
         configureContent()
     }
 
-    // MARK: - Setup
+    // MARK: - Setup UI
+
+    /// Adds the subtitle under "Schedule Donation"
+    private func setupSubtitleLabel() {
+        view.addSubview(subtitleLabel)
+
+        NSLayoutConstraint.activate([
+            subtitleLabel.topAnchor.constraint(
+                equalTo: scheduleTitleLabel.bottomAnchor,
+                constant: 16
+            ),
+            subtitleLabel.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: 28
+            ),
+            subtitleLabel.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: 18
+            )
+        ])
+    }
+
+
+    /// Adds and positions the calendar closer to the top
     private func setupDatePicker() {
         view.addSubview(datePicker)
 
         NSLayoutConstraint.activate([
-            datePicker.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
-            datePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            datePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            datePicker.topAnchor.constraint(
+                equalTo: subtitleLabel.bottomAnchor,
+                constant: -20
+            ),
+            datePicker.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: 16
+            ),
+            datePicker.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -16
+            )
         ])
     }
 
+    /// Loads the content view below the calendar
     private func setupContentView() {
         contentView = Bundle.main.loadNibNamed(
             "SchedulePickupContent",
@@ -57,18 +117,29 @@ class SchedulePickupViewController: UIViewController {
         view.addSubview(contentView)
 
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 20),
-            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            contentView.topAnchor.constraint(
+                equalTo: datePicker.bottomAnchor,
+                constant: 2
+            ),
+            contentView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: 16
+            ),
+            contentView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -16
+            )
         ])
     }
 
+    /// Fills content view with donation info
     private func configureContent() {
         guard let donation else { return }
         contentView.configure(with: donation)
     }
 
     // MARK: - Actions
+
     @IBAction func confirmTapped(_ sender: UIButton) {
         donation?.pickupDate = datePicker.date
         donation?.pickupStatus = .scheduled
@@ -77,14 +148,14 @@ class SchedulePickupViewController: UIViewController {
         performSegue(withIdentifier: "toPickupScheduled", sender: nil)
     }
 
+    // MARK: - Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPickupScheduled",
            let vc = segue.destination as? PickupScheduledViewController {
-
             vc.donation = donation
             vc.note = pickupNote
         }
     }
 }
-
 
