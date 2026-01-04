@@ -33,13 +33,33 @@ class StatusTrackingViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        lockButtonFonts()
+        styleFeedbackButton()
         configureButtons()
         updateUI()
     }
 
+    // MARK: - Font Lock (prevents storyboard font reset)
+    private func lockButtonFonts() {
+        let buttons = [primaryButton, feedbackButton, doneButton]
+
+        buttons.forEach { button in
+            guard let button else { return }
+            if let font = button.titleLabel?.font {
+                button.titleLabel?.font = font
+            }
+        }
+    }
+
+    // MARK: - Button Styling
+    private func styleFeedbackButton() {
+        feedbackButton.backgroundColor = .systemGray5
+        feedbackButton.setTitleColor(activeColor, for: .normal)
+    }
+
     // MARK: - Button Setup
     private func configureButtons() {
-        // Force initial state (ignore storyboard)
         primaryButton.isHidden = true
         feedbackButton.isHidden = true
         doneButton.isHidden = true
@@ -73,7 +93,7 @@ class StatusTrackingViewController: UIViewController {
             .forEach { $0?.tintColor = inactiveColor }
     }
 
-    // MARK: - UI Update (SINGLE SOURCE OF TRUTH)
+    // MARK: - UI Update (Single Source of Truth)
     private func updateUI() {
         guard let donation else { return }
 
@@ -148,5 +168,9 @@ class StatusTrackingViewController: UIViewController {
 
     @IBAction func doneTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "toPickupCompleted", sender: nil)
+    }
+
+    @IBAction func closeTapped(_ sender: UIButton) {
+        dismiss(animated: true)
     }
 }

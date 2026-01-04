@@ -54,6 +54,9 @@ class DonationDetailsViewController: UIViewController {
             destination.donation = donation
         }
     }
+    @IBAction func closeTapped(_ sender: UIButton) {
+            dismiss(animated: true)
+        }
 }
 
 
