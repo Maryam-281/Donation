@@ -1,7 +1,7 @@
-// DonationHistoryCell.swift
 import UIKit
 
 class DonationHistoryCell: UITableViewCell {
+    static let identifier = "DonationHistoryCell"
     
     // MARK: - UI Components
     private let containerView: UIView = {
@@ -9,15 +9,34 @@ class DonationHistoryCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .secondarySystemBackground
         view.layer.cornerRadius = 12
-        view.layer.masksToBounds = true
+        view.layer.shadowColor = UIColor.appPrimary.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowRadius = 4
+        view.layer.shadowOpacity = 0.1
         return view
     }()
     
-    private let donationIdLabel: UILabel = {
+    private let statusIndicator: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 4
+        view.widthAnchor.constraint(equalToConstant: 8).isActive = true
+        return view
+    }()
+    
+    private let donorNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .boldSystemFont(ofSize: 16)
-        label.textColor = .label
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = .appPrimaryDark
+        return label
+    }()
+    
+    private let emailLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 14)
+        label.textColor = .secondaryLabel
         return label
     }()
     
@@ -29,34 +48,15 @@ class DonationHistoryCell: UITableViewCell {
         return label
     }()
     
-    private let userLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14)
-        label.textColor = .secondaryLabel
-        return label
-    }()
-    
-    private let statusView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 8
-        view.layer.masksToBounds = true
-        return view
-    }()
-    
     private let statusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .boldSystemFont(ofSize: 14)
-        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 14, weight: .semibold)
+        label.textAlignment = .right
         return label
     }()
     
-    // MARK: - Properties
-    static let identifier = "DonationHistoryCell"
-    
-    // MARK: - Initializers
+    // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -69,72 +69,89 @@ class DonationHistoryCell: UITableViewCell {
     // MARK: - Setup
     private func setupUI() {
         contentView.backgroundColor = .systemBackground
-        
-        // Add subviews
         contentView.addSubview(containerView)
-        containerView.addSubview(donationIdLabel)
-        containerView.addSubview(dateLabel)
-        containerView.addSubview(userLabel)
-        containerView.addSubview(statusView)
-        statusView.addSubview(statusLabel)
         
-        // Setup constraints
+        containerView.addSubview(statusIndicator)
+        containerView.addSubview(donorNameLabel)
+        containerView.addSubview(emailLabel)
+        containerView.addSubview(dateLabel)
+        containerView.addSubview(statusLabel)
+        
         NSLayoutConstraint.activate([
-            // Container View
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             
-            // Donation ID Label
-            donationIdLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 12),
-            donationIdLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            donationIdLabel.trailingAnchor.constraint(equalTo: statusView.leadingAnchor, constant: -8),
+            statusIndicator.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 12),
+            statusIndicator.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            statusIndicator.heightAnchor.constraint(equalToConstant: 40),
             
-            // Date Label
-            dateLabel.topAnchor.constraint(equalTo: donationIdLabel.bottomAnchor, constant: 4),
-            dateLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            dateLabel.trailingAnchor.constraint(equalTo: statusView.leadingAnchor, constant: -8),
+            donorNameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 12),
+            donorNameLabel.leadingAnchor.constraint(equalTo: statusIndicator.trailingAnchor, constant: 12),
+            donorNameLabel.trailingAnchor.constraint(equalTo: statusLabel.leadingAnchor, constant: -8),
             
-            // User Label
-            userLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 4),
-            userLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            userLabel.trailingAnchor.constraint(equalTo: statusView.leadingAnchor, constant: -8),
-            userLabel.bottomAnchor.constraint(lessThanOrEqualTo: containerView.bottomAnchor, constant: -12),
+            emailLabel.topAnchor.constraint(equalTo: donorNameLabel.bottomAnchor, constant: 4),
+            emailLabel.leadingAnchor.constraint(equalTo: statusIndicator.trailingAnchor, constant: 12),
+            emailLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -12),
             
-            // Status View
-            statusView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-            statusView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            statusView.widthAnchor.constraint(equalToConstant: 90),
-            statusView.heightAnchor.constraint(equalToConstant: 32),
+            dateLabel.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 4),
+            dateLabel.leadingAnchor.constraint(equalTo: statusIndicator.trailingAnchor, constant: 12),
+            dateLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -12),
             
-            // Status Label
-            statusLabel.centerXAnchor.constraint(equalTo: statusView.centerXAnchor),
-            statusLabel.centerYAnchor.constraint(equalTo: statusView.centerYAnchor),
-            statusLabel.leadingAnchor.constraint(equalTo: statusView.leadingAnchor, constant: 8),
-            statusLabel.trailingAnchor.constraint(equalTo: statusView.trailingAnchor, constant: -8)
+            statusLabel.centerYAnchor.constraint(equalTo: donorNameLabel.centerYAnchor),
+            statusLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -12),
+            statusLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 80)
         ])
     }
     
-    // MARK: - Configure Cell
+    // MARK: - Configuration
     func configure(with donation: DonationHistory) {
-        donationIdLabel.text = "Donation #\(donation.donationid)"
-        dateLabel.text = donation.formattedDate
-        userLabel.text = "User: \(donation.user ?? "N/A")"
-        statusLabel.text = donation.status?.capitalized ?? "Unknown"
+        // Donor name
+        if let donor = donation.donor {
+            donorNameLabel.text = "\(donor.firstName) \(donor.lastName)"
+            emailLabel.text = donor.email
+        } else {
+            donorNameLabel.text = donation.user ?? "Unknown"
+            emailLabel.text = donation.email ?? "No email"
+        }
         
-        // Set status view color
-        statusView.backgroundColor = donation.statusColor.withAlphaComponent(0.2)
-        statusLabel.textColor = donation.statusColor
+        // Date
+        if let date = donation.date {
+            dateLabel.text = "📅 \(formatDate(date))"
+        } else {
+            dateLabel.text = "📅 No date"
+        }
+        
+        // Status
+        let status = donation.status ?? "Unknown"
+        statusLabel.text = status
+        
+        switch status.lowercased() {
+        case "completed", "collected":
+            statusLabel.textColor = .systemGreen
+            statusIndicator.backgroundColor = .systemGreen
+        case "pending":
+            statusLabel.textColor = .appPrimary
+            statusIndicator.backgroundColor = .appPrimary
+        case "cancelled":
+            statusLabel.textColor = .systemRed
+            statusIndicator.backgroundColor = .systemRed
+        default:
+            statusLabel.textColor = .systemGray
+            statusIndicator.backgroundColor = .systemGray
+        }
     }
     
-    // MARK: - Reuse
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        donationIdLabel.text = nil
-        dateLabel.text = nil
-        userLabel.text = nil
-        statusLabel.text = nil
-        statusView.backgroundColor = .clear
+    private func formatDate(_ dateString: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        if let date = formatter.date(from: dateString) {
+            formatter.dateStyle = .medium
+            return formatter.string(from: date)
+        }
+        
+        return dateString
     }
 }

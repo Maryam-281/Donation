@@ -1,232 +1,110 @@
-// SupabaseService.swift
 import Foundation
 import Supabase
 
 class SupabaseService {
     static let shared = SupabaseService()
     
-    private let client: SupabaseClient
+    private let supabase: SupabaseClient
     
     private init() {
-        // Replace with your Supabase credentials
+        // Replace with your actual Supabase credentials
         let supabaseURL = URL(string: "https://dytlriqwrsyytnwjnmzp.supabase.co")!
         let supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR5dGxyaXF3cnN5eXRud2pubXpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY0ODkxMzgsImV4cCI6MjA4MjA2NTEzOH0.GyrUjaI_m5rs020nNLquoX_RoUU0KuNBTFSoPJK28PY"
         
-        client = SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
-        
+        supabase = SupabaseClient(
+            supabaseURL: supabaseURL,
+            supabaseKey: supabaseKey
+        )
         print("✅ Supabase client initialized")
     }
     
-    // MARK: - Fetch Donation History
-    // MARK: - Fetch Donation History for User (Donor OR Collector)
-    func fetchDonationHistory(forUserId userId: UUID) async throws -> [DonationHistory] {
-        let uuidString = userId.uuidString.lowercased()
-        print("🌐 Supabase: Fetching donations for userId: '\(uuidString)'")
+    // MARK: - Donation History Methods
+    
+    /// Fetch donations by user ID
+    func fetchDonationHistory(forUserId userId: String) async throws -> [DonationHistory] {
+        print("🌐 Fetching donations for user ID: '\(userId)'")
         
-        // Try fetching without the OR filter first to debug
-        print("🧪 DEBUG: First trying to fetch by donor_id only...")
-        let donorResponse: [DonationHistory] = try await client
+        let response = try await supabase
             .from("Donation_history")
-            .select()
-            .eq("donor_id", value: uuidString)
-            .execute()
-            .value
-        print("🧪 DEBUG: Found \(donorResponse.count) donations as donor")
-        
-        print("🧪 DEBUG: Now trying to fetch by collector_id only...")
-        let collectorResponse: [DonationHistory] = try await client
-            .from("Donation_history")
-            .select()
-            .eq("collector_id", value: uuidString)
-            .execute()
-            .value
-        print("🧪 DEBUG: Found \(collectorResponse.count) donations as collector")
-        
-        // Now try with OR
-        print("🧪 DEBUG: Now trying with OR filter...")
-        let response: [DonationHistory] = try await client
-            .from("Donation_history")
-            .select()
-            .or("donor_id.eq.\(uuidString),collector_id.eq.\(uuidString)")
+            .select("""
+                *,
+                donor:User!donor_id(id, first_name, last_name, email, profile_image_url)
+            """)
+            .eq("donor_id", value: userId)
             .order("date", ascending: false)
             .execute()
-            .value
         
-        print("🌐 Supabase: Final response count: \(response.count)")
-        if response.count > 0 {
-            print("🌐 First donation: \(response[0])")
-        }
+        let donations = try JSONDecoder().decode([DonationHistory].self, from: response.data)
+        print("✅ Fetched \(donations.count) donations")
         
-        return response
+        return donations
     }
     
-    // Fetch all donations (for admin view)
-    func fetchAllDonationHistory() async throws -> [DonationHistory] {
-        print("🌐 Starting fetchAllDonationHistory")
+    /// Fetch all donations (test mode - no filter)
+    func fetchAllDonations() async throws -> [DonationHistory] {
+        print("🌐 Fetching ALL donations (test mode)")
         
-        do {
-            let response: [DonationHistory] = try await client
-                .from("Donation_history")
-                .select()
-                .order("date", ascending: false)
-                .execute()
-                .value
-            
-            print("🌐 Success! Got \(response.count) rows")
-            print("🌐 Raw response: \(response)")
-            
-            return response
-        } catch {
-            print("❌ Fetch error: \(error)")
-            print("❌ Error type: \(type(of: error))")
-            print("❌ Error description: \(error.localizedDescription)")
-            throw error
-        }
-    }
-    
-    // MARK: - Fetch Donor Feedback
-    func fetchDonerFeedback(forDonationId donationId: Int) async throws -> DonerFeedback? {
-        let response: [DonerFeedback] = try await client
-            .from("DonerFeedback")
-            .select()
-            .eq("donationid", value: donationId)
+        let response = try await supabase
+            .from("Donation_history")
+            .select("""
+                *,
+                donor:User!donor_id(id, first_name, last_name, email, profile_image_url)
+            """)
+            .order("date", ascending: false)
+            .limit(10)
             .execute()
-            .value
         
-        return response.first
+        let donations = try JSONDecoder().decode([DonationHistory].self, from: response.data)
+        print("✅ Fetched \(donations.count) donations (all users)")
+        
+        return donations
     }
     
-    // MARK: - Fetch Collector Feedback
-    func fetchCollectorFeedback(forDonationId donationId: Int) async throws -> CollectorFeedback? {
-        let response: [CollectorFeedback] = try await client
-            .from("collectorFeedback")
-            .select()
-            .eq("donationid", value: donationId)
-            .execute()
-            .value
-        
-        return response.first
-    }
+    // MARK: - Donation Detail Method
     
-    // MARK: - Fetch Complete Donation Detail
+    /// Fetch single donation with all details including feedback
     func fetchDonationDetail(forDonationId donationId: Int) async throws -> DonationDetail {
-        // Fetch donation
-        let donations: [DonationHistory] = try await client
+        print("🌐 Fetching donation detail for ID: \(donationId)")
+        
+        let response = try await supabase
             .from("Donation_history")
-            .select()
+            .select("""
+                *,
+                donor:User!donor_id(id, first_name, last_name, email, phone_number, profile_image_url),
+                collector:User!collector_id(id, first_name, last_name, email, phone_number),
+                DonerFeedback(*),
+                collectorFeedback(*)
+            """)
             .eq("donationid", value: donationId)
-            .execute()
-            .value
-        
-        guard let donation = donations.first else {
-            throw NSError(domain: "SupabaseService", code: 404,
-                         userInfo: [NSLocalizedDescriptionKey: "Donation not found"])
-        }
-        
-        // Fetch feedbacks concurrently
-        async let donerFeedbackTask = fetchDonerFeedback(forDonationId: donationId)
-        async let collectorFeedbackTask = fetchCollectorFeedback(forDonationId: donationId)
-        
-        let (doner, collector) = try await (donerFeedbackTask, collectorFeedbackTask)
-        
-        return DonationDetail(
-            donation: donation,
-            donerFeedback: doner,
-            collectorFeedback: collector
-        )
-    }
-    
-    // MARK: - Create New Donation
-    func createDonation(email: String, date: String, status: String, user: String) async throws -> DonationHistory {
-        // Create a struct that matches the insert format
-        struct NewDonation: Encodable {
-            let email: String
-            let date: String
-            let status: String
-            let user: String
-        }
-        
-        let newDonation = NewDonation(
-            email: email,
-            date: date,
-            status: status,
-            user: user
-        )
-        
-        let response: DonationHistory = try await client
-            .from("Donation_history")
-            .insert(newDonation)
-            .select()
             .single()
             .execute()
-            .value
         
-        return response
+        let detail = try JSONDecoder().decode(DonationDetail.self, from: response.data)
+        print("✅ Fetched donation detail")
+        
+        return detail
     }
     
-    // MARK: - Update Donation Status
-    func updateDonationStatus(donationId: Int, status: String) async throws {
-        try await client
-            .from("Donation_history")
-            .update(["status": status])
-            .eq("donationid", value: donationId)
-            .execute()
-    }
+    // MARK: - Helper Methods
     
-    func testRawQuery(userId: String) async throws {
-        print("🧪 Testing raw query for userId: \(userId)")
+    /// Get user ID by email (test helper)
+    func getUserIdByEmail(_ email: String) async throws -> String {
+        print("🔍 Looking up user ID for: '\(email)'")
         
-        // Use RPC or raw query if available
-        let query = """
-        SELECT * FROM "Donation_history" 
-        WHERE donor_id = '\(userId)' OR collector_id = '\(userId)'
-        """
-        
-        print("🧪 Query: \(query)")
-        
-        // Try a simpler select all first
-        let allDonations: [DonationHistory] = try await client
-            .from("Donation_history")
-            .select()
+        let response = try await supabase
+            .from("User")
+            .select("id")
+            .eq("email", value: email)
+            .single()
             .execute()
-            .value
         
-        print("🧪 Total donations in table: \(allDonations.count)")
-        
-        // Check if our UUID appears anywhere
-        let matching = allDonations.filter {
-            $0.donor_id.uuidString.lowercased() == userId.lowercased() ||
-            $0.collector_id?.uuidString.lowercased() == userId.lowercased()
+        struct UserIdResponse: Codable {
+            let id: String
         }
-        print("🧪 Matching donations found: \(matching.count)")
-        if matching.count > 0 {
-            print("🧪 Matching donation: \(matching[0])")
-        }
-    }
-    func listAllTables() async throws {
-        print("🧪 Attempting to list tables...")
         
-        // Try different table name variations
-        let tableVariations = [
-            "Donation_history",
-            "donation_history",
-            "DONATION_HISTORY",
-            "donationhistory"
-        ]
+        let user = try JSONDecoder().decode(UserIdResponse.self, from: response.data)
+        print("✅ Found user ID: \(user.id)")
         
-        for tableName in tableVariations {
-            do {
-                print("🧪 Trying table: '\(tableName)'")
-                let response: [DonationHistory] = try await client
-                    .from(tableName)
-                    .select()
-                    .limit(1)
-                    .execute()
-                    .value
-                print("✅ Table '\(tableName)' exists with \(response.count) records")
-            } catch {
-                print("❌ Table '\(tableName)' failed: \(error.localizedDescription)")
-            }
-        }
+        return user.id
     }
 }
