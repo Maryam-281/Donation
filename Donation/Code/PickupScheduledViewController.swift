@@ -31,11 +31,25 @@ class PickupScheduledViewController: UIViewController {
     }
 
     private func setupUI() {
+
+        // Notes box ONLY — nothing else
         notesTextView.isEditable = false
         notesTextView.isScrollEnabled = false
+        notesTextView.font = .systemFont(ofSize: 15)
+        notesTextView.textColor = .label
+
+        // Border instead of background
         notesTextView.layer.cornerRadius = 12
-        notesTextView.backgroundColor = .systemGray6
+        notesTextView.layer.borderWidth = 1
+        notesTextView.layer.borderColor = UIColor.separator.cgColor
+        notesTextView.layer.masksToBounds = true
+
+        // Padding inside the box
+        notesTextView.textContainerInset = UIEdgeInsets(
+            top: 12, left: 10, bottom: 12, right: 10
+        )
     }
+
 
     private func configureSummary() {
         guard let donation else { return }

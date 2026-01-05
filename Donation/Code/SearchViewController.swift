@@ -9,18 +9,18 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
-    // MARK: - Outlets
+
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var cardsStackView: UIStackView!
 
-    // MARK: - Data
+
     var allDonations: [Donations] = []
     var filteredDonations: [Donations] = []
 
-    // MARK: - Selection
+
     var selectedDonation: Donations?
 
-    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,7 +51,7 @@ class SearchViewController: UIViewController {
         reloadCards()
     }
 
-    // MARK: - Search
+    
     @objc private func searchTextChanged() {
 
         let query = searchTextField.text?
@@ -70,12 +70,12 @@ class SearchViewController: UIViewController {
         reloadCards()
     }
 
-    // MARK: - Actions
+
     @IBAction func filterButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "searchShowFilter", sender: nil)
     }
 
-    // MARK: - UI
+
     private func reloadCards() {
 
         cardsStackView.arrangedSubviews.forEach {
@@ -108,7 +108,7 @@ class SearchViewController: UIViewController {
         cardsStackView.layoutIfNeeded()
     }
 
-    // MARK: - Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if segue.identifier == "toDonationDetails",
@@ -128,7 +128,7 @@ class SearchViewController: UIViewController {
     }
 }
 
-// MARK: - UITextFieldDelegate
+
 extension SearchViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -137,7 +137,7 @@ extension SearchViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - Filter Delegate
+
 extension SearchViewController: FilterViewControllerDelegate {
 
     func didApplyFilters(
@@ -168,7 +168,7 @@ extension SearchViewController: FilterViewControllerDelegate {
         reloadCards()
     }
 
-    // Convert filter text → ExpiryStatus
+    // Convert filter text to ecpiry status
     private func expiryStatus(from text: String) -> ExpiryStatus? {
         switch text.lowercased() {
         case "fresh":

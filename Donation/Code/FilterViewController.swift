@@ -35,7 +35,6 @@ class FilterViewController: UIViewController {
         setupCategoryMenu()
     }
 
-    // MARK: - Location Menu
     func setupLocationMenu() {
 
         let all = UIAction(title: "All Locations", state: selectedLocation == nil ? .on : .off) { _ in
@@ -67,7 +66,6 @@ class FilterViewController: UIViewController {
         locationButton.showsMenuAsPrimaryAction = true
     }
 
-    // MARK: - Status Menu
     func setupStatusMenu() {
 
         let all = UIAction(title: "All Status", state: selectedStatus == nil ? .on : .off) { _ in
@@ -94,7 +92,6 @@ class FilterViewController: UIViewController {
         statusButton.showsMenuAsPrimaryAction = true
     }
 
-    // MARK: - Category Menu
     func setupCategoryMenu() {
 
         let all = UIAction(title: "All Categories", state: selectedCategory == nil ? .on : .off) { _ in
@@ -131,7 +128,6 @@ class FilterViewController: UIViewController {
         categoryButton.showsMenuAsPrimaryAction = true
     }
 
-    // MARK: - Reset Filter
     @IBAction func resetFilterTapped(_ sender: UIButton) {
 
         selectedLocation = nil
@@ -147,7 +143,6 @@ class FilterViewController: UIViewController {
         setupCategoryMenu()
     }
 
-    // Apply Filters
     @IBAction func applyButtonTapped(_ sender: UIButton) {
 
         delegate?.didApplyFilters(

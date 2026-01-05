@@ -9,21 +9,19 @@ import UIKit
 
 class SchedulePickupViewController: UIViewController {
 
-    // MARK: - Data
+
 
     var donation: Donations?
     private var pickupNote: String?
 
-    // MARK: - Outlets (Already exist in your storyboard)
 
-    /// Main title label (text: "Schedule Donation")
     @IBOutlet weak var scheduleTitleLabel: UILabel!
 
-    // MARK: - UI (Programmatic)
+
 
     private var contentView: SchedulePickupContentView!
 
-    /// Subheading shown under the main title
+
     private let subtitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Please choose a date and time for your donation pickup"
@@ -35,7 +33,7 @@ class SchedulePickupViewController: UIViewController {
         return label
     }()
 
-    /// Inline calendar picker
+
     private let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .dateAndTime
@@ -44,7 +42,7 @@ class SchedulePickupViewController: UIViewController {
         return picker
     }()
 
-    // MARK: - Lifecycle
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,9 +58,6 @@ class SchedulePickupViewController: UIViewController {
         configureContent()
     }
 
-    // MARK: - Setup UI
-
-    /// Adds the subtitle under "Schedule Donation"
     private func setupSubtitleLabel() {
         view.addSubview(subtitleLabel)
 
@@ -83,7 +78,6 @@ class SchedulePickupViewController: UIViewController {
     }
 
 
-    /// Adds and positions the calendar closer to the top
     private func setupDatePicker() {
         view.addSubview(datePicker)
 
@@ -103,7 +97,6 @@ class SchedulePickupViewController: UIViewController {
         ])
     }
 
-    /// Loads the content view below the calendar
     private func setupContentView() {
         contentView = Bundle.main.loadNibNamed(
             "SchedulePickupContent",
@@ -132,13 +125,13 @@ class SchedulePickupViewController: UIViewController {
         ])
     }
 
-    /// Fills content view with donation info
+
     private func configureContent() {
         guard let donation else { return }
         contentView.configure(with: donation)
     }
 
-    // MARK: - Actions
+
 
     @IBAction func confirmTapped(_ sender: UIButton) {
         donation?.pickupDate = datePicker.date
@@ -148,7 +141,7 @@ class SchedulePickupViewController: UIViewController {
         performSegue(withIdentifier: "toPickupScheduled", sender: nil)
     }
 
-    // MARK: - Navigation
+
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPickupScheduled",
