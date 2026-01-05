@@ -1,9 +1,3 @@
-//
-//  Report.swift
-//  Donation
-//
-//  Created by Claude
-//
 
 import Foundation
 
