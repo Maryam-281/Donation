@@ -1,55 +1,24 @@
-
-
 import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        print("🟢 AppDelegate: App launched")
         
-        // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.main.bounds)
         
-        // Configure global app appearance
-        configureAppearance()
+        // Start with the chats list
+        let chatsListVC = ChatsListViewController()
+        let navController = UINavigationController(rootViewController: chatsListVC)
+        
+        window?.rootViewController = navController
+        window?.makeKeyAndVisible()
+        
+        print("✅ Chats list loaded")
         
         return true
-    }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-    }
-    
-    // MARK: - Appearance Configuration
-    
-    private func configureAppearance() {
-        // Configure navigation bar appearance
-        let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.configureWithOpaqueBackground()
-        navigationBarAppearance.backgroundColor = .systemGroupedBackground
-        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.label]
-        navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
-        
-        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
-        UINavigationBar.appearance().compactAppearance = navigationBarAppearance
-        
-        // Configure tab bar appearance
-        let tabBarAppearance = UITabBarAppearance()
-        tabBarAppearance.configureWithOpaqueBackground()
-        tabBarAppearance.backgroundColor = .systemBackground
-        
-        UITabBar.appearance().standardAppearance = tabBarAppearance
-        if #available(iOS 15.0, *) {
-            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-        }
-        
-        // Configure tint color
-        UITabBar.appearance().tintColor = .systemBlue
-        UINavigationBar.appearance().tintColor = .systemBlue
     }
 }

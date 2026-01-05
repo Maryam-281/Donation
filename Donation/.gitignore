@@ -1,0 +1,12 @@
+# Credentials
+Config.plist
+
+# Xcode
+*.xcuserstate
+xcuserdata/
+DerivedData/
+.DS_Store
+
+# Swift Package Manager
+.swiftpm/
+.build/
