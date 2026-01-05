@@ -37,13 +37,23 @@ class collectorFeedbackViewController: UIViewController {
     
     var comments : String = ""
     var colletingId : Int = 3
+//    var colletingId : Int?
     
-    //to recived cdonation ID FK
-  
-    class FeedbackViewController: UIViewController {
-        var colletingId: Int?
-        //donationsId = donationID
-    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//            if segue.identifier == "toDonationFilter" {
+//    
+//                // 1️⃣ Get the navigation controller
+//                let navController = segue.destination as! UINavigationController
+//    
+//                // 2️⃣ Get the actual destination VC
+//                let secondVC = navController.topViewController as! DonationFilter
+//    
+//                // 3️⃣ Pass the data
+//                secondVC.colletingId = colletingId
+//            }
+//        }
     
     struct CollectorFeedback: Encodable {
         let packagingRate: Int
@@ -73,8 +83,6 @@ class collectorFeedbackViewController: UIViewController {
     
     @IBAction func submitTapped(_ sender: UIButton)
     {
-        
-        
         guard hygineRating > 0 else {
             print("No rating is selected")
             return
@@ -85,7 +93,6 @@ class collectorFeedbackViewController: UIViewController {
         }
         // prevent double tap
         sender.isEnabled = false
-        
         // Insert into Supabase
         if let   text = commentsTextbox.text, !text.isEmpty {
             comments = text
@@ -94,8 +101,7 @@ class collectorFeedbackViewController: UIViewController {
             packagingRate: packagingRating,
             hygieneRate: hygineRating,
             collectorComments: comments,
-            colletingId: colletingId )
-            
+            colletingId: colletingId)
          Task {
                 do {
                     try await SupabaseManager.shared.client

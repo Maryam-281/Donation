@@ -102,6 +102,11 @@ class adminFeedbackViewController: UIViewController {
     struct FeedbackRow: Codable {
         let comment: String
     }
+    struct DonationStatusPercentage: Decodable {
+        let status: String
+        let percentage: Double
+    }
+
 
     func fetchComments(startDate: Date, endDate: Date, completion: @escaping ([String]) -> Void) {
         Task {
@@ -128,35 +133,45 @@ class adminFeedbackViewController: UIViewController {
     func setupPieChart() {
         Task {
             do {
-                // 1️⃣ Fetch status counts from Supabase
+                // 1️⃣ Fetch status percentages from Supabase
                 let response = try await SupabaseManager.shared.client
-                    .rpc("get_donation_status_counts") // no user_id, all users
+                    .rpc("get_donation_status_counts") // returns percentage per status
                     .execute()
                 
-                let statuses = try JSONDecoder().decode([DonationStatus].self, from: response.data)
+                let statuses = try JSONDecoder().decode([DonationStatusPercentage].self, from: response.data)
                 
                 // 2️⃣ Map to PieChartDataEntry
                 let entries = statuses.map { status in
-                    PieChartDataEntry(value: Double(status.count), label: status.status)
+                    PieChartDataEntry(value: Double(status.percentage), label: status.status)
                 }
                 
                 // 3️⃣ Setup dataset
                 let dataset = PieChartDataSet(entries: entries)
                 dataset.colors = ChartColorTemplates.material()
+                dataset.sliceSpace = 2
+                dataset.valueTextColor = .black          // value labels in black
+                dataset.entryLabelColor = .black         // slice labels in black
+                dataset.valueFont = .systemFont(ofSize: 12)
                 
                 // 4️⃣ Assign data to chart
                 let data = PieChartData(dataSet: dataset)
                 pieChartView.data = data
                 
                 // 5️⃣ Chart styling
+                pieChartView.usePercentValuesEnabled = true  // show percentages
                 pieChartView.holeRadiusPercent = 0.4
+                pieChartView.transparentCircleRadiusPercent = 0.45
                 pieChartView.animate(yAxisDuration: 1.0)
+                
+                // Optional: make legend text black
+                pieChartView.legend.textColor = .black
                 
             } catch {
                 print("❌ Supabase error:", error)
             }
         }
     }
+
    
     func hygienePercent() {
         Task {

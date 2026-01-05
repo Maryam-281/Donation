@@ -25,13 +25,11 @@ class DonationFilter: UIViewController {
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
     
-    let currentUser = "testing"
+    var userId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
-    
     
     // funation to unselect the radio buttons when loading
     func setupRadioButtons() {
@@ -74,7 +72,8 @@ class DonationFilter: UIViewController {
             }
 
             // Call chart loading function with user
-            loadLinerChartData(startDate: startDate, endDate: endDate, user: currentUser)
+          loadLinerChartData(startDate: startDate, endDate: endDate, donorId: userId!)
+
 
             // Update button UI
             sender.isSelected = true
@@ -104,29 +103,33 @@ class DonationFilter: UIViewController {
         let donation_count: Int
     }
     
-    func loadLinerChartData(startDate: Date, endDate: Date, user: String) {
+    func loadLinerChartData(startDate: Date, endDate: Date, donorId: String) {
         Task {
             do {
                 // 1️⃣ Format dates for SQL
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-                
+
                 let startDateString = dateFormatter.string(from: startDate)
                 let endDateString = dateFormatter.string(from: endDate)
-                
-                // 2️⃣ Call Supabase RPC with user parameter
+
+                // 2️⃣ Call Supabase RPC with donor UUID
                 let response = try await SupabaseManager.shared.client
-                    .rpc("get_monthly_donations_range_user", params: [
-                        "start_date": startDateString,
-                        "end_date": endDateString,
-                        "p_user": user   // matches the renamed SQL parameter
-                    ])
+                    .rpc(
+                        "get_monthly_donations_range_user",
+                        params: [
+                            "p_donor_id": donorId,      // UUID as String
+                            "start_date": startDateString,
+                            "end_date": endDateString
+                        ]
+                    )
                     .execute()
-                
+
                 // 3️⃣ Decode response
-                let decoded: [MonthlyDonation] = try JSONDecoder().decode([MonthlyDonation].self, from: response.data)
-                
+                let decoded: [MonthlyDonation] =
+                    try JSONDecoder().decode([MonthlyDonation].self, from: response.data)
+
                 // 4️⃣ Map month → donation count
                 var monthDict: [Date: Double] = [:]
                 for donation in decoded {
@@ -134,10 +137,10 @@ class DonationFilter: UIViewController {
                         monthDict[date] = Double(donation.donation_count)
                     }
                 }
-                
+
                 // 5️⃣ Sort months
                 let monthDates = monthDict.keys.sorted()
-                
+
                 // 6️⃣ Create chart entries
                 let entries: [ChartDataEntry] = monthDates.map { date in
                     ChartDataEntry(
@@ -145,7 +148,7 @@ class DonationFilter: UIViewController {
                         y: monthDict[date] ?? 0
                     )
                 }
-                
+
                 // 7️⃣ Create dataset
                 let dataset = LineChartDataSet(entries: entries, label: "Donations")
                 dataset.colors = [.systemBlue]
@@ -154,35 +157,37 @@ class DonationFilter: UIViewController {
                 dataset.lineWidth = 2
                 dataset.mode = .cubicBezier
                 dataset.drawValuesEnabled = true
-                
+
                 // 8️⃣ Assign chart data
                 linerChart.data = LineChartData(dataSet: dataset)
                 linerChart.animate(yAxisDuration: 1.0)
-                
+
                 // 9️⃣ Configure x-axis
                 let xAxis = linerChart.xAxis
                 xAxis.labelPosition = .bottom
-                xAxis.granularity = 30 * 24 * 60 * 60 // roughly 1 month
-                
-                if let first = monthDates.first, let last = monthDates.last {
+                xAxis.granularity = 30 * 24 * 60 * 60 // ~1 month
+
+                if let first = monthDates.first,
+                   let last = monthDates.last,
+                   let maxDate = Calendar.current.date(byAdding: .month, value: 1, to: last) {
                     xAxis.axisMinimum = first.timeIntervalSince1970
-                    xAxis.axisMaximum = Calendar.current.date(byAdding: .month, value: 1, to: last)!.timeIntervalSince1970
+                    xAxis.axisMaximum = maxDate.timeIntervalSince1970
                 }
-                
-                // Format x-axis labels
+
                 xAxis.valueFormatter = MonthYearValueFormatter()
-                
-                // Configure legend
+
+                // Legend
                 let legend = linerChart.legend
                 legend.enabled = true
                 legend.horizontalAlignment = .right
                 legend.verticalAlignment = .top
                 legend.orientation = .horizontal
                 legend.drawInside = false
-                
+
             } catch {
                 print("❌ Supabase error:", error)
             }
         }
     }
+
 }

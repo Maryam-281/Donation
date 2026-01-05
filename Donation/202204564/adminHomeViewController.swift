@@ -9,7 +9,6 @@ import UIKit
 import Foundation
 import DGCharts
 
-
 class adminHomeViewController: UIViewController {
     @IBOutlet weak var donationView: UIView!
     @IBOutlet weak var donationSuportView: UIView!
@@ -43,11 +42,10 @@ class adminHomeViewController: UIViewController {
             break
         }
     }
-    
     struct Donation_history: Codable {
         let donationid: Int
     }
-    struct DonationSupported: Codable {
+    struct DonationCompleted: Codable {
         let donationid: Int
     }
     struct WeeklyDonation: Codable {
@@ -58,8 +56,6 @@ class adminHomeViewController: UIViewController {
         let month_start: String
         let donation_count: Int
     }
-
-    
     func fetchCount()
     {
         Task {
@@ -76,7 +72,6 @@ class adminHomeViewController: UIViewController {
             }
         }
     }
-    
     func fetchCountDonationInYear() {
         Task {
             do {
@@ -88,14 +83,15 @@ class adminHomeViewController: UIViewController {
                 let response = try await SupabaseManager.shared.client
                     .from("Donation_history")
                     .select("donationid", count: .exact)
-                    .eq("status", value: "delivered")
+                    .eq("status", value: "Completed")
                     .gte("date", value: "\(year)-01-01")  // greater than Jan 1 of current year
                     .lte("date", value: "\(year)-12-31")  // less than Dec 31 of current year
                     .execute()
                 
                 // 3️⃣ Get count from response
-                let count = response.count ?? 0
-                supportedDonations.text = String(count)
+                let val = response.data
+                let decoded = try JSONDecoder().decode([DonationCompleted].self, from: val)
+                supportedDonations.text = String(decoded.count)
                 
             } catch {
                 print("❌ Supabase error:", error)
@@ -240,8 +236,6 @@ class adminHomeViewController: UIViewController {
         }
     }
 }
-    
-
 final class MonthYearValueFormatter: AxisValueFormatter {
 
     private let formatter: DateFormatter = {
@@ -255,7 +249,3 @@ final class MonthYearValueFormatter: AxisValueFormatter {
         return formatter.string(from: date)
     }
 }
-
-
-
-

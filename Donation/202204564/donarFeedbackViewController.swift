@@ -28,13 +28,23 @@ class donarFeedbackViewController: UIViewController {
     
     var comments : String = ""
     var donationId : Int = 0
-
-    //to recived cdonation ID FK
-  
-    class FeedbackViewController: UIViewController {
-        var donationID: Int?
-       // donationId = donationID
-    }
+//    var donationId : Int?
+    
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //
+    //            if segue.identifier == "toDonationFilter" {
+    //
+    //                // 1️⃣ Get the navigation controller
+    //                let navController = segue.destination as! UINavigationController
+    //
+    //                // 2️⃣ Get the actual destination VC
+    //                let secondVC = navController.topViewController as! 'segue name'
+    //
+    //                // 3️⃣ Pass the data
+    //                secondVC.donationId = donationId
+    //            }
+    //        }
     
     struct DonerFeedback: Encodable {
         let pickupTime: Int
@@ -57,12 +67,9 @@ class donarFeedbackViewController: UIViewController {
         guard let index = ratingButtons.firstIndex(of: sender) else { return }
         rating = index + 1
     }
-    
     //Submit Buttons
     @IBAction func submitTapped(_ sender: UIButton)
     {
-        
-        
         guard rating > 0 else {
             print("No rating is selected")
             return
@@ -79,7 +86,6 @@ class donarFeedbackViewController: UIViewController {
                 pickupTime: rating,
                 DonerComments: comments,
                 donationid: donationId )
-            
          Task {
                 do {
                     try await SupabaseManager.shared.client
