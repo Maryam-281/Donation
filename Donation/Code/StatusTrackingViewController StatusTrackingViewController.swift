@@ -157,8 +157,5 @@ class StatusTrackingViewController: UIViewController {
         performSegue(withIdentifier: "toPickupCompleted", sender: nil)
     }
 
-    @IBAction func closeTapped(_ sender: UIButton) {
-        dismiss(animated: true)
-    }
 }
 
