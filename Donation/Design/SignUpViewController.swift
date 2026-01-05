@@ -7,15 +7,18 @@ class SignUpViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField!          // ✅ NEW
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
 
-    // إذا تبين تحفظين بيانات إضافية ب Firestore
     private let saveUserToFirestore = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
         print("✅ SignUpViewController loaded")
+
+        // ✅ optional (يسهل الإدخال)
+        phoneTextField.keyboardType = .phonePad
     }
 
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
@@ -23,11 +26,12 @@ class SignUpViewController: UIViewController {
 
         let name = (nameTextField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
         let email = (emailTextField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        let phone = (phoneTextField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)   // ✅ NEW
         let password = passwordTextField.text ?? ""
         let confirmPassword = confirmPasswordTextField.text ?? ""
 
         // Validations
-        if name.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty {
+        if name.isEmpty || email.isEmpty || phone.isEmpty || password.isEmpty || confirmPassword.isEmpty {
             showAlert("Please fill all fields")
             return
         }
@@ -39,6 +43,12 @@ class SignUpViewController: UIViewController {
 
         if password.count < 6 {
             showAlert("Password must be at least 6 characters")
+            return
+        }
+
+        // ✅ optional validation بسيط للتلفون (سهل)
+        if phone.count < 8 {
+            showAlert("Phone number is too short")
             return
         }
 
@@ -60,9 +70,10 @@ class SignUpViewController: UIViewController {
             let uid = user.uid
             print("✅ User created with UID:", uid)
 
-            // ✅ 1) خزّني الاسم والايميل محليًا عشان يطلع في Profile
+            // ✅ 1) خزّني الاسم والايميل والتلفون محليًا (اختياري)
             UserDefaults.standard.set(name, forKey: "userName")
             UserDefaults.standard.set(email, forKey: "userEmail")
+            UserDefaults.standard.set(phone, forKey: "userPhone")   // ✅ NEW
 
             // ✅ 2) خزّني الاسم داخل FirebaseAuth displayName
             let changeRequest = user.createProfileChangeRequest()
@@ -75,28 +86,36 @@ class SignUpViewController: UIViewController {
                 }
             }
 
-            // ✅ 3) Optional: Save extra info in Firestore
+            // ✅ 3) Save extra info in Firestore (الأهم عشان Profile/Edit)
             if self.saveUserToFirestore {
                 let db = Firestore.firestore()
                 let data: [String: Any] = [
-                    "name": name,
+                    "fullName": name,   // ✅ خليته fullName عشان يكون موحد
                     "email": email,
+                    "phone": phone,     // ✅ NEW
                     "createdAt": FieldValue.serverTimestamp(),
-                    "role": UserDefaults.standard.string(forKey: "selectedRole") ?? "Donor"
+                    "role": (UserDefaults.standard.string(forKey: "selectedRole") ?? "donor").lowercased()
                 ]
 
-                db.collection("users").document(uid).setData(data) { err in
+                db.collection("users").document(uid).setData(data, merge: true) { err in
                     if let err = err {
                         print("❌ Firestore save error:", err.localizedDescription)
+                        self.showAlert("Saved account, but failed to save profile data.")
                     } else {
                         print("✅ Firestore user saved")
                     }
-                }
-            }
 
-            // ✅ Success + رجوع لصفحة Login
-            self.showAlert("Account created ✅") {
-                self.dismiss(animated: true)
+                    // ✅ Success + رجوع لصفحة Login
+                    self.showAlert("Account created ✅") {
+                        self.dismiss(animated: true)
+                    }
+                }
+
+            } else {
+                // ✅ إذا ما تبين Firestore
+                self.showAlert("Account created ✅") {
+                    self.dismiss(animated: true)
+                }
             }
         }
     }

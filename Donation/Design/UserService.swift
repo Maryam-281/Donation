@@ -1,29 +1,51 @@
-//
-//  UserService.swift
-//  Donation
-//
-//  Created by zainab zainab on 03/01/2026.
-//
+import Foundation
+import FirebaseAuth
+import FirebaseFirestore
 
-import UIKit
+final class UserService {
 
-class UserService: UIViewController {
+    static let shared = UserService()
+    private init() {}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private let db = Firestore.firestore()
 
-        // Do any additional setup after loading the view.
+    // ✅ الأفضل: يكون Document ID = uid
+    func fetchCurrentUserRole(completion: @escaping (UserRole?) -> Void) {
+
+        guard let uid = Auth.auth().currentUser?.uid else {
+            completion(nil)
+            return
+        }
+
+        db.collection("users").document(uid).getDocument { snap, error in
+            if let error = error {
+                print("❌ fetch role error:", error.localizedDescription)
+                completion(nil)
+                return
+            }
+
+            let roleString = snap?.data()?["role"] as? String
+            let role = UserRole(rawValue: roleString ?? "")
+            completion(role)
+        }
     }
-    
 
-    /*
-    // MARK: - Navigation
+    // ✅ لو عندك الدوكيومنت مو uid وتبين تبحث بالإيميل:
+    func fetchRoleByEmail(_ email: String, completion: @escaping (UserRole?) -> Void) {
+        db.collection("users")
+            .whereField("email", isEqualTo: email)
+            .limit(to: 1)
+            .getDocuments { snap, error in
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+                if let error = error {
+                    print("❌ fetch role by email error:", error.localizedDescription)
+                    completion(nil)
+                    return
+                }
+
+                let doc = snap?.documents.first
+                let roleString = doc?.data()["role"] as? String
+                completion(UserRole(rawValue: roleString ?? ""))
+            }
     }
-    */
-
 }
