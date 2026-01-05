@@ -66,7 +66,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ufk-LH-HRv">
                                 <rect key="frame" x="33" y="79" width="46.333333333333343" height="34.333333333333343"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system"/>
                                 <connections>
@@ -742,14 +742,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWE-d1-HcR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1798" y="-885"/>
+            <point key="canvasLocation" x="1836" y="-910"/>
         </scene>
         <!--Item-->
         <scene sceneID="4n2-HV-agr">
             <objects>
                 <viewController modalPresentationStyle="pageSheet" id="xSA-0I-8da" customClass="FilterViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="75f-MO-LrX">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Edb-2q-oyr">
@@ -961,11 +961,11 @@
             </objects>
             <point key="canvasLocation" x="-221" y="-113"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="gKj-BX-uhj">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dFK-t7-WZn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="1uv-oA-ZO8"/>
+                    <tabBarItem key="tabBarItem" title="" selectedImage="house" catalog="system" id="1uv-oA-ZO8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Il6-DG-2dR">
                         <rect key="frame" x="0.0" y="118" width="393" height="44"/>
@@ -999,7 +999,7 @@
             </objects>
             <point key="canvasLocation" x="1069" y="-1613"/>
         </scene>
-        <!--Item-->
+        <!--Search View Controller-->
         <scene sceneID="gaL-zV-X0c">
             <objects>
                 <viewController id="W61-w8-TL8" customClass="SearchViewController" customModule="Donation" customModuleProvider="target" sceneMemberID="viewController">
@@ -1126,7 +1126,7 @@
                             <constraint firstItem="94R-YM-54e" firstAttribute="leading" secondItem="qpU-v3-NO6" secondAttribute="leading" id="pnh-9d-4et"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="2TZ-oZ-XJq"/>
+                    <tabBarItem key="tabBarItem" title="" selectedImage="magnifyingglass" catalog="system" id="2TZ-oZ-XJq"/>
                     <navigationItem key="navigationItem" id="oH1-lC-A1q"/>
                     <connections>
                         <outlet property="cardsStackView" destination="TX7-w2-g6K" id="fNF-zC-9ul"/>
@@ -1160,11 +1160,11 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Uug-se-hpG"/>
-        <segue reference="Pji-jR-NbA"/>
-        <segue reference="zhL-M7-cqW"/>
-        <segue reference="A4q-S2-lvh"/>
+        <segue reference="VoO-fz-2fA"/>
+        <segue reference="nff-0J-xwN"/>
+        <segue reference="jei-My-WhV"/>
         <segue reference="WkV-ze-AnN"/>
-        <segue reference="WbZ-3x-CEJ"/>
+        <segue reference="ocU-N3-2aq"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="AccentColor"/>
     <resources>
@@ -1174,6 +1174,7 @@
         <image name="checkmark.circle" catalog="system" width="128" height="123"/>
         <image name="circle.fill" catalog="system" width="128" height="123"/>
         <image name="cube.box.fill" catalog="system" width="128" height="123"/>
+        <image name="house" catalog="system" width="128" height="104"/>
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="truck.box.fill" catalog="system" width="128" height="88"/>
@@ -1197,19 +1198,19 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
