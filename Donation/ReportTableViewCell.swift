@@ -1,9 +1,4 @@
-//
-//  ReportTableViewCell.swift
-//  Donation
-//
-//  Created by Claude
-//
+
 
 import UIKit
 

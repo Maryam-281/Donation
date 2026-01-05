@@ -1,9 +1,4 @@
-//
-//  AppDelegate.swift
-//  Donation
-//
-//  Created by Claude
-//
+
 
 import UIKit
 
